@@ -1,25 +1,32 @@
 package com.malle.Entity;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Role")
+@Table(name = "role")
 public class Role {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "roleid")
+    private int roleid;
 
     @Column(name = "role")
     private String role;
 
     public int getRoleId() {
-        return Id;
+        return roleid;
     }
 
     public void setRoleId(int roleId) {
-        this.Id = roleId;
+        this.roleid = roleId;
     }
 
     public String getRole() {
@@ -27,11 +34,6 @@ public class Role {
     }
 
     public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Role(int roleId, String role) {
-        this.Id = roleId;
         this.role = role;
     }
 

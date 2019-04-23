@@ -36,37 +36,45 @@
 
 			<div class="container clearfix">
 
-				<div class="col_half nobottommargin d-none d-md-block">
-
-					<p class="nobottommargin"><strong>Call:</strong> 1800-547-2145 | <strong>Email:</strong> info@canvas.com</p>
-
-				</div>
-
 				<div class="col_half col_last fright nobottommargin">
 
 					<!-- Top Links
 					============================================= -->
 					<div class="top-links">
 						<ul>
-							<li><a href="#">USD</a>
-								<ul>
-									<li><a href="#">EUR</a></li>
-									<li><a href="#">AUD</a></li>
-									<li><a href="#">GBP</a></li>
-								</ul>
+							<li th:if="${user == null}" class=""><a href="#" class="sf-with-ul">Login</a>
+								<div class="top-link-section" style="display: none;">
+									<form th:action="@{/login}" id="top-login" method='POST'>
+										<div class="input-group" id="top-login-username">
+											<div class="input-group-prepend">
+												<div class="input-group-text"><i class="icon-user"></i></div>
+											</div>
+											<input type="email" class="form-control" name="username" placeholder="Email address" required="">
+										</div>
+										<div class="input-group" id="top-login-password">
+											<div class="input-group-prepend">
+												<div class="input-group-text"><i class="icon-key"></i></div>
+											</div>
+											<input type="password" class="form-control" name="password" placeholder="Password" required="">
+										</div>
+										<label class="checkbox">
+											<input type="checkbox" value="remember-me"> Remember me
+										</label>
+										<button class="btn btn-danger btn-block" type="submit">Sign in</button>
+									</form>
+								</div>
 							</li>
-							<li><a href="#">EN</a>
-								<ul>
-									<li><a href="#"><img src="/images/icons/flags/french.png" alt="French"> FR</a></li>
-									<li><a href="#"><img src="/images/icons/flags/italian.png" alt="Italian"> IT</a></li>
-									<li><a href="#"><img src="/images/icons/flags/german.png" alt="German"> DE</a></li>
+							<li th:unless="${user == null}">
+								<a th:if="${user == null}" href="/login">Login</a>
+								<a th:unless="${user == null}" th:utext=" ' Hoşgeldin ' + ${user.getName()} + '!' "> </a>
+
+								<ul th:unless="${user == null}">
+									<li><a href="#">Profile</a></li>
+									<li><a href="#">Orders</a></li>
 								</ul>
+
 							</li>
-
-
-							<a href="/login">Login</a>
-
-
+							<li th:if="${user == null}"><a href="/login">Sign Up</a></li>
 						</ul>
 					</div><!-- .top-links end -->
 
@@ -197,96 +205,14 @@
 								<!-- Mega Menu
 								============================================= -->
 								<li class="mega-menu"><a href="#"><div>Men</div><span>Out of the Box</span></a>
-									<div class="mega-menu-content style-2 clearfix">
-										<ul>
-											<li class="mega-menu-title"><a href="#"><div>Footwear</div></a>
-												<ul>
-													<li><a href="#"><div>Casual Shoes</div></a></li>
-													<li><a href="#"><div>Formal Shoes</div></a></li>
-													<li><a href="#"><div>Sports shoes</div></a></li>
-													<li><a href="#"><div>Flip Flops</div></a></li>
-													<li><a href="#"><div>Slippers</div></a></li>
-													<li><a href="#"><div>Sports Sandals</div></a></li>
-													<li><a href="#"><div>Party Shoes</div></a></li>
-												</ul>
-											</li>
-										</ul>
-										<ul>
-											<li class="mega-menu-title"><a href="#"><div>Clothing</div></a>
-												<ul>
-													<li><a href="#"><div>Casual Shirts</div></a></li>
-													<li><a href="#"><div>T-Shirts</div></a></li>
-													<li><a href="#"><div>Collared Tees</div></a></li>
-													<li><a href="#"><div>Pants / Trousers</div></a></li>
-													<li><a href="#"><div>Ethnic Wear</div></a></li>
-													<li><a href="#"><div>Jeans</div></a></li>
-													<li><a href="#"><div>Sweamwear</div></a></li>
-												</ul>
-											</li>
-										</ul>
-										<ul>
-											<li class="mega-menu-title"><a href="#"><div>Accessories</div></a>
-												<ul>
-													<li><a href="#"><div>Bags &amp; Backpacks</div></a></li>
-													<li><a href="#"><div>Watches</div></a></li>
-													<li><a href="#"><div>Sunglasses</div></a></li>
-													<li><a href="#"><div>Wallets</div></a></li>
-													<li><a href="#"><div>Caps &amp; Hats</div></a></li>
-													<li><a href="#"><div>Jewellery</div></a></li>
-													<li><a href="#"><div>Belts, Ties</div></a></li>
-												</ul>
-											</li>
-										</ul>
-										<ul>
-											<li class="mega-menu-title"><a href="#"><div>New Arrivals</div></a>
-												<ul>
-													<li><a href="#"><div>T-Shirts</div></a></li>
-													<li><a href="#"><div>Formal Shoes</div></a></li>
-													<li><a href="#"><div>Accessories</div></a></li>
-													<li><a href="#"><div>Watches</div></a></li>
-													<li><a href="#"><div>Perfumes</div></a></li>
-													<li><a href="#"><div>Belts, Ties</div></a></li>
-													<li><a href="#"><div>Formal Shirts</div></a></li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-								</li><!-- .mega-menu end -->
+								</li>
 								<li><a href="#"><div>Women</div><span>Out of the Box</span></a>
-									<div class="mega-menu-content style-2 col-2 clearfix">
-										<ul>
-											<li class="mega-menu-title"><a href="#"><div>Footwear</div></a>
-												<ul>
-													<li><a href="#"><div>Casual Shoes</div></a></li>
-													<li><a href="#"><div>Formal Shoes</div></a></li>
-													<li><a href="#"><div>Sports shoes</div></a></li>
-													<li><a href="#"><div>Flip Flops</div></a></li>
-													<li><a href="#"><div>Slippers</div></a></li>
-													<li><a href="#"><div>Sports Sandals</div></a></li>
-													<li><a href="#"><div>Party Shoes</div></a></li>
-												</ul>
-											</li>
-										</ul>
-										<ul>
-											<li class="mega-menu-title"><a href="#"><div>Clothing</div></a>
-												<ul>
-													<li><a href="#"><div>Casual Shirts</div></a></li>
-													<li><a href="#"><div>T-Shirts</div></a></li>
-													<li><a href="#"><div>Collared Tees</div></a></li>
-													<li><a href="#"><div>Pants / Trousers</div></a></li>
-													<li><a href="#"><div>Ethnic Wear</div></a></li>
-													<li><a href="#"><div>Jeans</div></a></li>
-													<li><a href="#"><div>Sweamwear</div></a></li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-								</li><!-- .mega-menu end -->
-								<li><a href="#"><div>Accessories</div><span>Awesome Works</span></a></li>
-								<li><a href="#"><div>Sale</div><span>Awesome Works</span></a></li>
-								<li><a href="#"><div>Blog</div><span>Latest News</span></a></li>
-								<li><a href="#"><div>Videos</div><span>Latest News</span></a></li>
-								<li><a href="#"><div>Contact</div><span>Get In Touch</span></a></li>
+								</li>
+								<li><a href="#"><div>Kids</div><span>Awesome Works</span></a></li>
+								<li><a href="#"><div>Beuty&Health</div><span>Awesome Works</span></a></li>
+								<li><a href="#"><div>Electronics</div><span>Latest News</span></a></li>
+								<li><a href="#"><div>Stuff</div><span>Latest News</span></a></li>
+								<li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
 							</ul>
 
 						<!-- Top Cart
@@ -398,13 +324,7 @@
 
 				</div>
 
-				<div class="promo parallax promo-full bottommargin-lg" style="background-image: url('images/parallax/3.jpg');" data-bottom-top="background-position:0px 300px;" data-top-bottom="background-position:0px -300px;">
-					<div class="container clearfix">
-						<h3>Get <span>30%</span> off on orders of $29 or more. Use Coupon: <span>SHOP30</span></h3>
-						<span>Sale available on selected Designer Brands that include Apparels, Footwear, Fashion Accessories &amp; Watches.</span>
-						<a href="#" class="button button-xlarge button-rounded">Start Shopping</a>
-					</div>
-				</div>
+				<div class="divider divider-center"><i class="icon-cloud"></i> </div>
 
 				<div class="container clearfix">
 
