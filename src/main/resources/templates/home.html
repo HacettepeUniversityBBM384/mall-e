@@ -64,13 +64,13 @@
 									</form>
 								</div>
 							</li>
-							<li th:unless="${user == null}">
+							<li th:if="${user != null}">
 								<a th:if="${user == null}" href="/login">Login</a>
 								<a th:unless="${user == null}" th:utext=" ' Hoşgeldin ' + ${user.getName()} + '!' "> </a>
 
 								<ul th:unless="${user == null}">
-									<li><a href="#">Profile</a></li>
-									<li><a href="#">Orders</a></li>
+									<li><a href="/profile">Profile</a></li>
+									<li><a href="#" th:if="${user.getRole() == 'CUSTOMER'}">Orders</a></li>
 								</ul>
 
 							</li>

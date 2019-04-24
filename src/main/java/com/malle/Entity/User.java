@@ -19,7 +19,8 @@ public class User {
     private String address;
     @Column(name = "cart_Id")
     private int cart_Id;
-    private int role;
+    @Column(name = "role")
+    private String role;
 
     public User(){
         this.email = "";
@@ -48,78 +49,78 @@ public class User {
         this.surname = user.getSurname();
         this.phone = user.getPhone();
         this.address = user.getAddress();
-        this.cart_Id = user.getCartID();
+        this.cart_Id = user.getCart_Id();
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setCart_Id(int cart_Id) {
-        this.cart_Id = cart_Id;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
-
-    public int getID() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getSurname() {
         return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPhone() {
         return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getAddress() {
         return address;
     }
 
-    public int getCartID() {
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getCart_Id() {
         return cart_Id;
     }
 
-    public int getRoles() {
+    public void setCart_Id(int cart_Id) {
+        this.cart_Id = cart_Id;
+    }
+
+    public String getRole() {
         return role;
     }
 
-    public void setRoles(int roles) {
-        this.role = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

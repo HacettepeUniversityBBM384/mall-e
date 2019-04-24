@@ -20,5 +20,7 @@ public class UserService {
 
     public User Save(User user) {return userDao.save(user);}
 
-    public Optional<User> FindOne(String email){return userDao.findByEmail(email);}
+    public Optional<User> FindByEmail(String email){return userDao.findByEmail(email);}
+
+    public Optional<User> FindById(int id){return userDao.findById(id);}
 }
