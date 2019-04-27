@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "User")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userid")
+    @Column(name = "id")
     private int id;
     private String email;
     private String password;
@@ -17,7 +17,7 @@ public class User {
     private String surname;
     private String phone;
     private String address;
-    @Column(name = "cart_Id")
+    @Column(name = "cartid")
     private int cart_Id;
     @Column(name = "role")
     private String role;
