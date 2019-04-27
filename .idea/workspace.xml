@@ -3,13 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="95768449-b880-4269-9b74-4168a8ac0ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/malle/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/malle/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/malle/Controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/malle/Dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/malle/Dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/malle/Entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/malle/Entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/malle/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/malle/Service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="118" column="20" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
+            <state relative-caret-position="279">
+              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1128#1129#0" expanded="true" />
@@ -63,6 +62,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="60" column="60" selection-start-line="60" selection-end-line="61" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#div#0;n#nav#0;n#div#1;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -87,7 +99,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -197,13 +209,13 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/Role.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/config/SecurityConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/profile.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
       </list>
     </option>
   </component>
@@ -420,7 +432,7 @@
       <workItem from="1556109407212" duration="18658000" />
       <workItem from="1556216635703" duration="9717000" />
       <workItem from="1556354292311" duration="173000" />
-      <workItem from="1556354492581" duration="16469000" />
+      <workItem from="1556354492581" duration="17251000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit with Login">
       <created>1555798808857</created>
@@ -478,11 +490,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556357712568</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="8. Commit with View and Update Profile and Delete(do not log out after deletion)">
+      <created>1556381433656</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1556381433656</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119577000" />
+    <option name="totallyTimeSpent" value="120359000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -497,7 +516,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29470673" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29470673" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -590,7 +609,8 @@
     <MESSAGE value="5. Commit with Profile page gets user information." />
     <MESSAGE value="6. Commit with View Profile" />
     <MESSAGE value="7. Commit with Logout" />
-    <option name="LAST_COMMIT_MESSAGE" value="7. Commit with Logout" />
+    <MESSAGE value="8. Commit with View and Update Profile and Delete(do not log out after deletion)" />
+    <option name="LAST_COMMIT_MESSAGE" value="8. Commit with View and Update Profile and Delete(do not log out after deletion)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -854,17 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#nav#0;n#div#1;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/web-forms.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
@@ -930,18 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="118" column="20" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1128#1129#0" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -958,6 +955,29 @@
           <caret line="716" column="76" selection-start-line="716" selection-start-column="76" selection-end-line="716" selection-end-column="76" />
           <folding>
             <element signature="n#ul#0;n#nav#0;n#div#0;n#div#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="60" column="60" selection-start-line="60" selection-end-line="61" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#nav#0;n#div#1;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
