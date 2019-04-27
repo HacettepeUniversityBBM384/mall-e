@@ -23,4 +23,6 @@ public class UserService {
     public Optional<User> FindByEmail(String email){return userDao.findByEmail(email);}
 
     public Optional<User> FindById(int id){return userDao.findById(id);}
+
+    public void DeleteById(int id){userDao.deleteById(id);}
 }

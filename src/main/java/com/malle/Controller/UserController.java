@@ -74,17 +74,49 @@ public class UserController {
             model.addAttribute("user", userAuth);
         }else
             model.addAttribute("user", new User());
+
         return "profile";
     }
 
-    @RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
-    public String showProfile(@PathVariable("id") String id, Model model) {
-        Optional<User> user;
-        user = userService.FindById(Integer.parseInt(id));
-        if (user != null)
-            System.out.println(user.get().getName());
-            model.addAttribute("user", user.get());
+    @RequestMapping(value = "/profile/update", method = RequestMethod.GET)
+    public String ProfileUpdate(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            User userAuth = new User();
+            userAuth = userService.FindByEmail(user.getEmail()).get();
+            model.addAttribute("user", userAuth);
+        }else
+            model.addAttribute("user", new User());
+
+        return "profileUpdate";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String ProfileUpdateData(@AuthenticationPrincipal CustomUserDetails user, Model model, @ModelAttribute("user") User userUpdate) {
+        User userAuth = new User();
+        if (user != null) {
+            userAuth = userService.FindByEmail(user.getEmail()).get();
+            model.addAttribute("user", userAuth);
+        }else
+            model.addAttribute("user", new User());
+        userUpdate.setId(userAuth.getId());
+        userUpdate.setCartid(userAuth.getCartid());
+        userUpdate.setRole(userAuth.getRole());
+        userService.Save(userUpdate);
+
         return "profile";
+    }
+
+    @RequestMapping(value = "/profile/delete", method = RequestMethod.GET)
+    public String ProfileDelete(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        User userAuth = new User();
+        if (user != null) {
+            userAuth = userService.FindByEmail(user.getEmail()).get();
+            model.addAttribute("user", userAuth);
+        }else
+            model.addAttribute("user", new User());
+
+        userService.DeleteById(userAuth.getId());
+        return "home";
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.POST)

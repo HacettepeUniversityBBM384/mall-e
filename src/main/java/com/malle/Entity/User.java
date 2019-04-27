@@ -18,7 +18,7 @@ public class User {
     private String phone;
     private String address;
     @Column(name = "cartid")
-    private int cart_Id;
+    private int cartid;
     @Column(name = "role")
     private String role;
 
@@ -29,7 +29,7 @@ public class User {
         this.surname = "";
         this.phone = "";
         this.address = "";
-        this.cart_Id = 0;
+        this.cartid = 0;
     }
 
     public User(String email, String password, String name, String surname, String phone, String address, int cartID) {
@@ -39,7 +39,7 @@ public class User {
         this.surname = surname;
         this.phone = phone;
         this.address = address;
-        this.cart_Id = cartID;
+        this.cartid = cartID;
     }
 
     public User(User user) {
@@ -49,7 +49,7 @@ public class User {
         this.surname = user.getSurname();
         this.phone = user.getPhone();
         this.address = user.getAddress();
-        this.cart_Id = user.getCart_Id();
+        this.cartid = user.getCartid();
     }
 
     public int getId() {
@@ -69,6 +69,10 @@ public class User {
     }
 
     public String getPassword() {
+        return password;
+    }
+
+    public String getRepassword() {
         return password;
     }
 
@@ -108,13 +112,15 @@ public class User {
         this.address = address;
     }
 
-    public int getCart_Id() {
-        return cart_Id;
+    public int getCartid() {
+        return cartid;
     }
 
-    public void setCart_Id(int cart_Id) {
-        this.cart_Id = cart_Id;
+    public void setCartid(int cartid) {
+        this.cartid = cartid;
     }
+
+
 
     public String getRole() {
         return role;
