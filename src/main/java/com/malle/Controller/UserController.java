@@ -58,6 +58,7 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String AddUser(@ModelAttribute("user") User user) {
         System.out.println(user.getName());
+        user.setRole("CUSTOMER");
         userService.Save(user);
         return "home";
     }
