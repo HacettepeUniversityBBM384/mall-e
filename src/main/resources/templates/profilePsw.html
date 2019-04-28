@@ -147,7 +147,14 @@
 
 				<div class="container clearfix">
 
-					<div class="row clearfix">
+					<div class="row clearfix"  th:if="${user == null}">
+						<div class="col_one_third"></div>
+						<div class="col_one_third"><img class="noborder" src="/images/404.png"></div>
+						<div class="col_one_third"></div>
+					</div>
+
+					<div class="row clearfix"  th:if="${user != null}">
+
 
 						<div class="col-md-9">
 

@@ -45,8 +45,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String Login(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("user", user);
+    public String Login(@ModelAttribute("user") User user) {
         return "login";
     }
 
@@ -62,8 +61,8 @@ public class UserController {
     public String AddUser(@ModelAttribute("user") User user, Model model) {
         user.setRole("CUSTOMER");
         userService.Save(user);
-        model.addAttribute("user", user);
-        return "home";
+        model.addAttribute("registered", 1);
+        return "login";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
