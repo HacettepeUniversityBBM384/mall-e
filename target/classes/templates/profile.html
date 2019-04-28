@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -141,7 +141,7 @@
 
 		<!-- Content
 		============================================= -->
-		<section id="content">
+		<section id="content" th:if="${user != null}">
 
 			<div class="content-wrap">
 
@@ -153,10 +153,10 @@
 
 							<img src="images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
 
-							<div class="alignright"><a href="/profile/update" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a></div>
-
-							<div class="alignright"><a href="/profile/delete" class="button button-mini button-circle button-border button-black"><i class="icon-cross align-right" ></i>DELETE ACCOUNT</a></div>
-
+							<div class="alignright">
+							<a href="/profile/update" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+							<a href="/profile/changepassword" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
+							</div>
 
 							<div th:if="${user != null}" class="heading-block noborder">
 								<h3 th:utext="${user.getName()} + ' ' +  ${user.getSurname()}"></h3>
@@ -172,41 +172,29 @@
 									<form th:if="${user != null}" action="/profile"  id="view-form" name="view-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
-											<label for="view-form-name">Name:</label>
-											<label type="text" id="view-form-name" name="name" value="" th:utext="${user.getName()}" class="form-control"/>
-										</div>
-
-										<div class="col_half col_last">
-											<label for="view-form-username">Surname:</label>
-											<label type="text" id="view-form-username" name="surname" value="" th:utext="${user.getSurname()}" class="form-control"/>
-										</div>
-
-										<div class="clear"></div>
-
-										<div class="col_half">
 											<label for="view-form-email">Email:</label>
-											<label type="text" id="view-form-email" name="email" value="" th:utext="${user.getEmail()}" class="form-control"/>
+											<label style="border: 0px" type="text" id="view-form-email" name="email" value="" th:utext="${user.getEmail()}" class="form-control"/>
 										</div>
 
 										<div class="col_half col_last">
 											<label for="view-form-phone">Phone:</label>
-											<label type="text" id="view-form-phone" name="phone" value="" th:utext="${user.getPhone()}" class="form-control"/>
+											<label style="border: 0px" type="text" id="view-form-phone" name="phone" value="" th:utext="${user.getPhone()}" class="form-control"/>
 										</div>
 
 										<div class="clear"></div>
 
 										<div class="col_half">
 											<label for="view-form-address">Address:</label>
-											<label type="text" id="view-form-address" name="addres" value="" th:utext="${user.getAddress()}" class="form-control"/>
+											<label style="border: 0px" type="text" id="view-form-address" name="addres" value="" th:utext="${user.getAddress()}" class="form-control"/>
 										</div>
 
 										<div class="clear"></div>
 
-
-										<div class="divider divider-center"><i class="icon-cloud"></i></div>
-
-
 									</form>
+
+									<div class="alignright">
+										<a href="/profile/delete" class="button button-mini button-circle button-border button-black"><i class="icon-line2-user-unfollow align-right" ></i>DELETE ACCOUNT</a>
+									</div>
 
 
 								</div>

@@ -163,43 +163,33 @@
 
 								<div class="col-lg-12">
 
-									<form action="/profile"  th:if="${user != null}" th:object="${user}" id="update-form" name="update-form" class="nobottommargin" method="POST">
+									<form action="/changepassword"  th:if="${user != null}" th:object="${user}" id="update-form" name="update-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
-											<label for="update-form-name">Name:</label>
-											<input th:value="${user.getName()}" th:field="*{name}" type="text" id="update-form-name" name="name" value="" class="form-control" required>
+											<label for="update-form-password">Choose Password:</label>
+											<input type="password" th:field="*{password}" id="update-form-password" name="password" value="" class="form-control" pattern="(?=.*\d).{6,200}" title="Must contain at least one number and at least 6 or more characters" required oninput="setPasswordConfirmValidity();">
 										</div>
 
 										<div class="col_half col_last">
-											<label for="update-form-username">Surname:</label>
-											<input th:value="${user.getSurname()}" th:field="*{surname}" type="text" id="update-form-username" name="surname" value="" class="form-control" required>
+											<label for="update-form-repassword">Re-enter Password:</label>
+											<input type="password" id="update-form-repassword" name="repassword" value="" class="form-control" required oninput="setPasswordConfirmValidity();">
 										</div>
+
+
+										<script>
+                                            function setPasswordConfirmValidity(str) {
+                                                const password1 = document.getElementById('update-form-password');
+                                                const password2 = document.getElementById('update-form-repassword');
+
+                                                if (password1.value === password2.value) password2.setCustomValidity('');
+                                                else password2.setCustomValidity('Passwords must match');
+                                            }
+										</script>
 
 										<div class="clear"></div>
-
-										<div class="col_half">
-											<label for="update-form-email">Email:</label>
-											<input th:value="${user.getEmail()}" th:field="*{email}" type="email" id="update-form-email" name="email" value="" class="form-control" required>
-										</div>
-
-										<div class="col_half col_last">
-											<label for="update-form-phone">Phone:</label>
-											<input th:value="${user.getPhone()}" th:field="*{phone}" type="text" id="update-form-phone" name="phone" value="" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
-										</div>
-
-										<div class="clear"></div>
-
-										<div>
-											<label for="update-form-address">Address:</label>
-											<input th:value="${user.getAddress()}" th:field="*{address}" type="text" class="form-control" id="update-form-address">
-
-										</div>
-
-										<div class="clear"></div>
-										<p><br></p>
 
 										<div class="col_full">
-											<button class="button button-3d button-pink nomargin" id="update-form-submit" name="update-form-submit" value="register" type="submit">Update Account</button>
+											<button class="button button-3d button-pink nomargin" id="update-form-submit" name="update-form-submit" value="register" type="submit">Change Password</button>
 										</div>
 
 									</form>

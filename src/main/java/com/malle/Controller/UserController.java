@@ -39,9 +39,7 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String homePage(@AuthenticationPrincipal CustomUserDetails user,Model model) {
         if (user != null) {
-            User userAuth = new User();
-            userAuth = userService.FindByEmail(user.getEmail()).get();
-            model.addAttribute("user", userAuth);
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         return "home";
     }
@@ -53,25 +51,25 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String LoginPost(@ModelAttribute("user") User user) {
-        System.out.println(user.getRole());
+    public String LoginPost(@ModelAttribute("user") User user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
         return "home";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String AddUser(@ModelAttribute("user") User user) {
-        System.out.println(user.getName());
+    public String AddUser(@ModelAttribute("user") User user, Model model) {
         user.setRole("CUSTOMER");
         userService.Save(user);
+        model.addAttribute("user", user);
         return "home";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String Profile(@AuthenticationPrincipal CustomUserDetails user, Model model) {
         if (user != null) {
-            User userAuth = new User();
-            userAuth = userService.FindByEmail(user.getEmail()).get();
-            model.addAttribute("user", userAuth);
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         return "profile";
     }
@@ -79,39 +77,52 @@ public class UserController {
     @RequestMapping(value = "/profile/update", method = RequestMethod.GET)
     public String ProfileUpdate(@AuthenticationPrincipal CustomUserDetails user, Model model) {
         if (user != null) {
-            User userAuth = new User();
-            userAuth = userService.FindByEmail(user.getEmail()).get();
-            model.addAttribute("user", userAuth);
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         return "profileUpdate";
     }
 
+    @RequestMapping(value = "/profile/changepassword", method = RequestMethod.GET)
+    public String ProfilePsw(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+        return "profilePsw";
+    }
+
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     public String ProfileUpdateData(@AuthenticationPrincipal CustomUserDetails user, Model model, @ModelAttribute("user") User userUpdate) {
-        User userAuth = new User();
-        if (user != null) {
-            userAuth = userService.FindByEmail(user.getEmail()).get();
-            model.addAttribute("user", userAuth);
-        }else
-            model.addAttribute("user", new User());
+        User userAuth = userService.FindByEmail(user.getEmail()).get();
         userUpdate.setId(userAuth.getId());
         userUpdate.setCartid(userAuth.getCartid());
         userUpdate.setRole(userAuth.getRole());
+        userUpdate.setPassword(userAuth.getPassword());
         userService.Save(userUpdate);
+        model.addAttribute("user", userUpdate);
+        return "profile";
+    }
 
+    @RequestMapping(value = "/changepassword", method = RequestMethod.POST)
+    public String ProfileChangePassword(@AuthenticationPrincipal CustomUserDetails user, Model model, @ModelAttribute("user") User userUpdate) {
+        User userAuth = userService.FindByEmail(user.getEmail()).get();
+        userUpdate.setId(userAuth.getId());
+        userUpdate.setCartid(userAuth.getCartid());
+        userUpdate.setRole(userAuth.getRole());
+        userUpdate.setAddress(userAuth.getAddress());
+        userUpdate.setEmail(userAuth.getEmail());
+        userUpdate.setName(userAuth.getName());
+        userUpdate.setPhone(userAuth.getPhone());
+        userUpdate.setSurname(userAuth.getSurname());
+        userService.Save(userUpdate);
+        model.addAttribute("user",userUpdate);
         return "profile";
     }
 
     @RequestMapping(value = "/profile/delete", method = RequestMethod.GET)
     public String ProfileDelete(@AuthenticationPrincipal CustomUserDetails user, Model model) {
-        User userAuth = new User();
-        if (user != null) {
-            userAuth = userService.FindByEmail(user.getEmail()).get();
-            model.addAttribute("user", userAuth);
-        }else
-            model.addAttribute("user", new User());
-
+        User userAuth = userService.FindByEmail(user.getEmail()).get();
         userService.DeleteById(userAuth.getId());
+        model.addAttribute("user", null);
         return "home";
     }
 

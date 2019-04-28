@@ -157,10 +157,6 @@
 								<span th:utext="${user.getRole()} "></span>
 							</div>
 
-
-
-							<div class="divider divider-center"><i class="icon-cloud"></i></div>
-
 							<div class="clear"></div>
 
 							<div class="row clearfix">
@@ -171,54 +167,39 @@
 
 										<div class="col_half">
 											<label for="update-form-name">Name:</label>
-											<input th:value="${user.getName()}" th:field="*{name}" type="text" id="update-form-name" name="name" value="" class="form-control">
+											<input th:value="${user.getName()}" th:field="*{name}" type="text" id="update-form-name" name="name" value="" class="form-control" required>
 										</div>
 
 										<div class="col_half col_last">
 											<label for="update-form-username">Surname:</label>
-											<input th:value="${user.getSurname()}" th:field="*{surname}" type="text" id="update-form-username" name="surname" value="" class="form-control">
+											<input th:value="${user.getSurname()}" th:field="*{surname}" type="text" id="update-form-username" name="surname" value="" class="form-control" required>
 										</div>
 
 										<div class="clear"></div>
 
 										<div class="col_half">
 											<label for="update-form-email">Email:</label>
-											<input th:value="${user.getEmail()}" th:field="*{email}" type="text" id="update-form-email" name="email" value="" class="form-control">
+											<input th:value="${user.getEmail()}" th:field="*{email}" type="email" id="update-form-email" name="email" value="" class="form-control" required>
 										</div>
 
 										<div class="col_half col_last">
 											<label for="update-form-phone">Phone:</label>
-											<input th:value="${user.getPhone()}" th:field="*{phone}" type="text" id="update-form-phone" name="phone" value="" class="form-control">
-										</div>
-
-										<div class="clear"></div>
-
-										<div class="col_half">
-											<label for="update-form-password">Enter New Password:</label>
-											<input th:field="*{password}" type="password" id="update-form-password" name="password" value="" class="form-control">
-										</div>
-
-										<div class="col_half col_last">
-											<label for="update-form-repassword">Re-enter Password:</label>
-											<input type="password" id="update-form-repassword" name="repassword" value="" class="form-control">
+											<input th:value="${user.getPhone()}" th:field="*{phone}" type="text" id="update-form-phone" name="phone" value="" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
 										</div>
 
 										<div class="clear"></div>
 
 										<div>
 											<label for="update-form-address">Address:</label>
-											<input th:value="${user.getAddress()}" th:field="*{address}" type="text" class="form-control" id="update-form-address" placeholder=" ">
+											<input th:value="${user.getAddress()}" th:field="*{address}" type="text" class="form-control" id="update-form-address">
 
 										</div>
 
 										<div class="clear"></div>
-										<div class="clear"></div>
-
-
-										<div class="divider divider-center"><i class="icon-cloud"></i></div>
+										<p><br></p>
 
 										<div class="col_full">
-											<button class="button button-3d button-green nomargin" id="update-form-submit" name="update-form-submit" value="register" type="submit">Update Account</button>
+											<button class="button button-3d button-pink nomargin" id="update-form-submit" name="update-form-submit" value="register" type="submit">Update Account</button>
 										</div>
 
 									</form>
@@ -233,10 +214,10 @@
 
 						<div class="col-md-3 clearfix" th:if="${user != null}">
 							<div class="list-group">
-								<a href="#" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
+								<a href="/profile" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
 								<a href="#" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-laptop2 float-right"></i></a>
 								<a href="#" class="list-group-item list-group-item-action clearfix">Settings <i class="icon-cog float-right"></i></a>
-								<a href="#" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-line2-logout float-right"></i></a>
+								<a href="/logout" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-line2-logout float-right"></i></a>
 							</div>
 						</div>
 
