@@ -251,7 +251,7 @@
 
 								<div class="col_full">
 									<label for="login-form-username">Username:</label>
-									<input type="text" id="login-form-username" name="username" value="" class="form-control">
+									<input type="email" id="login-form-username" name="username" value="" class="form-control">
 								</div>
 
 								<div class="col_full">
@@ -277,40 +277,49 @@
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, vel odio non dicta provident sint ex autem mollitia dolorem illum repellat ipsum aliquid illo similique sapiente fugiat minus ratione.</p>
 
 						<form th:action="@{/register}" th:object="${user}" id="register-form" name="register-form" class="nobottommargin" method="POST">
-
 							<div class="col_half">
 								<label for="register-form-name">Name:</label>
-								<input type="text" th:field="*{name}" id="register-form-name" name="name" value="" class="form-control">
+								<input type="text" th:field="*{name}" id="register-form-name" name="name" value="" class="form-control" required>
 							</div>
 
 							<div class="col_half col_last">
 								<label for="register-form-username">Surname:</label>
-								<input type="text" th:field="*{surname}" id="register-form-username" name="surname" value="" class="form-control">
+								<input type="text" th:field="*{surname}" id="register-form-username" name="surname" value="" class="form-control" required>
 							</div>
 
 							<div class="clear"></div>
 
 							<div class="col_half">
 								<label for="register-form-email">Email Address:</label>
-								<input type="text" th:field="*{email}" id="register-form-email" name="email" value="" class="form-control">
+								<input type="email" th:field="*{email}" id="register-form-email" name="email" value="" class="form-control" required>
 							</div>
 
 							<div class="col_half col_last">
 								<label for="register-form-phone">Phone:</label>
-								<input type="text" th:field="*{phone}" id="register-form-phone" name="phone" value="" class="form-control">
+								<input type="text" th:field="*{phone}" id="register-form-phone" name="phone" value="" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
 							</div>
 
 							<div class="clear"></div>
 
 							<div class="col_half">
 								<label for="register-form-password">Choose Password:</label>
-								<input type="password" th:field="*{password}" id="register-form-password" name="password" value="" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+								<input type="password" th:field="*{password}" id="register-form-password" name="password" value="" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required oninput="setPasswordConfirmValidity();">
 							</div>
 
 							<div class="col_half col_last">
 								<label for="register-form-repassword">Re-enter Password:</label>
-								<input type="password" id="register-form-repassword" name="repassword" value="" class="form-control">
+								<input type="password" id="register-form-repassword" name="repassword" value="" class="form-control" required oninput="setPasswordConfirmValidity();">
 							</div>
+
+                            <script>
+                                function setPasswordConfirmValidity(str) {
+                                    const password1 = document.getElementById('register-form-password');
+                                    const password2 = document.getElementById('register-form-repassword');
+
+                                    if (password1.value === password2.value) password2.setCustomValidity('');
+                                    else password2.setCustomValidity('Passwords must match');
+                                }
+                            </script>
 
 							<div class="clear"></div>
 
