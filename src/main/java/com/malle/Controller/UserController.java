@@ -72,9 +72,7 @@ public class UserController {
             User userAuth = new User();
             userAuth = userService.FindByEmail(user.getEmail()).get();
             model.addAttribute("user", userAuth);
-        }else
-            model.addAttribute("user", new User());
-
+        }
         return "profile";
     }
 
@@ -84,9 +82,7 @@ public class UserController {
             User userAuth = new User();
             userAuth = userService.FindByEmail(user.getEmail()).get();
             model.addAttribute("user", userAuth);
-        }else
-            model.addAttribute("user", new User());
-
+        }
         return "profileUpdate";
     }
 

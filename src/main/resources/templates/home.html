@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -20,7 +20,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Home - Shop Layout 2 | Canvas</title>
+	<title>Mall-E</title>
 
 </head>
 
@@ -66,16 +66,13 @@
 								</div>
 							</li>
 							<li th:if="${user != null}">
-								<a th:if="${user == null}" href="/login">Login</a>
-								<a th:unless="${user == null}" th:utext=" ' WELCOME ' + ${user.getName()} + '!' "> </a>
-
-								<ul th:unless="${user == null}">
+								<a th:utext=" ' WELCOME ' + ${user.getName()} + '!' "> </a>
+								<ul>
 									<li><a href="/profile">Profile</a></li>
 									<li><a href="#" th:if="${user.getRole() == 'CUSTOMER'}">Orders</a></li>
 									<li><a href="#" th:if="${user.getRole() == 'CUSTOMER'}">Settings</a></li>
 									<li><a href="/logout">Logout</a></li>
 								</ul>
-
 							</li>
 							<li th:if="${user == null}"><a href="/login">Sign Up</a></li>
 						</ul>
@@ -99,31 +96,6 @@
 					<a href="/" class="standard-logo" data-dark-logo="images/logo.png"><img src="/images/logo.png" alt="Malle Logo"></a>
 					<a href="/" class="retina-logo" data-dark-logo="images/logo.png"><img src="/images/logo.png" alt="Malle Logo"></a>
 				</div><!-- #logo end -->
-
-				<ul class="header-extras">
-					<li>
-						<i class="i-medium i-circled i-bordered icon-thumbs-up2 nomargin"></i>
-						<div class="he-text">
-							Original Brands
-							<span>100% Guaranteed</span>
-						</div>
-					</li>
-					<li>
-						<i class="i-medium i-circled i-bordered icon-truck2 nomargin"></i>
-						<div class="he-text">
-							Free Shipping
-							<span>for $20 or more</span>
-						</div>
-					</li>
-					<li>
-						<i class="i-medium i-circled i-bordered icon-undo nomargin"></i>
-						<div class="he-text">
-							30-Day Returns
-							<span>Completely Free</span>
-						</div>
-					</li>
-				</ul>
-
 			</div>
 
 			<div id="header-wrap">
@@ -146,7 +118,7 @@
 								<li><a href="#"><div>Women</div><span>Out of the Box</span></a>
 								</li>
 								<li><a href="#"><div>Kids</div><span>Awesome Works</span></a></li>
-								<li><a href="#"><div>Beuty&Health</div><span>Awesome Works</span></a></li>
+								<li><a href="#"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
 								<li><a href="#"><div>Electronics</div><span>Latest News</span></a></li>
 								<li><a href="#"><div>Stuff</div><span>Latest News</span></a></li>
 								<li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
@@ -254,324 +226,11 @@
 						<div class="col_full nobottommargin">
 							<a href="#"><img src="/images/shop/banners/3.jpg" alt="Image"></a>
 						</div>
-
 					</div>
-
 					<div class="clear"></div>
+					<div class="divider divider-center"><i class="icon-cloud"></i></div>
 
 				</div>
-
-				<div class="divider divider-center"><i class="icon-cloud"></i> </div>
-
-				<div class="container clearfix">
-
-					<div class="col_one_third bottommargin-lg">
-						<div class="feature-box center media-box fbox-bg">
-							<div class="fbox-media">
-								<img src="/images/shop/banners/10.jpg" alt="Image">
-							</div>
-							<div class="fbox-desc">
-								<h3>Men's Footwear<span class="subtitle">Flat 50% Off*</span></h3>
-								<p><a href="#" class="btn btn-secondary">Shop Now</a></p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col_one_third bottommargin-lg">
-						<div class="feature-box center media-box fbox-bg">
-							<div class="fbox-media">
-								<img src="/images/shop/banners/11.jpg" alt="Image">
-							</div>
-							<div class="fbox-desc">
-								<h3>Latest Product Arrivals<span class="subtitle">New Dress Designs Available</span></h3>
-								<p><a href="#" class="btn btn-secondary">Check New Arrivals</a></p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col_one_third bottommargin-lg col_last">
-						<div class="feature-box center media-box fbox-bg">
-							<div class="fbox-media">
-								<img src="/images/shop/banners/12.jpg" alt="Image">
-							</div>
-							<div class="fbox-desc">
-								<h3>The Style Blog<span class="subtitle">Fashion Tips from Experts</span></h3>
-								<p><a href="#" class="btn btn-secondary">Browse Videos</a></p>
-							</div>
-						</div>
-					</div>
-
-					<div class="clear"></div>
-
-					<div class="col_one_third nobottommargin">
-
-						<div class="fancy-title title-border">
-							<h4>Recently Arrived</h4>
-						</div>
-
-						<div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/1.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Blue Round-Neck Tshirt</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$29.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/6.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Checked Short Dress</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$23.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i> <i class="icon-star-empty"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/7.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Light Blue Denim Dress</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$19.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/9.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Slim Fit Chinos</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$24.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-empty"></i></li>
-									</ul>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="col_one_third nobottommargin">
-
-						<div class="fancy-title title-border">
-							<h4>Popular Products</h4>
-						</div>
-
-						<div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/3.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Round-Neck Tshirt</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$15</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/10.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Green Trousers</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$19</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/11.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Silver Chrome Watch</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$34.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i> <i class="icon-star-empty"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/4.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Black Polo Tshirt</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$17.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
-									</ul>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="col_one_third nobottommargin col_last">
-
-						<div class="fancy-title title-border">
-							<h4>Recommended for You</h4>
-						</div>
-
-						<div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/8.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Pink Printed Dress</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$21</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/5.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Blue Round-Neck Tshirt</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$19.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/12.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Men Aviator Sunglasses</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$14.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
-									</ul>
-								</div>
-							</div>
-
-							<div class="spost clearfix">
-								<div class="entry-image">
-									<a href="#"><img src="/images/shop/small/2.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-c">
-									<div class="entry-title">
-										<h4><a href="#">Unisex Sunglasses</a></h4>
-									</div>
-									<ul class="entry-meta">
-										<li class="color">$17.99</li>
-										<li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
-									</ul>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="clear"></div><div class="line"></div>
-
-					<div id="oc-clients-full" class="owl-carousel image-carousel carousel-widget" data-margin="30" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="5" data-items-xl="7">
-
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/1.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/2.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/3.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/4.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/5.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/6.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/7.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/8.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/9.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/10.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/11.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/12.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/13.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/14.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/15.png" alt="Clients"></a></div>
-						<div class="oc-item"><a href="#"><img src="/images/clients/logo/18.png" alt="Clients"></a></div>
-
-					</div>
-
-
-				</div>
-
-				<div class="si-sticky si-sticky-right d-none d-lg-block">
-					<a href="#" class="social-icon si-colored si-facebook" data-animate="bounceInRight">
-						<i class="icon-facebook"></i>
-						<i class="icon-facebook"></i>
-					</a>
-					<a href="#" class="social-icon si-colored si-twitter" data-animate="bounceInRight" data-delay="100">
-						<i class="icon-twitter"></i>
-						<i class="icon-twitter"></i>
-					</a>
-					<a href="#" class="social-icon si-colored si-pinterest" data-animate="bounceInRight" data-delay="200">
-						<i class="icon-pinterest"></i>
-						<i class="icon-pinterest"></i>
-					</a>
-					<a href="#" class="social-icon si-colored si-instagram" data-animate="bounceInRight" data-delay="300">
-						<i class="icon-instagram"></i>
-						<i class="icon-instagram"></i>
-					</a>
-					<a href="#" class="social-icon si-colored si-gplus" data-animate="bounceInRight" data-delay="600">
-						<i class="icon-gplus"></i>
-						<i class="icon-gplus"></i>
-					</a>
-					<a href="#" class="social-icon si-colored si-rss" data-animate="bounceInRight" data-delay="700">
-						<i class="icon-rss"></i>
-						<i class="icon-rss"></i>
-					</a>
-				</div>
-
 			</div>
 
 		</section><!-- #content end -->
@@ -587,7 +246,7 @@
 				<div class="container clearfix">
 
 					<div class="col_half">
-						Copyrights &copy; 2014 All Rights Reserved by GroupName Inc.<br>
+						Copyrights &copy; 2019 All Rights Reserved by GroupName Inc.<br>
 						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
 					</div>
 
