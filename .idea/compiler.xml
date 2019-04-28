@@ -7,13 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="malleShopping" />
-        <module name="malleShopping2" />
       </profile>
     </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="malleShopping2" options="-parameters" />
-    </option>
+    <bytecodeTargetLevel>
+      <module name="malleShopping" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
