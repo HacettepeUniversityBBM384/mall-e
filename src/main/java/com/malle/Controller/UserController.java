@@ -118,10 +118,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/profile/delete", method = RequestMethod.GET)
-    public String ProfileDelete(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+    public String ProfileDelete(@AuthenticationPrincipal CustomUserDetails user, Model model, HttpServletRequest request, HttpServletResponse response) {
         User userAuth = userService.FindByEmail(user.getEmail()).get();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
         userService.DeleteById(userAuth.getId());
-        model.addAttribute("user", null);
         return "home";
     }
 
