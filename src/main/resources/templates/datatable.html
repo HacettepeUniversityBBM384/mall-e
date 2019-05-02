@@ -25,10 +25,13 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title th:if="${data.equals('items')}">Items</title>
-	<title th:if="${data.equals('customers')}">Customers</title>
-	<title th:if="${data.equals('orders')}">Orders</title>
-	<title th:if="${data.equals('sellers')}">Sellers</title>
+<div th:if="${user!=null}">
+	<title  th:if="${data.equals('items')}">Items</title>
+	<title  th:if="${data.equals('customers')}">Customers</title>
+	<title  th:if="${data.equals('sellers')}">Sellers</title>
+	<title  th:if="${data.equals('admins')}">Admins</title>
+</div>
+	<title th:if="${user==null}">404</title>
 
 
 </head>
@@ -132,6 +135,7 @@
 									<li><a href="/profile">Profile</a></li>
 									<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/items">Items</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
@@ -153,19 +157,6 @@
 
 	</header><!-- #header end -->
 
-		<!-- Page Title
-		============================================= -->
-		<section id="page-title">
-
-			<div class="container clearfix">
-				<h1 th:if="${data.equals('items')}">Items</h1>
-				<h1 th:if="${data.equals('customers')}">Customers</h1>
-				<h1 th:if="${data.equals('orders')}">Orders</h1>
-				<h1 th:if="${data.equals('sellers')}">Sellers</h1>
-			</div>
-
-		</section><!-- #page-title end -->
-
 		<!-- Content
 		============================================= -->
 		<section id="content">
@@ -180,11 +171,23 @@
 						<div class="col_one_third"></div>
 					</div>
 
-					<div class="row clearfix">
+					<div class="row clearfix" th:if="${user != null}">
 					<div class="col-md-9">
-					<div class="table-responsive" th:if="${user != null}">
+						<div th:if="${data.equals('items') && user.getRole() == 'SELLER'}" class="feature-box fbox-effect fbox-light"><h2>ITEMS</h2><div class="fbox-icon" style="width:40px;height:40px;margin-left: 20px;"><a href="/additem"><i class="icon-user-plus i-alt" style="line-height: 40px;"></i></a></div></div>
+						<div th:if="${data.equals('sellers')}" class="feature-box fbox-effect fbox-light"><h2>SELLERS</h2><div class="fbox-icon"  style="width:40px;height:40px;margin-left: 20px;"><a href="/addseller"><i class="icon-user-plus i-alt" style="line-height: 40px;"></i></a></div></div>
+						<div th:if="${data.equals('admins')}" class="feature-box fbox-effect fbox-light"><h2>ADMINS</h2><div class="fbox-icon"  style="width:40px;height:40px;margin-left: 20px;"><a href="/addadmin"><i class="icon-user-plus i-alt" style="line-height: 40px;"></i></a></div></div>
+						<div class="clear"></div>
+						<div class="table-responsive">
 						<table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
 							<thead>
+								<tr th:if="${data.equals('admins')}">
+									<th>Name</th>
+									<th>Surname</th>
+									<th>Email</th>
+									<th>Phone</th>
+									<th>Address</th>
+									<th>View Customer</th>
+								</tr>
 								<tr th:if="${data.equals('items')}">
 									<th>Name</th>
 									<th>Shop Name</th>
@@ -220,6 +223,14 @@
 								</tr>
 							</thead>
 							<tfoot>
+							<tr th:if="${data.equals('admins')}">
+								<th>Name</th>
+								<th>Surname</th>
+								<th>Email</th>
+								<th>Phone</th>
+								<th>Address</th>
+								<th>View Customer</th>
+							</tr>
 							<tr th:if="${data.equals('items')}">
 								<th>Name</th>
 								<th>Shop Name</th>
@@ -255,14 +266,47 @@
 							</tr>
 							</tfoot>
 							<tbody>
-								<tr>
-									<td>Tiger Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>61</td>
-									<td>2011/04/25</td>
-									<td>$320,800</td>
-								</tr>
+							<tr th:if="${data.equals('admins')}">
+								<th>Name</th>
+								<th>Surname</th>
+								<th>Email</th>
+								<th>Phone</th>
+								<th>Address</th>
+								<th>View Customer</th>
+							</tr>
+							<tr th:if="${data.equals('items')}">
+								<td>Name</td>
+								<td>Shop Name</td>
+								<td>Category</td>
+								<td>Price</td>
+								<td>Sale</td>
+								<td>Rating</td>
+								<td>Stock</td>
+								<td>View Item</td>
+							</tr>
+							<tr th:if="${data.equals('customers')}">
+								<td>Name</td>
+								<td>Surname</td>
+								<td>Email</td>
+								<td>Phone</td>
+								<td>Address</td>
+								<td>View Customer</td>
+							</tr>
+							<tr th:if="${data.equals('orders')}">
+								<td>Date</td>
+								<td>Total Payoff</td>
+								<td>Shipping Status</td>
+								<td>View Order</td>
+							</tr>
+							<tr th:if="${data.equals('sellers')}">
+								<td>Name</td>
+								<td>Contact Name</td>
+								<td>Contact Surname</td>
+								<td>Phone</td>
+								<td>Email</td>
+								<td>IBAN</td>
+								<td>View Seller</td>
+							</tr>
 							</tbody>
 						</table>
 					</div>
@@ -274,6 +318,7 @@
 
 							<a href="/orders" th:if="${user.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
 							<a href="/sellers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>
+							<a href="/admins" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Admins <i class="icon-user-tie float-right"></i></a>
 							<a href="/items" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 							<a href="/customers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Customers <i class="icon-users float-right"></i></a>
 							<a href="#" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Reports <i class="icon-file-text float-right"></i></a>

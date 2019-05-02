@@ -123,6 +123,7 @@
 										<li><a href="/profile">Profile</a></li>
 										<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
+										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/items">Items</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
@@ -223,6 +224,7 @@
 
 								<a href="/orders" th:if="${user.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
 								<a href="/sellers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>
+								<a href="/admins" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Admins <i class="icon-user-tie float-right"></i></a>
 								<a href="/items" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 								<a href="/customers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Customers <i class="icon-users float-right"></i></a>
 								<a href="#" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Reports <i class="icon-file-text float-right"></i></a>

@@ -17,4 +17,11 @@ public class Seller extends User{
         this.sale = sale;
         this.rating = rating;
     }
+
+    public Seller() {
+        this.IBAN = 0;
+        this.shopname = "";
+        this.sale = 0;
+        this.rating = 5;
+    }
 }

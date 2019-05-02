@@ -2,6 +2,7 @@ package com.malle.Controller;
 
 import com.malle.Dao.UserDao;
 import com.malle.Entity.CustomUserDetails;
+import com.malle.Entity.Customer;
 import com.malle.Entity.User;
 import com.malle.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String AddUser(@ModelAttribute("user") User user, Model model) {
+    public String AddUser(@ModelAttribute("user") Customer user, Model model) {
         user.setRole("CUSTOMER");
         userService.Save(user);
         model.addAttribute("registered", 1);
@@ -79,6 +80,17 @@ public class UserController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
             model.addAttribute("data", "items");
         }
+        else model.addAttribute("data","nop");
+        return "datatable";
+    }
+
+    @RequestMapping(value = "/admins", method = RequestMethod.GET)
+    public String Admins(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("data", "admins");
+        }
+        else model.addAttribute("data","nop");
         return "datatable";
     }
 
@@ -88,6 +100,7 @@ public class UserController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
             model.addAttribute("data", "orders");
         }
+        else model.addAttribute("data","nop");
         return "datatable";
     }
 
@@ -97,6 +110,7 @@ public class UserController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
             model.addAttribute("data", "customers");
         }
+        else model.addAttribute("data","nop");
         return "datatable";
     }
 
@@ -106,6 +120,7 @@ public class UserController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
             model.addAttribute("data", "sellers");
         }
+        else model.addAttribute("data","nop");
         return "datatable";
     }
 
@@ -114,6 +129,7 @@ public class UserController {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
+        else model.addAttribute("data","nop");
         return "profileUpdate";
     }
 
@@ -123,6 +139,33 @@ public class UserController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         return "profilePsw";
+    }
+
+    @RequestMapping(value = "/additem", method = RequestMethod.GET)
+    public String AddItem(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("data","item");
+        }
+        return "add";
+    }
+
+    @RequestMapping(value = "/addseller", method = RequestMethod.GET)
+    public String AddSeller(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("data","seller");
+        }
+        return "add";
+    }
+
+    @RequestMapping(value = "/addadmin", method = RequestMethod.GET)
+    public String AddAdmin(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("data", "admin");
+        }
+        return "add";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST)

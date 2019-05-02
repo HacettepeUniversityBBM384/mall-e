@@ -71,6 +71,7 @@
 									<li><a href="/profile">Profile</a></li>
 									<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/items">Items</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>

@@ -12,4 +12,8 @@ public class Customer extends User{
         super(email, password, name, surname, phone, address);
         this.cartid = cartid;
     }
+
+    public Customer() {
+        this.cartid = 0;
+    }
 }
