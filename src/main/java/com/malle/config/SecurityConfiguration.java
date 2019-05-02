@@ -51,9 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             }
 
             @Override
-            public boolean matches(CharSequence charSequence, String s) {
-                return charSequence.equals(s);
-            }
+            public boolean matches(CharSequence charSequence, String s) { return charSequence.equals(s); }
         };
     }
 }

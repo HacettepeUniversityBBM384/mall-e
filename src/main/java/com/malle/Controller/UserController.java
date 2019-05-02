@@ -73,6 +73,42 @@ public class UserController {
         return "profile";
     }
 
+    @RequestMapping(value = "/items", method = RequestMethod.GET)
+    public String Items(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("data", "items");
+        }
+        return "datatable";
+    }
+
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public String Orders(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("data", "orders");
+        }
+        return "datatable";
+    }
+
+    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    public String Customers(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("data", "customers");
+        }
+        return "datatable";
+    }
+
+    @RequestMapping(value = "/sellers", method = RequestMethod.GET)
+    public String Sellers(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("data", "sellers");
+        }
+        return "datatable";
+    }
+
     @RequestMapping(value = "/profile/update", method = RequestMethod.GET)
     public String ProfileUpdate(@AuthenticationPrincipal CustomUserDetails user, Model model) {
         if (user != null) {
@@ -118,7 +154,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/profile/delete", method = RequestMethod.GET)
-    public String ProfileDelete(@AuthenticationPrincipal CustomUserDetails user, Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String ProfileDelete(@AuthenticationPrincipal CustomUserDetails user, HttpServletRequest request, HttpServletResponse response) {
         User userAuth = userService.FindByEmail(user.getEmail()).get();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
