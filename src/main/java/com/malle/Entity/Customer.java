@@ -16,4 +16,12 @@ public class Customer extends User{
     public Customer() {
         this.cartid = 0;
     }
+
+    public int getCartid() {
+        return cartid;
+    }
+
+    public void setCartid(int cartid) {
+        this.cartid = cartid;
+    }
 }

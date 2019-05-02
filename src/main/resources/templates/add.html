@@ -187,27 +187,34 @@
 
 							<h3>ADD ADMIN</h3>
 
-							<form th:action="@{/addadmin}" th:object="${admin}" id="addadmin-form" name="register-form" class="nobottommargin" method="POST">
+							<form th:action="@{/addadmin}" th:object="${newuser}" class="nobottommargin" method="POST">
 								<div class="col_half">
-									<label for="addadmin-form-name">Name:</label>
-									<input type="text" th:field="*{name}" id="addadmin-form-name" name="name" value="" placeholder="" class="form-control" required>
+									<label>Name:</label>
+									<input type="text" th:field="*{name}" class="form-control" required>
 								</div>
 
 								<div class="col_half col_last">
-									<label for="addadmin-form-username">Surname:</label>
-									<input type="text" th:field="*{surname}" id="addadmin-form-username" name="surname" placeholder="" value="" class="form-control" required>
+									<label>Surname:</label>
+									<input type="text" th:field="*{surname}" class="form-control" required>
 								</div>
 
 								<div class="clear"></div>
 
 								<div class="col_half">
-									<label for="addadmin-form-email">Email Address:</label>
-									<input type="email" th:field="*{email}" id="addadmin-form-email" name="email" placeholder="" value="" class="form-control" required>
+									<label>Email Address:</label>
+									<input type="email" th:field="*{email}" class="form-control" required>
 								</div>
 
 								<div class="col_half col_last">
 									<label for="addadmin-form-phone">Phone:</label>
-									<input type="text" th:field="*{phone}" id="addadmin-form-phone" name="phone" placeholder="" value="" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
+									<input type="text" th:field="*{phone}" id="addadmin-form-phone" name="phone" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
+								</div>
+
+								<div class="clear"></div>
+
+								<div class="col_half">
+									<label>Address:</label>
+									<input type="text" th:field="*{address}" class="form-control" required>
 								</div>
 
 								<div class="clear"></div>
@@ -247,52 +254,69 @@
 
 							<h3>ADD SELLER</h3>
 
-							<form th:action="@{/register}" th:object="${seller}" id="addseller-form" name="addseller-form" class="nobottommargin" method="POST">
+							<form th:action="@{/addseller}" th:object="${newuser}" id="addseller-form" name="addseller-form" class="nobottommargin" method="POST">
 								<div class="col_half">
-									<label for="addseller-form-shopname">Name:</label>
-									<input type="text" th:field="*{shopname}" id="addseller-form-shopname" name="name" value="" placeholder="" class="form-control" required>
+									<label>Name:</label>
+									<input type="text" th:field="*{shopname}" class="form-control" required>
 								</div>
 
 								<div class="col_half col_last">
-									<label for="addseller-form-iban">IBAN:</label>
-									<input type="text" th:field="*{IBAN}" id="addseller-form-iban" name="IBAN" placeholder="" value="" class="form-control" required>
+									<label>IBAN:</label>
+									<input type="text" th:field="*{IBAN}"  class="form-control" pattern='\d{26}' title='IBAN should be 26 digits long.' required>
 								</div>
 
 								<div class="clear"></div>
 
 								<div class="col_half">
-									<label for="addseller-form-name">Contact Name:</label>
-									<input type="text" th:field="*{name}" id="addseller-form-name" name="name" value="" placeholder="" class="form-control" required>
+									<label>Contact Name:</label>
+									<input type="text" th:field="*{name}" class="form-control" required>
 								</div>
 
 								<div class="col_half col_last">
-									<label for="addseller-form-username">Surname:</label>
-									<input type="text" th:field="*{surname}" id="addseller-form-username" name="surname" placeholder="" value="" class="form-control" required>
+									<label>Surname:</label>
+									<input type="text" th:field="*{surname}" class="form-control" required>
 								</div>
 
 								<div class="clear"></div>
 
 								<div class="col_half">
-									<label for="addseller-form-email">Email Address:</label>
-									<input type="email" th:field="*{email}" id="addseller-form-email" name="email" value="" placeholder="" class="form-control" required>
+									<label>Email Address:</label>
+									<input type="email" th:field="*{email}" class="form-control" required>
 								</div>
 
 								<div class="col_half col_last">
-									<label for="addseller-form-phone">Phone:</label>
-									<input type="text" th:field="*{phone}" id="addseller-form-phone" name="phone" value="" placeholder="" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
+									<label>Phone:</label>
+									<input type="text" th:field="*{phone}" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
+								</div>
+
+								<div class="clear"></div>
+
+								<div class="col_half">
+									<label>Address:</label>
+									<input type="text" th:field="*{address}" class="form-control" required>
 								</div>
 
 								<div class="clear"></div>
 
 								<div class="col_half">
 									<label for="register-form-password">Choose Password:</label>
-									<input type="password" th:field="*{password}" id="register-form-password" name="password" placeholder="" value="" class="form-control" pattern="(?=.*\d).{6,200}" title="Must contain at least one number and at least 6 or more characters" required oninput="setPasswordConfirmValidity();">
+									<input type="password" th:field="*{password}" id="a" class="form-control" pattern="(?=.*\d).{6,200}" title="Must contain at least one number and at least 6 or more characters" required oninput="setPasswordConfirmValidity();">
 								</div>
 
 								<div class="col_half col_last">
 									<label for="register-form-repassword">Re-enter Password:</label>
-									<input type="password" id="register-form-repassword" name="repassword" value="" placeholder="" class="form-control" required oninput="setPasswordConfirmValidity();">
+									<input type="password" id="b" name="repassword" class="form-control" required oninput="setPasswordConfirmValidity2();">
 								</div>
+
+								<script>
+                                    function setPasswordConfirmValidity2(str) {
+                                        const password1 = document.getElementById('a');
+                                        const password2 = document.getElementById('b');
+
+                                        if (password1.value === password2.value) password2.setCustomValidity('');
+                                        else password2.setCustomValidity('Passwords must match');
+                                    }
+								</script>
 
 								<div class="clear"></div>
 
@@ -331,6 +355,7 @@
 			</div>
 
 		</section><!-- #content end -->
+
 
 		<!-- Footer
 		============================================= -->
@@ -408,18 +433,17 @@
 
 	<!-- External JavaScripts
 	============================================= -->
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/plugins.js"></script>
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script src="js/functions.js"></script>
+	<script src="/js/functions.js"></script>
 
 	<script>
-		jQuery( "#tabs-profile" ).on( "tabsactivate", function( event, ui ) {
-			jQuery( '.flexslider .slide' ).resize();
-		});
+        jQuery( "#tabs-profile" ).on( "tabsactivate", function( event, ui ) {
+            jQuery( '.flexslider .slide' ).resize();
+        });
 	</script>
 
 </body>
-</html>

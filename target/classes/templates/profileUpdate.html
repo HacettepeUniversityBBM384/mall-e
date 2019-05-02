@@ -160,23 +160,29 @@
 				</div>
 
 
-				<div class="row clearfix">
+					<div class="row clearfix"  th:if="${user != null}">
 
 						<div class="col-md-9">
 
-							<div th:if="${user != null}" class="heading-block noborder">
-								<img src="/images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
+							<img src="images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
+							<div th:if="${user.getRole() != 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${user.getName()} + ' ' +  ${user.getSurname()}"></h3>
 								<span th:utext="${user.getRole()} "></span>
 							</div>
 
+							<div th:if="${user.getRole() == 'SELLER'}" class="heading-block noborder">
+								<h3 th:utext="${user.getShopname()}"></h3>
+								<span th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></span>
+								<span th:utext="${user.getRole()} "></span>
+							</div>
 							<div class="clear"></div>
 
 							<div class="row clearfix">
 
 								<div class="col-lg-12">
 
-									<form action="/profile"  th:if="${user != null}" th:object="${user}" id="update-form" name="update-form" class="nobottommargin" method="POST">
+<!-- CUSTOMER---------->
+									<form th:if="${user.getRole() == 'CUSTOMER'}"  action="/updatecustomer"  th:object="${updateduser}" id="update-form" name="update-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label for="update-form-name">Name:</label>
@@ -216,6 +222,95 @@
 										</div>
 
 									</form>
+
+<!-- admın---------->
+									<form th:if="${user.getRole() == 'ADMIN'}"  action="/updateadmin"  th:object="${updateduser}" id="update-form" name="update-form" class="nobottommargin" method="POST">
+
+										<div class="col_half">
+											<label for="update-form-name">Name:</label>
+											<input th:value="${user.getName()}" th:field="*{name}" type="text" id="update-form-name" name="name" value="" class="form-control" required>
+										</div>
+
+										<div class="col_half col_last">
+											<label for="update-form-username">Surname:</label>
+											<input th:value="${user.getSurname()}" th:field="*{surname}" type="text" id="update-form-username" name="surname" value="" class="form-control" required>
+										</div>
+
+										<div class="clear"></div>
+
+										<div class="col_half">
+											<label for="update-form-email">Email:</label>
+											<input th:value="${user.getEmail()}" th:field="*{email}" type="email" id="update-form-email" name="email" value="" class="form-control" required>
+										</div>
+
+										<div class="col_half col_last">
+											<label for="update-form-phone">Phone:</label>
+											<input th:value="${user.getPhone()}" th:field="*{phone}" type="text" id="update-form-phone" name="phone" value="" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
+										</div>
+
+										<div class="clear"></div>
+
+										<div>
+											<label for="update-form-address">Address:</label>
+											<input th:value="${user.getAddress()}" th:field="*{address}" type="text" class="form-control" id="update-form-address">
+
+										</div>
+
+										<div class="clear"></div>
+										<p><br></p>
+
+										<div class="col_full">
+											<button class="button button-3d button-pink nomargin" id="update-form-submit" name="update-form-submit" value="register" type="submit">Update Account</button>
+										</div>
+
+									</form>
+
+<!-- SELLER------------>
+									<form th:if="${user.getRole() == 'SELLER'}"  action="/updateseller" th:object="${updateduser}" name="update-form" class="nobottommargin" method="POST">
+
+										<div class="col_half">
+											<label>Contact Name:</label>
+											<input th:value="${user.getName()}" th:field="*{name}" type="text" name="name" value="" class="form-control" required>
+										</div>
+
+										<div class="col_half col_last">
+											<label>Contact Surname:</label>
+											<input th:value="${user.getSurname()}" th:field="*{surname}" type="text"  name="surname" value="" class="form-control" required>
+										</div>
+
+										<div class="clear"></div>
+
+										<div class="col_half">
+											<label>Email:</label>
+											<input th:value="${user.getEmail()}" th:field="*{email}" type="email" name="email" value="" class="form-control" required>
+										</div>
+
+										<div class="col_half col_last">
+											<label>Phone:</label>
+											<input th:value="${user.getPhone()}" th:field="*{phone}" type="text" name="phone" value="" class="form-control" pattern='\d{3}\d{3}\d{4}' title='Phone Number (Format:999 999 99 99)' required>
+										</div>
+
+										<div class="clear"></div>
+
+										<div class="col_half">
+											<label>Address:</label>
+											<input th:value="${user.getAddress()}" th:field="*{address}" type="text" class="form-control">
+										</div>
+
+										<div class="col_half col_last">
+											<label>IBAN:</label>
+											<input th:value="${user.getIBAN()}" th:field="*{IBAN}" type="text" class="form-control" id="update-form-iban">
+										</div>
+
+										<div class="clear"></div>
+										<p><br></p>
+
+										<div class="col_full">
+											<button class="button button-3d button-pink nomargin" name="update-form-submit" value="register" type="submit">Update Account</button>
+										</div>
+
+									</form>
+
 
 								</div>
 
