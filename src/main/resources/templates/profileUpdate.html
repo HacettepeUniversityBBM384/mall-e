@@ -172,8 +172,8 @@
 
 							<div th:if="${user.getRole() == 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${user.getShopname()}"></h3>
-								<span th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></span>
 								<span th:utext="${user.getRole()} "></span>
+								<div class="alignright"><label th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></label></div>
 							</div>
 							<div class="clear"></div>
 

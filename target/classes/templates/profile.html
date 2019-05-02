@@ -179,7 +179,7 @@
 								<a th:if="${user.getRole() == 'SELLER'}" href="/updateseller" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
 								<a th:if="${user.getRole() == 'ADMIN'}" href="/updateadmin" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
 								<a th:if="${user.getRole() == 'CUSTOMER'}" href="/updatecustomer" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
-							<a href="/profile/changepassword" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
+							<a href="/changepassword" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
 							</div>
 
 							<div th:if="${user.getRole() != 'SELLER'}" class="heading-block noborder">
@@ -189,8 +189,8 @@
 
 							<div th:if="${user.getRole() == 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${user.getShopname()}"></h3>
-								<span th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></span>
 								<span th:utext="${user.getRole()} "></span>
+								<div class="alignright"><label th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></label></div>
 							</div>
 
 							<div class="clear"></div>

@@ -176,6 +176,11 @@
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					</div>
 
+					<div class="style-msg successmsg" th:if="${registered=='item'}">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> New Item is added.</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+
 					<div class="row clearfix"  th:if="${user == null}">
 						<div class="col_one_third"></div>
 						<div class="col_one_third"><img class="noborder" src="/images/404.png"></div>
@@ -184,7 +189,7 @@
 
 					<div class="row clearfix" th:if="${user != null}">
 					<div class="col-md-9">
-						<div th:if="${data.equals('items') && user.getRole() == 'SELLER'}" class="feature-box fbox-effect fbox-light"><h2>ITEMS</h2><div class="fbox-icon" style="width:40px;height:40px;margin-left: 20px;"><a href="/additem"><i class="icon-user-plus i-alt" style="line-height: 40px;"></i></a></div></div>
+						<div th:if="${data.equals('items') && user.getRole() == 'SELLER'}" class="feature-box fbox-effect fbox-light"><h2>ITEMS</h2><div class="fbox-icon" style="width:40px;height:40px;margin-left: 20px;"><a href="/additem"><i class="icon-tag i-alt" style="line-height: 40px;"></i></a></div></div>
 						<div th:if="${data.equals('orders')}" class="feature-box fbox-effect fbox-light"><h2>ORDERS</h2><div class="fbox-icon" style="width:40px;height:40px;margin-left: 20px;"></div></div>
 						<div th:if="${data.equals('items') && user.getRole() == 'ADMIN'}" class="feature-box fbox-effect fbox-light"><h2>ITEMS</h2><div class="fbox-icon" style="width:40px;height:40px;margin-left: 20px;"></div></div>
 						<div th:if="${data.equals('sellers')}" class="feature-box fbox-effect fbox-light"><h2>SELLERS</h2><div class="fbox-icon"  style="width:40px;height:40px;margin-left: 20px;"><a href="/addseller"><i class="icon-user-plus i-alt" style="line-height: 40px;"></i></a></div></div>

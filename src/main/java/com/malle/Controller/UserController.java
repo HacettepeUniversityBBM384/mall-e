@@ -2,6 +2,7 @@ package com.malle.Controller;
 
 import com.malle.Dao.UserDao;
 import com.malle.Entity.*;
+import com.malle.Service.ItemService;
 import com.malle.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +29,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ItemService itemService;
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/secured/users", method = RequestMethod.GET)
@@ -151,7 +154,7 @@ public class UserController {
         return "profileUpdate";
     }
 
-    @RequestMapping(value = "/profile/changepassword", method = RequestMethod.GET)
+    @RequestMapping(value = "/changepassword", method = RequestMethod.GET)
     public String PasswordPage(@AuthenticationPrincipal CustomUserDetails user, Model model) {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
@@ -163,10 +166,21 @@ public class UserController {
     public String AddItemPage(@AuthenticationPrincipal CustomUserDetails user, Model model) {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("newitem", new Item());
             model.addAttribute("data","item");
         }
         return "add";
     }
+
+    @RequestMapping(value = "/additem", method = RequestMethod.POST)
+    public String AddItem(@ModelAttribute("newitem") Item newitem, @AuthenticationPrincipal CustomUserDetails user, Model model) {
+        itemService.Save(newitem);
+        model.addAttribute("data", "items");
+        model.addAttribute("registered", "item");
+        model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        return "datatable";
+    }
+
 
     @RequestMapping(value = "/addseller", method = RequestMethod.GET)
     public String AddSellerPage(@AuthenticationPrincipal CustomUserDetails user, Model model) {
