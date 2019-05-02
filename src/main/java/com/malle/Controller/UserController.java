@@ -129,7 +129,6 @@ public class UserController {
     public String ProfileUpdateData(@AuthenticationPrincipal CustomUserDetails user, Model model, @ModelAttribute("user") User userUpdate) {
         User userAuth = userService.FindByEmail(user.getEmail()).get();
         userUpdate.setId(userAuth.getId());
-        userUpdate.setCartid(userAuth.getCartid());
         userUpdate.setRole(userAuth.getRole());
         userUpdate.setPassword(userAuth.getPassword());
         userService.Save(userUpdate);
@@ -141,7 +140,6 @@ public class UserController {
     public String ProfileChangePassword(@AuthenticationPrincipal CustomUserDetails user, Model model, @ModelAttribute("user") User userUpdate) {
         User userAuth = userService.FindByEmail(user.getEmail()).get();
         userUpdate.setId(userAuth.getId());
-        userUpdate.setCartid(userAuth.getCartid());
         userUpdate.setRole(userAuth.getRole());
         userUpdate.setAddress(userAuth.getAddress());
         userUpdate.setEmail(userAuth.getEmail());

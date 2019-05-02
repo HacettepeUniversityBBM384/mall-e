@@ -1,10 +1,10 @@
 package com.malle.Entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "User")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User {
 
     @Id
@@ -17,8 +17,6 @@ public class User {
     private String surname;
     private String phone;
     private String address;
-    @Column(name = "cartid")
-    private int cartid;
     @Column(name = "role")
     private String role;
 
@@ -29,17 +27,15 @@ public class User {
         this.surname = "";
         this.phone = "";
         this.address = "";
-        this.cartid = 0;
     }
 
-    public User(String email, String password, String name, String surname, String phone, String address, int cartID) {
+    public User(String email, String password, String name, String surname, String phone, String address) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.address = address;
-        this.cartid = cartID;
     }
 
     public User(User user) {
@@ -49,7 +45,6 @@ public class User {
         this.surname = user.getSurname();
         this.phone = user.getPhone();
         this.address = user.getAddress();
-        this.cartid = user.getCartid();
     }
 
     public int getId() {
@@ -69,10 +64,6 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
-    }
-
-    public String getRepassword() {
         return password;
     }
 
@@ -111,16 +102,6 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    public int getCartid() {
-        return cartid;
-    }
-
-    public void setCartid(int cartid) {
-        this.cartid = cartid;
-    }
-
-
 
     public String getRole() {
         return role;
