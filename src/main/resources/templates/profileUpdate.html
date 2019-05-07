@@ -124,10 +124,10 @@
 										<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
-										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/items">Items</a></li>
+										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
-										<li th:if="${user.getRole() == 'SELLER'}"><a href="/items">Items</a></li>
+										<li th:if="${user.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 										<li><a href="#">Settings</a></li>
 										<li><a href="/logout">Logout</a></li>
 									</ul>
@@ -328,10 +328,10 @@
 								<a href="/orders" th:if="${user.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
 								<a href="/sellers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>
 								<a href="/admins" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Admins <i class="icon-user-tie float-right"></i></a>
-								<a href="/items" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
+								<a href="/item/list" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 								<a href="/customers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Customers <i class="icon-users float-right"></i></a>
 								<a href="#" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Reports <i class="icon-file-text float-right"></i></a>
-								<a href="/items" th:if="${user.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
+								<a href="/item/list" th:if="${user.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 
 								<a href="#" class="list-group-item list-group-item-action clearfix">Settings <i class="icon-settings float-right"></i></a>
 								<a href="/logout" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>

@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String AddUser(@ModelAttribute("user") Customer user, Model model) {
+    public String SignUp(@ModelAttribute("user") Customer user, Model model) {
         if(userService.FindByEmail(user.getEmail()).isPresent())
             model.addAttribute("status", 0);
         else {
@@ -66,10 +66,39 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public String UpdateUserPage(@RequestParam String id, @AuthenticationPrincipal CustomUserDetails userauth, Model model) {
-        model.addAttribute("user", userService.FindByEmail(userauth.getEmail()).get());
+    public String UpdateUserPage(@RequestParam String id, @AuthenticationPrincipal CustomUserDetails user, Model model) {
+        model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
         return "profileUpdate";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String DeleteUserPage(RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails authuser, HttpServletRequest request, HttpServletResponse response) {
+        User user = userService.FindById(Integer.parseInt(id)).get();
+        User userAuth = userService.FindByEmail(authuser.getEmail()).get();
+        if(user.getId()==userAuth.getId()) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth != null) {
+                new SecurityContextLogoutHandler().logout(request, response, auth);
+            }
+            userService.DeleteById(userAuth.getId());
+            return "home";
+        }
+        else {
+            userService.DeleteById(user.getId());
+            if(user.getRole().equals("ADMIN")) {redir.addFlashAttribute("deleted", "admin"); return "redirect:/admins";}
+            else if(user.getRole().equals("SELLER")) {redir.addFlashAttribute("deleted", "seller"); return "redirect:/sellers";}
+            else {redir.addFlashAttribute("deleted", "customer"); return "redirect:/customers";}
+        }
+    }
+
+    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    public String Logout (HttpServletRequest request, HttpServletResponse response, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "home";
     }
 
     @RequestMapping(value = "/admins", method = RequestMethod.GET)
@@ -203,8 +232,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/changepassword", method = RequestMethod.GET)
-    public String PasswordPage(@RequestParam String id, @AuthenticationPrincipal CustomUserDetails authuser, Model model) {
-        model.addAttribute("user", userService.FindByEmail(authuser.getEmail()).get());
+    public String PasswordPage(@RequestParam String id, @AuthenticationPrincipal CustomUserDetails user, Model model) {
+        model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
         return "profilePsw";
     }
@@ -216,34 +245,5 @@ public class UserController {
         userService.Save(user);
         redir.addFlashAttribute("status", "password");
         return "redirect:/view?id="+id;
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String ProfileDelete(RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails authuser, HttpServletRequest request, HttpServletResponse response) {
-        User user = userService.FindById(Integer.parseInt(id)).get();
-        User userAuth = userService.FindByEmail(authuser.getEmail()).get();
-        if(user.getId()==userAuth.getId()) {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            if (auth != null) {
-                new SecurityContextLogoutHandler().logout(request, response, auth);
-            }
-            userService.DeleteById(userAuth.getId());
-            return "home";
-        }
-        else {
-            userService.DeleteById(user.getId());
-            if(user.getRole().equals("ADMIN")) {redir.addFlashAttribute("deleted", "admin"); return "redirect:/admins";}
-            else if(user.getRole().equals("SELLER")) {redir.addFlashAttribute("deleted", "seller"); return "redirect:/sellers";}
-            else {redir.addFlashAttribute("deleted", "customer"); return "redirect:/customers";}
-        }
-    }
-
-    @RequestMapping(value="/logout", method = RequestMethod.POST)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response, Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "home";
     }
 }

@@ -12,10 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,44 +32,70 @@ public class ItemController {
         return itemService.getAllItems();
     }
 
-    @RequestMapping(value = "/items", method = RequestMethod.GET)
+    @RequestMapping(value = "/item/list", method = RequestMethod.GET)
     public String ItemsPage(@AuthenticationPrincipal CustomUserDetails user, Model model) {
-        if (user != null) {
-            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
-            model.addAttribute("data", "items");
-            model.addAttribute("itemlist", getAllItems());
-            model.addAttribute("itemid");
-        } else model.addAttribute("data", "nop");
+        User userauth = userService.FindByEmail(user.getEmail()).get();
+        model.addAttribute("user", userauth);
+        model.addAttribute("data", "items");
+        if(userauth.getRole().equals("ADMIN"))
+            model.addAttribute("itemlist", itemService.getAllItems());
+        else {
+            ArrayList<Item> itemlist = new ArrayList<>();
+            for (Item i : getAllItems()) {
+                if (i.getShopname().equals(((Seller)userauth).getShopname())) itemlist.add(i);
+            }
+            model.addAttribute("itemlist", itemlist);
+        }
         return "datatable";
     }
 
-    @RequestMapping(value = "/additem", method = RequestMethod.GET)
+    @RequestMapping(value = "/item/view", method = RequestMethod.GET)
+    public String ViewItemPage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
+        model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
+        model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        model.addAttribute("item", itemService.FindById(Integer.parseInt(id)).get());
+        return "profile";
+    }
+
+    @RequestMapping(value = "/item/add", method = RequestMethod.GET)
     public String AddItemPage(@AuthenticationPrincipal CustomUserDetails user, Model model) {
-        if (user != null) {
-            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
-            model.addAttribute("newitem", new Item());
-            model.addAttribute("data", "item");
-        }
+        model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        model.addAttribute("newitem", new Item());
+        model.addAttribute("data", "item");
         return "add";
     }
 
-    @RequestMapping(value = "/additem", method = RequestMethod.POST)
-    public String AddItem(@ModelAttribute("newitem") Item newitem, @AuthenticationPrincipal CustomUserDetails user, Model model) {
-        newitem.setSellerid(userService.FindByEmail(user.getEmail()).get().getId());
+    @RequestMapping(value = "/item/add", method = RequestMethod.POST)
+    public String AddItem(RedirectAttributes redir, @ModelAttribute("newitem") Item newitem, @AuthenticationPrincipal CustomUserDetails user) {
+        newitem.setShopname(((Seller)userService.FindByEmail(user.getEmail()).get()).getShopname());
         itemService.Save(newitem);
-        model.addAttribute("data", "items");
-        model.addAttribute("registered", "item");
-        model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
-        return "datatable";
+        redir.addFlashAttribute("status", "item");
+        return "redirect:/item/list";
     }
 
-    @RequestMapping(value = "/deleteitem/{id}", method = RequestMethod.GET)
-    public String DeleteItem(@PathVariable String id, @AuthenticationPrincipal CustomUserDetails user, Model model, @ModelAttribute("item") Item item) {
-        System.out.println(item.getName());
+    @RequestMapping(value = "/item/delete", method = RequestMethod.GET)
+    public String DeleteItem(RedirectAttributes redir, @RequestParam String id) {
         itemService.DeleteById(Integer.parseInt(id));
-        model.addAttribute("data", "items");
-        model.addAttribute("deleted", "item");
+        redir.addFlashAttribute("deleted", "item");
+        return "redirect:/item/list";
+    }
+
+    @RequestMapping(value = "/item/update", method = RequestMethod.GET)
+    public String UpdateItemPage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
-        return "datatable";
+        model.addAttribute("updateditem", itemService.FindById(Integer.parseInt(id)).get());
+        return "profileUpdate";
+    }
+
+    @RequestMapping(value = "/item/update", method = RequestMethod.POST)
+    public String UpdateItem(RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails user, @ModelAttribute("updateditem") Item updateditem) {
+        Item item = itemService.FindById(Integer.parseInt(id)).get();
+        updateditem.setShopname(item.getShopname());
+        updateditem.setId(item.getId());
+        updateditem.setOrdercount(item.getOrdercount());
+        updateditem.setRating(item.getRating());
+        itemService.Save(updateditem);
+        redir.addFlashAttribute("status", "item");
+        return "redirect:/view?id="+id;
     }
 }

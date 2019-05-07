@@ -19,12 +19,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- Bootstrap Select CSS -->
-	<link rel="stylesheet" href="css/components/bs-select.css" type="text/css" />
+	<link rel="stylesheet" href="/css/components/bs-select.css" type="text/css" />
 
 	<!-- Bootstrap File Upload CSS -->
-	<link rel="stylesheet" href="css/components/bs-filestyle.css" type="text/css" />
+	<link rel="stylesheet" href="/css/components/bs-filestyle.css" type="text/css" />
 
-	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 	<!-- Document Title
@@ -201,7 +201,7 @@
 
 							<h3>ADD ITEM</h3>
 
-							<form th:action="@{/additem}" th:object="${newitem}" onsubmit="ManageImages();" id="add-item-form" name="add-item-form" class="nobottommargin" method="POST">
+							<form th:action="@{add}" th:object="${newitem}" onsubmit="ManageImages();" id="add-item-form" name="add-item-form" class="nobottommargin" method="POST">
 
 								<div class="bottommargin">
 									<input id="input" name="input2[]" type="file" class="file" multiple data-show-upload="true" data-show-caption="true" data-show-preview="true">
@@ -518,13 +518,13 @@
 	<script src="/js/plugins.js"></script>
 
 	<!-- Bootstrap Select Plugin -->
-	<script src="js/components/bs-select.js"></script>
+	<script src="/js/components/bs-select.js"></script>
 
 	<!-- Bootstrap File Upload Plugin -->
-	<script src="js/components/bs-filestyle.js"></script>
+	<script src="/js/components/bs-filestyle.js"></script>
 
 	<!-- Select Splitter Plugin -->
-	<script src="js/components/selectsplitter.js"></script>
+	<script src="/js/components/selectsplitter.js"></script>
 
 	<!-- Footer Scripts
 	============================================= -->

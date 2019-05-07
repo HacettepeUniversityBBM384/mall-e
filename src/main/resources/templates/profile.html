@@ -124,10 +124,10 @@
 										<li th:if="${authuser.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
 										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
 										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
-										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/items">Items</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
 										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
 										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
-										<li th:if="${authuser.getRole() == 'SELLER'}"><a href="/items">Items</a></li>
+										<li th:if="${authuser.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 										<li><a href="#">Settings</a></li>
 										<li><a href="/logout">Logout</a></li>
 									</ul>
@@ -152,6 +152,11 @@
 			<div class="content-wrap">
 
 				<div class="container clearfix">
+
+					<div class="style-msg successmsg" th:if="${status == 'item'}">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> Item has been updated.</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
 
 					<div class="style-msg successmsg" th:if="${status == 'update'}">
 						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> Your profile has been updated.</div>
@@ -179,22 +184,29 @@
 
 						<div class="col-md-9">
 
-							<img src="images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
+							<img src="/images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
 
 							<div class="alignright">
-								<a th:href="@{/update(id=${user.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
-							<a th:href="@{/changepassword(id=${user.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
+								<a th:if="${item==null}" th:href="@{/update(id=${user.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${user.getRole() != 'CUSTOMER' && item!=null}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${item==null}" th:href="@{/changepassword(id=${user.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
 							</div>
 
-							<div th:if="${user.getRole() != 'SELLER'}" class="heading-block noborder">
+							<div th:if="${item==null && user.getRole() != 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${user.getName()} + ' ' +  ${user.getSurname()}"></h3>
 								<span th:utext="${user.getRole()} "></span>
 							</div>
 
-							<div th:if="${user.getRole() == 'SELLER'}" class="heading-block noborder">
+							<div th:if="${item==null && user.getRole() == 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${user.getShopname()}"></h3>
 								<span th:utext="${user.getRole()} "></span>
 								<div class="alignright"><label th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></label></div>
+							</div>
+
+							<div th:if="${item!=null}" class="heading-block noborder">
+								<h3 th:utext="${item.getName()}"></h3>
+								<span th:utext="${item.getShopname()} "></span>
+								<div class="alignright"><label th:utext="${'Price: ' + item.getPrice() + '₺	Rating: ' + item.getRating()}"></label></div>
 							</div>
 
 							<div class="clear"></div>
@@ -204,7 +216,7 @@
 								<div class="col-lg-12">
 
 <!-- CUSTOMER and ADMIN------------>
-									<form th:if="${user.getRole() != 'SELLER'}" id="view-form" name="view-form" class="nobottommargin" method="POST">
+									<form th:if="${item==null && user.getRole() != 'SELLER'}" id="view-form" name="view-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label for="view-form-email">Email:</label>
@@ -228,7 +240,7 @@
 									</form>
 
 <!-- SELLER------------>
-									<form th:if="${user.getRole() == 'SELLER'}"  name="view-form" class="nobottommargin" method="POST">
+									<form th:if="${item==null && user.getRole() == 'SELLER'}"  name="view-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label for="view-form-email">Contact Name:</label>
@@ -270,7 +282,8 @@
 
 
 									<div class="alignright">
-										<a th:href="@{/delete(id=${user.id})}"class="button button-mini button-circle button-border button-black"><i class="icon-line2-user-unfollow align-right" ></i>DELETE ACCOUNT</a>
+										<a th:if="${item==null}" th:href="@{/delete(id=${user.id})}"class="button button-mini button-circle button-border button-black"><i class="icon-line2-user-unfollow align-right" ></i>DELETE ACCOUNT</a>
+										<a th:if="${user.getRole() != 'CUSTOMER' && item!=null}" th:href="@{delete(id=${item.id})}"class="button button-mini button-circle button-border button-black"><i class="icon-line2-user-unfollow align-right" ></i>DELETE ITEM</a>
 									</div>
 
 
@@ -290,10 +303,10 @@
 								<a href="/orders" th:if="${authuser.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
 								<a href="/sellers" th:if="${authuser.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>
 								<a href="/admins" th:if="${authuser.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Admins <i class="icon-user-tie float-right"></i></a>
-								<a href="/items" th:if="${authuser.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
+								<a href="/item/list" th:if="${authuser.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 								<a href="/customers" th:if="${authuser.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Customers <i class="icon-users float-right"></i></a>
 								<a href="#" th:if="${authuser.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Reports <i class="icon-file-text float-right"></i></a>
-								<a href="/items" th:if="${authuser.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
+								<a href="/item/list" th:if="${authuser.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 
 								<a href="#" class="list-group-item list-group-item-action clearfix">Settings <i class="icon-settings float-right"></i></a>
 								<a href="/logout" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>
@@ -385,12 +398,12 @@
 
 	<!-- External JavaScripts
 	============================================= -->
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/plugins.js"></script>
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script src="js/functions.js"></script>
+	<script src="/js/functions.js"></script>
 
 	<script>
 		jQuery( "#tabs-profile" ).on( "tabsactivate", function( event, ui ) {
