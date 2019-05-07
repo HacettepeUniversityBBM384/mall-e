@@ -120,7 +120,7 @@
 								<li>
 									<a><i class="icon-user"></i></a>
 									<ul>
-										<li><a href="/profile">Profile</a></li>
+										<li><a th:href="@{/view(id=${user.id})}">Profile</a></li>
 										<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="#" >Orders</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Items</a></li>
@@ -153,9 +153,10 @@
 				<div class="container clearfix">
 
 					<div class="row clearfix"  th:if="${user == null}">
-						<div class="col_one_third"></div>
-						<div class="col_one_third"><img class="noborder" src="/images/404.png"></div>
-						<div class="col_one_third"></div>
+						<div class="col_half nobottommargin">
+							<div class="error404 center">404</div>
+							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
+						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
 					</div>
 
 					<div class="row clearfix"  th:if="${user != null}">
@@ -178,7 +179,7 @@
 
 								<div class="col-lg-12">
 
-									<form action="/changepassword"  th:if="${user != null}" th:object="${user}" id="update-form" name="update-form" class="nobottommargin" method="POST">
+									<form th:href="@{/update(id=${user.id})}"  th:if="${user != null}" th:object="${user}" id="update-form" name="update-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label for="update-form-password">Choose Password:</label>
@@ -219,14 +220,14 @@
 
 						<div class="col-md-3 clearfix" th:if="${user != null}">
 							<div class="list-group">
-								<a href="#" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
+								<a th:href="@{/view(id=${user.id})}" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
 
-								<a href="/profile" th:if="${user.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
+								<a href="/orders" th:if="${user.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
 								<a href="/sellers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>
-								<a href="/datatable" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
-								<a href="/datatable" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Customers <i class="icon-users float-right"></i></a>
-								<a href="/datatable" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Reports <i class="icon-file-text float-right"></i></a>
-								<a href="#" th:if="${user.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
+								<a href="/items" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
+								<a href="/customers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Customers <i class="icon-users float-right"></i></a>
+								<a href="#" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Reports <i class="icon-file-text float-right"></i></a>
+								<a href="/items" th:if="${user.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 
 								<a href="#" class="list-group-item list-group-item-action clearfix">Settings <i class="icon-settings float-right"></i></a>
 								<a href="/logout" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>

@@ -133,7 +133,7 @@
 							<li>
 								<a><i class="icon-user"></i></a>
 								<ul>
-									<li><a href="/profile">Profile</a></li>
+									<li><a th:href="@{/view(id=${user.id})}">Profile</a></li>
 									<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
@@ -166,25 +166,46 @@
 
 				<div class="container clearfix">
 
-					<div class="style-msg successmsg" th:if="${registered=='admin'}">
+					<div class="style-msg successmsg" th:if="${status=='admin'}">
 						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> New Admin is added.</div>
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					</div>
 
-					<div class="style-msg successmsg" th:if="${registered=='seller'}">
+					<div class="style-msg successmsg" th:if="${status=='seller'}">
 						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> New Seller is added.</div>
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					</div>
 
-					<div class="style-msg successmsg" th:if="${registered=='item'}">
+					<div class="style-msg successmsg" th:if="${status=='item'}">
 						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> New Item is added.</div>
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					</div>
 
+					<div class="style-msg errormsg" th:if="${status==0}">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Oops!</strong> Looks like this email has already been registered.</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+
+					<div class="style-msg successmsg" th:if="${deleted=='admin'}">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> Admin is deleted.</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+
+					<div class="style-msg successmsg" th:if="${deleted=='seller'}">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> Seller is deleted.</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+
+					<div class="style-msg successmsg" th:if="${deleted=='customer'}">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> Customer is deleted.</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+
 					<div class="row clearfix"  th:if="${user == null}">
-						<div class="col_one_third"></div>
-						<div class="col_one_third"><img class="noborder" src="/images/404.png"></div>
-						<div class="col_one_third"></div>
+						<div class="col_half nobottommargin">
+							<div class="error404 center">404</div>
+							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
+						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
 					</div>
 
 					<div class="row clearfix" th:if="${user != null}">
@@ -205,7 +226,7 @@
 									<th>Email</th>
 									<th>Phone</th>
 									<th>Address</th>
-									<th>View Customer</th>
+									<th>Admin</th>
 								</tr>
 								<tr th:if="${data.equals('items')}">
 									<th>Name</th>
@@ -215,7 +236,7 @@
 									<th>Sale</th>
 									<th>Rating</th>
 									<th>Stock</th>
-									<th>View Item</th>
+									<th>Item</th>
 								</tr>
 								<tr th:if="${data.equals('customers')}">
 									<th>Name</th>
@@ -223,22 +244,26 @@
 									<th>Email</th>
 									<th>Phone</th>
 									<th>Address</th>
-									<th>View Customer</th>
+									<th>Customer</th>
 								</tr>
 								<tr th:if="${data.equals('orders')}">
 									<th>Date</th>
 									<th>Total Payoff</th>
 									<th>Shipping Status</th>
-									<th>View Order</th>
+									<th>Customer ID</th>
+									<th>Seller ID</th>
+									<th>Order</th>
 								</tr>
 								<tr th:if="${data.equals('sellers')}">
 									<th>Name</th>
 									<th>Contact Name</th>
 									<th>Contact Surname</th>
 									<th>Phone</th>
+									<th>Address</th>
 									<th>Email</th>
 									<th>IBAN</th>
-									<th>View Seller</th>
+									<th>Seller</th>
+									<th>Shop</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -248,7 +273,7 @@
 								<th>Email</th>
 								<th>Phone</th>
 								<th>Address</th>
-								<th>View Customer</th>
+								<th>Admin</th>
 							</tr>
 							<tr th:if="${data.equals('items')}">
 								<th>Name</th>
@@ -258,7 +283,7 @@
 								<th>Sale</th>
 								<th>Rating</th>
 								<th>Stock</th>
-								<th>View Item</th>
+								<th>Item</th>
 							</tr>
 							<tr th:if="${data.equals('customers')}">
 								<th>Name</th>
@@ -266,65 +291,73 @@
 								<th>Email</th>
 								<th>Phone</th>
 								<th>Address</th>
-								<th>View Customer</th>
+								<th>Customer</th>
 							</tr>
 							<tr th:if="${data.equals('orders')}">
 								<th>Date</th>
 								<th>Total Payoff</th>
 								<th>Shipping Status</th>
-								<th>View Order</th>
+								<th>Customer ID</th>
+								<th>Seller ID</th>
+								<th>Order</th>
 							</tr>
 							<tr th:if="${data.equals('sellers')}">
 								<th>Name</th>
 								<th>Contact Name</th>
 								<th>Contact Surname</th>
 								<th>Phone</th>
+								<th>Address</th>
 								<th>Email</th>
 								<th>IBAN</th>
-								<th>View Seller</th>
+								<th>Seller</th>
+								<th>Shop</th>
 							</tr>
 							</tfoot>
 							<tbody>
-							<tr th:if="${data.equals('admins')}">
-								<th>Name</th>
-								<th>Surname</th>
-								<th>Email</th>
-								<th>Phone</th>
-								<th>Address</th>
-								<th>View Customer</th>
+							<tr  th:if="${data.equals('admins')}" th:each="admin: ${adminlist}">
+								<td th:text="${admin.name}" />
+								<td th:text="${admin.surname}" />
+								<td th:text="${admin.email}" />
+								<td th:text="${admin.phone}" />
+								<td th:text="${admin.address}" />
+								<td><a th:href="@{/view(id=${admin.id})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
 							</tr>
-							<tr th:if="${data.equals('items')}">
-								<td>Name</td>
-								<td>Shop Name</td>
-								<td>Category</td>
-								<td>Price</td>
-								<td>Sale</td>
-								<td>Rating</td>
-								<td>Stock</td>
-								<td>View Item</td>
+							<tr  th:if="${data.equals('items')}" th:each="item: ${itemlist}">
+								<td th:text="${item.name}" />
+								<td th:text="${item.sellerid}" />
+								<td th:text="${item.subcategoryid}" />
+								<td th:text="${item.price}" > ₺</td>
+								<td th:text="${item.ordercount}" />
+								<td th:text="${item.rating}" />
+								<td th:text="${item.stock}" />
+								<td><a th:href="@{/view(id=${item.id})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
 							</tr>
-							<tr th:if="${data.equals('customers')}">
-								<td>Name</td>
-								<td>Surname</td>
-								<td>Email</td>
-								<td>Phone</td>
-								<td>Address</td>
-								<td>View Customer</td>
+							<tr  th:if="${data.equals('customers')}" th:each="customer: ${customerlist}">
+								<td th:text="${customer.name}" />
+								<td th:text="${customer.surname}" />
+								<td th:text="${customer.email}" />
+								<td th:text="${customer.phone}" />
+								<td th:text="${customer.address}" />
+								<td><a th:href="@{/view(id=${customer.id})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
 							</tr>
-							<tr th:if="${data.equals('orders')}">
-								<td>Date</td>
-								<td>Total Payoff</td>
-								<td>Shipping Status</td>
-								<td>View Order</td>
+							<tr  th:if="${data.equals('orders')}" th:each="order: ${orderlist}">
+								<td th:text="${order.date}" />
+								<td th:text="${order.payoff}" />
+								<td th:text="${order.status}" />
+								<td th:text="${order.customerid}" />
+								<td th:text="${order.sellerid}" />
+								<td><a th:href="@{/view(id=${order.id})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
 							</tr>
-							<tr th:if="${data.equals('sellers')}">
-								<td>Name</td>
-								<td>Contact Name</td>
-								<td>Contact Surname</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>IBAN</td>
-								<td>View Seller</td>
+							<tr  th:if="${data.equals('sellers')}" th:each="seller: ${sellerlist}">
+								<td th:text="${seller.shopname}" />
+								<td th:text="${seller.name}" />
+								<td th:text="${seller.surname}" />
+								<td th:text="${seller.phone}" />
+								<td th:text="${seller.address}" />
+								<td th:text="${seller.email}" />
+								<td th:text="${seller.IBAN}" />
+								<td><a th:href="@{/view(id=${seller.id})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
+								<td><a th:href="@{/view(id=${seller.shopname})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
 							</tr>
 							</tbody>
 						</table>
@@ -333,7 +366,7 @@
 				</div>
 					<div class="col-md-3 clearfix">
 						<div class="list-group">
-							<a href="/profile" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
+							<a th:href="@{/view(id=${user.id})}" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
 
 							<a href="/orders" th:if="${user.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
 							<a href="/sellers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>

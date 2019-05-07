@@ -155,7 +155,7 @@
 								<li>
 									<a><i class="icon-user"></i></a>
 									<ul>
-										<li><a href="/profile">Profile</a></li>
+										<li><a th:href="@{/view(id=${user.id})}">Profile</a></li>
 										<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
@@ -189,9 +189,10 @@
 				<div class="container clearfix">
 
 					<div class="row clearfix"  th:if="${user == null}">
-						<div class="col_one_third"></div>
-						<div class="col_one_third"><img class="noborder" src="/images/404.png"></div>
-						<div class="col_one_third"></div>
+						<div class="col_half nobottommargin">
+							<div class="error404 center">404</div>
+							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
+						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
 					</div>
 
 					<div class="row clearfix"  th:if="${user != null}">
@@ -235,7 +236,7 @@
 
 								<div class="col_half col_last">
 									<label>Price:</label>
-									<input type="text" th:field="*{price}" placeholder="₺" class="form-control" required>
+									<input type="text" th:field="*{price}" class="form-control"pattern='^[1-9]+[0-9]*$' title='Price must be bigger than 0.' required>
 								</div>
 
 								<div class="clear"></div>
