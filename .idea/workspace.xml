@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2b3f6ea-7256-4fc2-8505-7190ed261787" name="Default" comment=".gitignore added">
+    <list default="true" id="d2b3f6ea-7256-4fc2-8505-7190ed261787" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/banners/3.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/banners/3.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/1.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/1.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/2.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/2.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/3.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/3.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/4.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/4.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/add.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,151 +22,99 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="profileUpdate.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html">
+      <file leaf-file-name="ItemController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="192" column="53" lean-forward="true" selection-start-line="192" selection-start-column="53" selection-end-line="192" selection-end-column="53" />
+            <state relative-caret-position="-139">
+              <caret line="51" column="69" lean-forward="false" selection-start-line="51" selection-start-column="68" selection-end-line="51" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/ItemDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="300" column="38" lean-forward="false" selection-start-line="300" selection-start-column="38" selection-end-line="300" selection-end-column="38" />
               <folding>
                 <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#form#2;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-336">
-              <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+            <state relative-caret-position="335">
+              <caret line="70" column="61" lean-forward="false" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="misc.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
+      <file leaf-file-name="profileUpdate.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="encodings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/encodings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modules.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vcs.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="538" column="38" lean-forward="false" selection-start-line="538" selection-start-column="38" selection-end-line="538" selection-end-column="38" />
+            <state relative-caret-position="464">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
-                <marker date="1557319307584" expanded="true" signature="67520:67537" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67520:67555" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67520:67568" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67520:67583" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67618:70235" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67631:70220" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67685:67980" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67704:67965" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67767:67945" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67807:67911" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="67828:67889" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68030:68362" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68049:68347" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68149:68327" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68189:68293" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68210:68271" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68413:68723" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68432:68708" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68510:68688" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68550:68654" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68571:68632" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68766:69076" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68785:69061" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68863:69041" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68903:69007" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="68924:68985" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69127:69482" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69146:69467" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69230:69447" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69270:69413" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69291:69391" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69517:69827" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69536:69812" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69614:69792" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69654:69758" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69675:69736" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69879:70206" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69898:70191" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="69993:70171" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="70033:70137" ph="..." />
-                <marker date="1557319307584" expanded="true" signature="70054:70115" ph="..." />
+                <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#form#1;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#form#2;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#form#3;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="33" />
+            <state relative-caret-position="221">
+              <caret line="89" column="89" lean-forward="false" selection-start-line="89" selection-start-column="89" selection-end-line="89" selection-end-column="89" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="compiler.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
+      <file leaf-file-name="ItemService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/ItemService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+            <state relative-caret-position="105">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="malleShopping.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/malleShopping.iml">
+      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/add.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="310">
+              <caret line="243" column="59" lean-forward="true" selection-start-line="243" selection-start-column="59" selection-end-line="243" selection-end-column="59" />
+              <folding>
+                <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -177,15 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>itemser</find>
-      <find>/profile</find>
-      <find>datatable</find>
-      <find>userupdate</find>
-      <find>changepass</find>
-      <find>profileupda</find>
-      <find>nop</find>
-      <find>&quot;password</find>
-      <find>admins</find>
       <find>reg</find>
       <find>authuser</find>
       <find>addatt</find>
@@ -204,9 +148,18 @@
       <find>href=th:</find>
       <find>krajee</find>
       <find>/items</find>
-      <find>user</find>
       <find>sql</find>
       <find>entityMan</find>
+      <find>banner</find>
+      <find>/banner</find>
+      <find>slider/</find>
+      <find>user</find>
+      <find>updateduser.id</find>
+      <find>i</find>
+      <find>getrole</find>
+      <find>id</find>
+      <find>item</find>
+      <find>bigger than 0</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -242,11 +195,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/datatable.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/add.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/profile.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" />
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/add.html" />
       </list>
     </option>
   </component>
@@ -291,11 +244,6 @@
             <path>
               <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
               <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
-              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -303,6 +251,72 @@
               <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="malle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="malle" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="malle" type="462c0819:PsiDirectoryNode" />
+              <item name="Dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="malle" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="malle" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -325,10 +339,10 @@
     <property name="RequestMappingsPanelOrder2" value="2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images\shop\slider" />
       <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\templates" />
       <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images" />
-      <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images\shop\banners" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.malle.Controller" />
@@ -336,9 +350,11 @@
       <recent name="com.malle.Service" />
       <recent name="com.malle.Entity" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images\shop\slider" />
       <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\templates" />
       <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images" />
+      <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images\shop\banners" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -466,7 +482,7 @@
       <workItem from="1557157266663" duration="19416000" />
       <workItem from="1557214527589" duration="37026000" />
       <workItem from="1557305112456" duration="2171000" />
-      <workItem from="1557314302090" duration="4948000" />
+      <workItem from="1557314302090" duration="10995000" />
     </task>
     <task id="LOCAL-00001" summary="Password check for Login is done">
       <created>1556450044207</created>
@@ -566,11 +582,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557319243340</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary=".gitignore added">
+      <created>1557319385664</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1557319385664</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147982000" />
+    <option name="totallyTimeSpent" value="154029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -598,7 +621,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908913" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13645834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="865" y="61" width="346" height="1034" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908913" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -629,7 +652,8 @@
     <MESSAGE value="Seller Admin Customer CRUD&#10;Item eklenecek" />
     <MESSAGE value="Item update sayfası eklenecek" />
     <MESSAGE value="target deleted" />
-    <option name="LAST_COMMIT_MESSAGE" value="target deleted" />
+    <MESSAGE value=".gitignore added" />
+    <option name="LAST_COMMIT_MESSAGE" value=".gitignore added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -638,31 +662,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2793">
-          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1302">
-          <caret line="84" column="9" lean-forward="false" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/config/SecurityConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -698,9 +697,9 @@
           <folding>
             <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#2;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#1;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#2;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#3;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -720,6 +719,7 @@
           <caret line="172" column="0" lean-forward="true" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
           <folding>
             <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -763,13 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/ItemDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/OrderService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -790,28 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.0.10.RELEASE/spring-data-jpa-2.0.10.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -862,47 +833,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1581">
-          <caret line="51" column="137" lean-forward="false" selection-start-line="51" selection-start-column="129" selection-end-line="51" selection-end-column="137" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="226" column="52" lean-forward="true" selection-start-line="226" selection-start-column="52" selection-end-line="226" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1218">
-          <caret line="75" column="131" lean-forward="false" selection-start-line="75" selection-start-column="127" selection-end-line="75" selection-end-column="131" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/ItemService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3591">
-          <caret line="340" column="55" lean-forward="false" selection-start-line="340" selection-start-column="55" selection-end-line="340" selection-end-column="55" />
-          <folding>
-            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -944,33 +878,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="86" column="31" lean-forward="false" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/datatable.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="687">
           <caret line="327" column="74" lean-forward="false" selection-start-line="327" selection-start-column="74" selection-end-line="327" selection-end-column="74" />
           <folding>
             <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="187" column="0" lean-forward="true" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
-          <folding>
-            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -1034,50 +947,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="538" column="38" lean-forward="false" selection-start-line="538" selection-start-column="38" selection-end-line="538" selection-end-column="38" />
+        <state relative-caret-position="1869">
+          <caret line="587" column="38" lean-forward="false" selection-start-line="587" selection-start-column="38" selection-end-line="587" selection-end-column="38" />
           <folding>
-            <marker date="1557319307584" expanded="true" signature="67520:67537" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67520:67555" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67520:67568" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67520:67583" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67618:70235" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67631:70220" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67685:67980" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67704:67965" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67767:67945" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67807:67911" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="67828:67889" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68030:68362" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68049:68347" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68149:68327" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68189:68293" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68210:68271" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68413:68723" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68432:68708" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68510:68688" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68550:68654" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68571:68632" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68766:69076" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68785:69061" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68863:69041" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68903:69007" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="68924:68985" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69127:69482" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69146:69467" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69230:69447" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69270:69413" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69291:69391" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69517:69827" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69536:69812" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69614:69792" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69654:69758" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69675:69736" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69879:70206" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69898:70191" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="69993:70171" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="70033:70137" ph="..." />
-            <marker date="1557319307584" expanded="true" signature="70054:70115" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68372:68390" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68372:68403" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68372:68418" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68453:71070" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68466:71055" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68520:68815" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68539:68800" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68602:68780" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68642:68746" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68663:68724" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68865:69197" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68884:69182" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="68984:69162" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69024:69128" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69045:69106" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69248:69558" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69267:69543" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69345:69523" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69385:69489" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69406:69467" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69601:69911" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69620:69896" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69698:69876" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69738:69842" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69759:69820" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69962:70317" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="69981:70302" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70065:70282" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70105:70248" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70126:70226" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70352:70662" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70371:70647" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70449:70627" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70489:70593" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70510:70571" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70714:71041" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70733:71026" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70828:71006" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70868:70972" ph="..." />
+            <marker date="1557325357102" expanded="true" signature="70889:70950" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1090,18 +1002,123 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/shop/banners/3.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/shop/banners/7.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/shop/slider/1.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="70" column="61" lean-forward="false" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.0.10.RELEASE/spring-data-jpa-2.0.10.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="20" column="47" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="13" column="38" lean-forward="true" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/ItemDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/ItemService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="89" column="89" lean-forward="false" selection-start-line="89" selection-start-column="89" selection-end-line="89" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="300" column="38" lean-forward="false" selection-start-line="300" selection-start-column="38" selection-end-line="300" selection-end-column="38" />
+          <folding>
+            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="192" column="53" lean-forward="true" selection-start-line="192" selection-start-column="53" selection-end-line="192" selection-end-column="53" />
+        <state relative-caret-position="464">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#2;n#div#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#1;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#2;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#3;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="243" column="59" lean-forward="true" selection-start-line="243" selection-start-column="59" selection-end-line="243" selection-end-column="59" />
+          <folding>
+            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-139">
+          <caret line="51" column="69" lean-forward="false" selection-start-line="51" selection-start-column="68" selection-end-line="51" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>

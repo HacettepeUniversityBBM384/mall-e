@@ -18,6 +18,16 @@
 	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
+	<!-- Bootstrap Select CSS -->
+	<link rel="stylesheet" href="/css/components/bs-select.css" type="text/css" />
+
+	<!-- Bootstrap File Upload CSS -->
+	<link rel="stylesheet" href="/css/components/bs-filestyle.css" type="text/css" />
+
+	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
 	<!-- Document Title
 	============================================= -->
 	<title>Update Profile</title>
@@ -167,27 +177,21 @@
 
 							<img src="/images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
 
-							<div class="alignright">
-								<a th:if="${item==null}" th:href="@{/update(id=${updateduser.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
-								<a th:if="${updateduser.getRole() != 'CUSTOMER' && item!=null}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
-								<a th:if="${item==null}" th:href="@{/changepassword(id=${updateduser.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
-							</div>
-
-							<div th:if="${item==null && updateduser.getRole() != 'SELLER'}" class="heading-block noborder">
+							<div th:if="${updateditem==null && updateduser.getRole() != 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${updateduser.getName()} + ' ' +  ${updateduser.getSurname()}"></h3>
 								<span th:utext="${updateduser.getRole()} "></span>
 							</div>
 
-							<div th:if="${item==null && updateduser.getRole() == 'SELLER'}" class="heading-block noborder">
+							<div th:if="${updateditem==null && updateduser.getRole() == 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${updateduser.getShopname()}"></h3>
 								<span th:utext="${updateduser.getRole()} "></span>
 								<div class="alignright"><label th:utext="${'Sale: ' + updateduser.getSale() + '	Rating: ' + updateduser.getRating()}"></label></div>
 							</div>
 
-							<div th:if="${item!=null}" class="heading-block noborder">
-								<h3 th:utext="${item.getName()}"></h3>
-								<span th:utext="${item.getShopname()} "></span>
-								<div class="alignright"><label th:utext="${'Price: ' + item.getPrice() + '₺	Rating: ' + item.getRating()}"></label></div>
+							<div th:if="${updateditem!=null}" class="heading-block noborder">
+								<h3 th:utext="${updateditem.getName()}"></h3>
+								<span th:utext="${updateditem.getShopname()} "></span>
+								<div class="alignright"><label th:utext="${'Price: ' + updateditem.getPrice() + '₺	Rating: ' + updateditem.getRating()}"></label></div>
 							</div>
 
 							<div class="clear"></div>
@@ -196,8 +200,70 @@
 
 								<div class="col-lg-12">
 
+
+<!--ITEM---------------->
+									<form th:if="${updateditem!=null}" th:action="@{update(id=${updateditem.id})}" th:object="${updateditem}" onsubmit="ManageImages();" id="add-item-form" name="add-item-form" class="nobottommargin" method="POST">
+
+										<div class="bottommargin">
+											<input id="input" name="input2[]" type="file" class="file" multiple data-show-upload="true" data-show-caption="true" data-show-preview="true">
+										</div>
+
+										<script>
+                                            function ManageImages(str) {
+                                                const input = document.getElementById('input');
+                                                System.out.println(input);
+                                                System.out.println(input.type);
+                                            }
+										</script>
+
+										<div class="clear"></div>
+
+										<div class="col_half">
+											<label>Name:</label>
+											<input type="text" th:field="*{name}" class="form-control" required>
+										</div>
+
+										<div class="col_half col_last">
+											<label>Description:</label>
+											<input type="text" th:field="*{description}" class="form-control" required>
+										</div>
+
+										<div class="clear"></div>
+
+										<div class="col_half">
+											<label>Stock:</label>
+											<input type="text" th:field="*{stock}" class="form-control" required>
+										</div>
+
+										<div class="col_half col_last">
+											<label>Price:</label>
+											<input type="text" th:field="*{price}" class="form-control"pattern='^[1-9]+[0-9]*$' title='Price must be bigger than 0.' required>
+										</div>
+
+										<div class="clear"></div>
+
+										<div class="white-section">
+											<label>Choose Category</label>
+											<select th:field="*{subcategoryid}" class="selectpicker" multiple="false" data-live-search="true">
+												<option value=0>Electronic</option>
+												<option value=1>Beauty & Health</option>
+												<option value=2>Women</option>
+												<option value=3>Men</option>
+												<option value=4>Kids</option>
+												<option value=5>Stuff</option>
+											</select>
+										</div>
+
+										<div class="clear"></div>
+
+										<div class="col_full nobottommargin">
+											<button class="button button-3d button-black nomargin" id="add-item-form-submit" name="add-item-form-submit" value="add-item" type="submit">Update Item</button>
+										</div>
+
+									</form>
+
 <!-- CUSTOMER---------->
-									<form th:if="${updateduser.getRole() == 'CUSTOMER'}"  th:action="@{/updatecustomer(id=${updateduser.id})}"  th:object="${updateduser}" id="update-form" name="update-form" class="nobottommargin" method="POST">
+									<form th:if="${updateditem==null && updateduser.getRole() == 'CUSTOMER'}"  th:action="@{/updatecustomer(id=${updateduser.id})}"  th:object="${updateduser}" id="update-form" name="update-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label for="update-form-name">Name:</label>
@@ -239,7 +305,7 @@
 									</form>
 
 <!-- admin---------->
-									<form th:if="${updateduser.getRole() == 'ADMIN'}"  th:action="@{/updateadmin(id=${updateduser.id})}"  th:object="${updateduser}" id="update-form" name="update-form" class="nobottommargin" method="POST">
+									<form th:if="${updateditem==null && updateduser.getRole() == 'ADMIN'}"  th:action="@{/updateadmin(id=${updateduser.id})}"  th:object="${updateduser}" id="update-form" name="update-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label for="update-form-name">Name:</label>
@@ -281,7 +347,7 @@
 									</form>
 
 <!-- SELLER------------>
-									<form th:if="${updateduser.getRole() == 'SELLER'}"  th:action="@{/updateseller(id=${updateduser.id})}" th:object="${updateduser}" name="update-form" class="nobottommargin" method="POST">
+									<form th:if="${updateditem==null && updateduser.getRole() == 'SELLER'}"  th:action="@{/updateseller(id=${updateduser.id})}" th:object="${updateduser}" name="update-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label>Contact Name:</label>
@@ -438,6 +504,15 @@
 	<script src="/js/jquery.js"></script>
 	<script src="/js/plugins.js"></script>
 
+	<!-- Bootstrap Select Plugin -->
+	<script src="/js/components/bs-select.js"></script>
+
+	<!-- Bootstrap File Upload Plugin -->
+	<script src="/js/components/bs-filestyle.js"></script>
+
+	<!-- Select Splitter Plugin -->
+	<script src="/js/components/selectsplitter.js"></script>
+
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="/js/functions.js"></script>
@@ -447,6 +522,79 @@
 			jQuery( '.flexslider .slide' ).resize();
 		});
 	</script>
+
+	<script>
+
+        $('.selectsplitter').selectsplitter();
+
+	</script>
+
+
+	<script >
+        $(document).ready(function() {
+            $("#input-5").fileinput({showCaption: false});
+
+            $("#input-6").fileinput({
+                showUpload: false,
+                maxFileCount: 10,
+                mainClass: "input-group-lg",
+                showCaption: true
+            });
+
+            $("#input-8").fileinput({
+                mainClass: "input-group-md",
+                showUpload: true,
+                previewFileType: "image",
+                browseClass: "btn btn-success",
+                browseLabel: "Pick Image",
+                browseIcon: "<i class=\"icon-picture\"></i> ",
+                removeClass: "btn btn-danger",
+                removeLabel: "Delete",
+                removeIcon: "<i class=\"icon-trash\"></i> ",
+                uploadClass: "btn btn-info",
+                uploadLabel: "Upload",
+                uploadIcon: "<i class=\"icon-upload\"></i> "
+            });
+
+            $("#input-9").fileinput({
+                previewFileType: "text",
+                allowedFileExtensions: ["txt", "md", "ini", "text"],
+                previewClass: "bg-warning",
+                browseClass: "btn btn-primary",
+                removeClass: "btn btn-secondary",
+                uploadClass: "btn btn-secondary",
+            });
+
+            $("#input-10").fileinput({
+                showUpload: false,
+                layoutTemplates: {
+                    main1: "{preview}\n" +
+                    "<div class=\'input-group {class}\'>\n" +
+                    "   <div class=\'input-group-append\'>\n" +
+                    "       {browse}\n" +
+                    "       {upload}\n" +
+                    "       {remove}\n" +
+                    "   </div>\n" +
+                    "   {caption}\n" +
+                    "</div>"
+                }
+            });
+
+            $("#input-11").fileinput({
+                maxFileCount: 10,
+                allowedFileTypes: ["image", "video"]
+            });
+
+            $("#input-12").fileinput({
+                showPreview: false,
+                allowedFileExtensions: ["zip", "rar", "gz", "tgz"],
+                elErrorContainer: "#errorBlock"
+            });
+        });
+
+	</script>
+
+
 
 </body>
 </html>

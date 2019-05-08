@@ -236,7 +236,7 @@
 
 								<div class="col_half col_last">
 									<label>Price:</label>
-									<input type="text" th:field="*{price}" class="form-control"pattern='^[1-9]+[0-9]*$' title='Price must be bigger than 0.' required>
+									<input type="text" th:field="*{price}" class="form-control"pattern='^(?:[1-9]\d*|0)?(?:\.\d+)?$' title='Price must be bigger than 0.' required>
 								</div>
 
 								<div class="clear"></div>

@@ -184,7 +184,7 @@
 
 						<div class="col-md-9">
 
-							<img src="/images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
+							<img src="/images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;"/>
 
 							<div class="alignright">
 								<a th:if="${item==null}" th:href="@{/update(id=${user.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
@@ -298,7 +298,7 @@
 						<div class="col-md-3 clearfix">
 
 							<div class="list-group">
-								<a href= class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
+								<a th:href="@{/view(id=${user.id})}" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
 
 								<a href="/orders" th:if="${authuser.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
 								<a href="/sellers" th:if="${authuser.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>
