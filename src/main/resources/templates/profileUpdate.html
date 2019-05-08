@@ -120,7 +120,7 @@
 								<li>
 									<a><i class="icon-user"></i></a>
 									<ul>
-										<li><a href=th:href="@{/view(id=${user.id})}">Profile</a></li>
+										<li><a th:href="@{/view(id=${user.id})}">Profile</a></li>
 										<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
 										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
@@ -165,17 +165,31 @@
 
 						<div class="col-md-9">
 
-							<img src="images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
-							<div th:if="${updateduser.getRole() != 'SELLER'}" class="heading-block noborder">
+							<img src="/images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
+
+							<div class="alignright">
+								<a th:if="${item==null}" th:href="@{/update(id=${updateduser.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${updateduser.getRole() != 'CUSTOMER' && item!=null}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${item==null}" th:href="@{/changepassword(id=${updateduser.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
+							</div>
+
+							<div th:if="${item==null && updateduser.getRole() != 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${updateduser.getName()} + ' ' +  ${updateduser.getSurname()}"></h3>
 								<span th:utext="${updateduser.getRole()} "></span>
 							</div>
 
-							<div th:if="${updateduser.getRole() == 'SELLER'}" class="heading-block noborder">
+							<div th:if="${item==null && updateduser.getRole() == 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${updateduser.getShopname()}"></h3>
 								<span th:utext="${updateduser.getRole()} "></span>
 								<div class="alignright"><label th:utext="${'Sale: ' + updateduser.getSale() + '	Rating: ' + updateduser.getRating()}"></label></div>
 							</div>
+
+							<div th:if="${item!=null}" class="heading-block noborder">
+								<h3 th:utext="${item.getName()}"></h3>
+								<span th:utext="${item.getShopname()} "></span>
+								<div class="alignright"><label th:utext="${'Price: ' + item.getPrice() + '₺	Rating: ' + item.getRating()}"></label></div>
+							</div>
+
 							<div class="clear"></div>
 
 							<div class="row clearfix">
