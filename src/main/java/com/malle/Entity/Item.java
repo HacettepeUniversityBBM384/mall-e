@@ -1,6 +1,7 @@
 package com.malle.Entity;
 
 import javax.persistence.*;
+import java.io.File;
 
 @Entity
 @Table(name="item")

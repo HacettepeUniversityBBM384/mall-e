@@ -184,11 +184,12 @@
 
 						<div class="col-md-9">
 
-							<img src="/images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;"/>
+							<img th:if="${item!=null}" th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}" class="alignleft notopmargin nobottommargin" style="max-width: 200px;"/>
 
 							<div class="alignright">
 								<a th:if="${item==null}" th:href="@{/update(id=${user.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
-								<a th:if="${user.getRole() != 'CUSTOMER' && item!=null}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${item!=null && user.getRole() != 'CUSTOMER'}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${item!=null && user.getRole() != 'CUSTOMER'}" th:href="@{image(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>CHANGE IMAGE</a>
 								<a th:if="${item==null}" th:href="@{/changepassword(id=${user.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
 							</div>
 
@@ -198,7 +199,7 @@
 							</div>
 
 							<div th:if="${item==null && user.getRole() == 'SELLER'}" class="heading-block noborder">
-								<h3 th:utext="${user.getShopname()}"></h3>
+								<h3 th:href="@{/shop(id=${user.shopname})}" th:utext="${user.getShopname()}"></h3>
 								<span th:utext="${user.getRole()} "></span>
 								<div class="alignright"><label th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></label></div>
 							</div>
@@ -215,24 +216,46 @@
 
 								<div class="col-lg-12">
 
+<!-- ITEM ------------>
+									<form th:if="${item!=null}" name="view-form" class="nobottommargin" method="POST">
+										<div class="col_half">
+											<label>Description:</label>
+											<label style="padding:0px;border: 0px" type="text" th:utext="${item.getDescription()}" class="form-control"/>
+										</div>
+										<div class="col_half col_last">
+											<label>Stock:</label>
+											<label style="padding:0px;border: 0px" type="text" th:utext="${item.getStock()}" class="form-control"/>
+										</div>
+
+										<div class="col_half ">
+											<label>Category:</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==0}">Electronic</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==1}">Beauty & Health</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==2}">Women</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==3}">Men</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==4}">Kids</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==5}">Stuff</label>
+										</div>
+									</form>
+
 <!-- CUSTOMER and ADMIN------------>
 									<form th:if="${item==null && user.getRole() != 'SELLER'}" id="view-form" name="view-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label for="view-form-email">Email:</label>
-											<label style="border: 0px" type="text" id="view-form-email" name="email" value="" th:utext="${user.getEmail()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text" id="view-form-email" name="email" value="" th:utext="${user.getEmail()}" class="form-control"/>
 										</div>
 
 										<div class="col_half col_last">
 											<label for="view-form-phone">Phone:</label>
-											<label style="border: 0px" type="text" id="view-form-phone" name="phone" value="" th:utext="${user.getPhone()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text" id="view-form-phone" name="phone" value="" th:utext="${user.getPhone()}" class="form-control"/>
 										</div>
 
 										<div class="clear"></div>
 
 										<div class="col_half">
 											<label for="view-form-address">Address:</label>
-											<label style="border: 0px" type="text" id="view-form-address" name="addres" value="" th:utext="${user.getAddress()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text" id="view-form-address" name="addres" value="" th:utext="${user.getAddress()}" class="form-control"/>
 										</div>
 
 										<div class="clear"></div>
@@ -244,36 +267,36 @@
 
 										<div class="col_half">
 											<label for="view-form-email">Contact Name:</label>
-											<label style="border: 0px" type="text"  value="" th:utext="${user.getName()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text"  value="" th:utext="${user.getName()}" class="form-control"/>
 										</div>
 
 										<div class="col_half col_last">
 											<label for="view-form-email">Contact Surname:</label>
-											<label style="border: 0px" type="text" value="" th:utext="${user.getSurname()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text" value="" th:utext="${user.getSurname()}" class="form-control"/>
 										</div>
 
 										<div class="clear"></div>
 
 										<div class="col_half">
 											<label for="view-form-email">Email:</label>
-											<label style="border: 0px" type="text" name="email" value="" th:utext="${user.getEmail()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text" name="email" value="" th:utext="${user.getEmail()}" class="form-control"/>
 										</div>
 
 										<div class="col_half col_last">
 											<label for="view-form-phone">Phone:</label>
-											<label style="border: 0px" type="text" name="phone" value="" th:utext="${user.getPhone()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text" name="phone" value="" th:utext="${user.getPhone()}" class="form-control"/>
 										</div>
 
 										<div class="clear"></div>
 
 										<div class="col_half">
 											<label for="view-form-address">Address:</label>
-											<label style="border: 0px" type="text"name="addres" value="" th:utext="${user.getAddress()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text"name="addres" value="" th:utext="${user.getAddress()}" class="form-control"/>
 										</div>
 
 										<div class="col_half col_last">
 											<label for="view-form-address">IBAN:</label>
-											<label style="border: 0px" type="text"name="addres" value="" th:utext="${user.getIBAN()}" class="form-control"/>
+											<label style="padding:0px;border: 0px" type="text"name="addres" value="" th:utext="${user.getIBAN()}" class="form-control"/>
 										</div>
 
 										<div class="clear"></div>

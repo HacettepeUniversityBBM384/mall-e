@@ -175,7 +175,13 @@
 
 						<div class="col-md-9">
 
-							<img src="/images/icons/avatar.jpg" class="alignleft img-circle img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
+							<img th:if="${updateditem!=null}" th:src="@{${updateditem.path}}" class="alignleft notopmargin nobottommargin" style="max-width: 200px;"/>
+
+							<div th:if="${updateditem!=null}" class="heading-block noborder">
+								<h3 th:utext="${updateditem.getName()}"></h3>
+								<span th:utext="${updateditem.getShopname()} "></span>
+								<div class="alignright"><label th:utext="${'Price: ' + updateditem.getPrice() + '₺	Rating: ' + updateditem.getRating()}"></label></div>
+							</div>
 
 							<div th:if="${updateditem==null && updateduser.getRole() != 'SELLER'}" class="heading-block noborder">
 								<h3 th:utext="${updateduser.getName()} + ' ' +  ${updateduser.getSurname()}"></h3>
@@ -188,12 +194,6 @@
 								<div class="alignright"><label th:utext="${'Sale: ' + updateduser.getSale() + '	Rating: ' + updateduser.getRating()}"></label></div>
 							</div>
 
-							<div th:if="${updateditem!=null}" class="heading-block noborder">
-								<h3 th:utext="${updateditem.getName()}"></h3>
-								<span th:utext="${updateditem.getShopname()} "></span>
-								<div class="alignright"><label th:utext="${'Price: ' + updateditem.getPrice() + '₺	Rating: ' + updateditem.getRating()}"></label></div>
-							</div>
-
 							<div class="clear"></div>
 
 							<div class="row clearfix">
@@ -202,21 +202,7 @@
 
 
 <!--ITEM---------------->
-									<form th:if="${updateditem!=null}" th:action="@{update(id=${updateditem.id})}" th:object="${updateditem}" onsubmit="ManageImages();" id="add-item-form" name="add-item-form" class="nobottommargin" method="POST">
-
-										<div class="bottommargin">
-											<input id="input" name="input2[]" type="file" class="file" multiple data-show-upload="true" data-show-caption="true" data-show-preview="true">
-										</div>
-
-										<script>
-                                            function ManageImages(str) {
-                                                const input = document.getElementById('input');
-                                                System.out.println(input);
-                                                System.out.println(input.type);
-                                            }
-										</script>
-
-										<div class="clear"></div>
+									<form th:if="${updateditem!=null}" th:action="@{update(id=${updateditem.id})}" th:object="${updateditem}" id="add-item-form" name="add-item-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label>Name:</label>
@@ -237,7 +223,7 @@
 
 										<div class="col_half col_last">
 											<label>Price:</label>
-											<input type="text" th:field="*{price}" class="form-control"pattern='^[1-9]+[0-9]*$' title='Price must be bigger than 0.' required>
+											<input type="text" th:field="*{price}" class="form-control"pattern='\(?\d+\.?\d+\)?' title='Price must be bigger than 0.' required>
 										</div>
 
 										<div class="clear"></div>

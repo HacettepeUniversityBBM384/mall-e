@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2b3f6ea-7256-4fc2-8505-7190ed261787" name="Default" comment="">
+    <list default="true" id="d2b3f6ea-7256-4fc2-8505-7190ed261787" name="Default" comment="item update added">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/profileImage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/banners/3.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/banners/3.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/1.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/1.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/2.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/2.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/3.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/3.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/4.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/4.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/malle/Entity/Item.java" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Entity/Item.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" />
     </list>
@@ -22,97 +27,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ItemController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ItemController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-139">
-              <caret line="51" column="69" lean-forward="false" selection-start-line="51" selection-start-column="68" selection-end-line="51" selection-end-column="69" />
+            <state relative-caret-position="263">
+              <caret line="113" column="79" lean-forward="false" selection-start-line="113" selection-start-column="79" selection-end-line="113" selection-end-column="79" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/ItemDao.java">
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Entity/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="462">
+              <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="profile.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="300" column="38" lean-forward="false" selection-start-line="300" selection-start-column="38" selection-end-line="300" selection-end-column="38" />
+            <state relative-caret-position="407">
+              <caret line="186" column="66" lean-forward="false" selection-start-line="186" selection-start-column="66" selection-end-line="186" selection-end-column="66" />
               <folding>
-                <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="70" column="61" lean-forward="false" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profileUpdate.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding>
-                <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#form#1;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#form#2;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#form#3;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="89" column="89" lean-forward="false" selection-start-line="89" selection-start-column="89" selection-end-line="89" selection-end-column="89" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/ItemService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/add.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="243" column="59" lean-forward="true" selection-start-line="243" selection-start-column="59" selection-end-line="243" selection-end-column="59" />
-              <folding>
-                <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#label#1;n#div#0;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#1;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#2;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#3;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#4;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#5;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#6;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#0;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#1;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#3;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#0;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#1;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#3;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#4;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#6;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#7;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
@@ -130,18 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>reg</find>
-      <find>authuser</find>
-      <find>addatt</find>
-      <find>redir.addatt</find>
-      <find>@model</find>
-      <find>delete</find>
-      <find>items</find>
-      <find>/item&quot;</find>
-      <find>__dirname</find>
-      <find>app.use</find>
-      <find>&quot;js/</find>
-      <find>&quot;css/</find>
       <find>/item</find>
       <find>getrol</find>
       <find>auth</find>
@@ -160,6 +108,18 @@
       <find>id</find>
       <find>item</find>
       <find>bigger than 0</find>
+      <find>data-show-caption</find>
+      <find>folder</find>
+      <find>bigger</find>
+      <find>add item</find>
+      <find>Welcome</find>
+      <find>welcome</find>
+      <find>image</find>
+      <find>ubuntu</find>
+      <find>findbys</find>
+      <find>mysql</find>
+      <find>logo.png</find>
+      <find>shop/sm</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,22 +144,24 @@
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Service/ItemService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/config/SecurityConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Service/CustomUserDetailsService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Dao/OrderDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Service/OrderService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/OrderController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/profilePsw.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/Item.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/datatable.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/add.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profileImage.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/Item.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java" />
       </list>
     </option>
   </component>
@@ -274,15 +236,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="malle" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
-              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="malle" type="462c0819:PsiDirectoryNode" />
               <item name="Dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -316,6 +269,33 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="H&amp;M" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malleShopping" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malleShopping" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -340,8 +320,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images\shop\slider" />
       <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\templates" />
+      <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images\shop\slider" />
       <recent name="C:\Users\defne\IntelliJProjects\malleShopping\src\main\resources\static\images" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -482,7 +462,7 @@
       <workItem from="1557157266663" duration="19416000" />
       <workItem from="1557214527589" duration="37026000" />
       <workItem from="1557305112456" duration="2171000" />
-      <workItem from="1557314302090" duration="10995000" />
+      <workItem from="1557314302090" duration="32386000" />
     </task>
     <task id="LOCAL-00001" summary="Password check for Login is done">
       <created>1556450044207</created>
@@ -589,11 +569,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557319385664</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="item update added">
+      <created>1557325448273</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1557325448273</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154029000" />
+    <option name="totallyTimeSpent" value="175420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -653,22 +640,16 @@
     <MESSAGE value="Item update sayfası eklenecek" />
     <MESSAGE value="target deleted" />
     <MESSAGE value=".gitignore added" />
-    <option name="LAST_COMMIT_MESSAGE" value=".gitignore added" />
+    <MESSAGE value="item update added" />
+    <option name="LAST_COMMIT_MESSAGE" value="item update added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -687,6 +668,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
           <caret line="33" column="40" lean-forward="true" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+          <folding>
+            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -696,7 +680,7 @@
           <caret line="233" column="70" lean-forward="false" selection-start-line="233" selection-start-column="70" selection-end-line="233" selection-end-column="70" />
           <folding>
             <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#form#1;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#form#2;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#form#3;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -718,10 +702,24 @@
         <state relative-caret-position="3612">
           <caret line="172" column="0" lean-forward="true" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
           <folding>
-            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#1;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#2;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#3;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#4;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#5;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#6;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#1;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#3;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#1;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#3;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#4;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#6;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#7;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -837,35 +835,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="226" column="52" lean-forward="true" selection-start-line="226" selection-start-column="52" selection-end-line="226" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Entity/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
           <folding>
-            <element signature="e#797#798#0" expanded="false" />
-            <element signature="e#830#831#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Entity/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Entity/Seller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-          <folding>
-            <element signature="e#799#800#0" expanded="false" />
-            <element signature="e#831#832#0" expanded="false" />
+            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -950,55 +921,47 @@
         <state relative-caret-position="1869">
           <caret line="587" column="38" lean-forward="false" selection-start-line="587" selection-start-column="38" selection-end-line="587" selection-end-column="38" />
           <folding>
-            <marker date="1557325357102" expanded="true" signature="68372:68390" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68372:68403" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68372:68418" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68453:71070" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68466:71055" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68520:68815" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68539:68800" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68602:68780" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68642:68746" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68663:68724" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68865:69197" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68884:69182" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="68984:69162" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69024:69128" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69045:69106" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69248:69558" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69267:69543" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69345:69523" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69385:69489" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69406:69467" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69601:69911" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69620:69896" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69698:69876" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69738:69842" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69759:69820" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69962:70317" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="69981:70302" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70065:70282" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70105:70248" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70126:70226" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70352:70662" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70371:70647" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70449:70627" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70489:70593" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70510:70571" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70714:71041" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70733:71026" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70828:71006" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70868:70972" ph="..." />
-            <marker date="1557325357102" expanded="true" signature="70889:70950" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="75797:75815" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="75797:75828" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="75797:75843" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="75878:78495" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="75891:78480" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="75945:76240" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="75964:76225" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76027:76205" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76067:76171" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76088:76149" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76290:76622" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76309:76607" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76409:76587" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76449:76553" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76470:76531" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76673:76983" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76692:76968" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76770:76948" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76810:76914" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="76831:76892" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77026:77336" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77045:77321" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77123:77301" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77163:77267" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77184:77245" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77387:77742" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77406:77727" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77490:77707" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77530:77673" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77551:77651" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77777:78087" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77796:78072" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77874:78052" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77914:78018" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="77935:77996" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="78139:78466" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="78158:78451" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="78253:78431" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="78293:78397" ph="..." />
+            <marker date="1557354177238" expanded="true" signature="78314:78375" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1017,34 +980,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="70" column="61" lean-forward="false" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.0.10.RELEASE/spring-data-jpa-2.0.10.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="20" column="47" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="13" column="38" lean-forward="true" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1057,11 +996,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/ItemService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Entity/Seller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="609">
+          <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+          <folding>
+            <element signature="e#799#800#0" expanded="false" />
+            <element signature="e#831#832#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1073,27 +1015,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Entity/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="300" column="38" lean-forward="false" selection-start-line="300" selection-start-column="38" selection-end-line="300" selection-end-column="38" />
+        <state relative-caret-position="687">
+          <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
           <folding>
-            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#797#798#0" expanded="false" />
+            <element signature="e#830#831#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/ItemService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="69" column="116" lean-forward="false" selection-start-line="69" selection-start-column="116" selection-end-line="69" selection-end-column="116" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="190">
+          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="183" selection-end-column="34" />
           <folding>
             <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#form#1;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#form#2;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#form#3;n#div#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -1104,21 +1059,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="243" column="59" lean-forward="true" selection-start-line="243" selection-start-column="59" selection-end-line="243" selection-end-column="59" />
+        <state relative-caret-position="420">
+          <caret line="513" column="0" lean-forward="true" selection-start-line="513" selection-start-column="0" selection-end-line="513" selection-end-column="0" />
           <folding>
             <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#0;n#div#2;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profileImage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="181" column="52" lean-forward="false" selection-start-line="181" selection-start-column="52" selection-end-line="181" selection-end-column="52" />
+          <folding>
+            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Entity/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-139">
-          <caret line="51" column="69" lean-forward="false" selection-start-line="51" selection-start-column="68" selection-end-line="51" selection-end-column="69" />
+        <state relative-caret-position="263">
+          <caret line="113" column="79" lean-forward="false" selection-start-line="113" selection-start-column="79" selection-end-line="113" selection-end-column="79" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="186" column="66" lean-forward="false" selection-start-line="186" selection-start-column="66" selection-end-line="186" selection-end-column="66" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#1;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#2;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#3;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#4;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#5;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#6;n#div#2;n#form#0;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#1;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#3;n#form#1;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#1;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#3;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#4;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#6;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#7;n#form#2;n#div#0;n#div#5;n#div#0;n#div#5;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
