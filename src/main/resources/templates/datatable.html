@@ -80,43 +80,6 @@
 						<li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
 					</ul>
 
-					<!-- Top Cart
-                    ============================================= -->
-					<div id="top-cart">
-						<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
-						<div class="top-cart-content">
-							<div class="top-cart-title">
-								<h4>Shopping Cart</h4>
-							</div>
-							<div class="top-cart-items">
-								<div class="top-cart-item clearfix">
-									<div class="top-cart-item-image">
-										<a href="#"><img src="/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
-									</div>
-									<div class="top-cart-item-desc">
-										<a href="#">Blue Round-Neck Tshirt</a>
-										<span class="top-cart-item-price">$19.99</span>
-										<span class="top-cart-item-quantity">x 2</span>
-									</div>
-								</div>
-								<div class="top-cart-item clearfix">
-									<div class="top-cart-item-image">
-										<a href="#"><img src="/images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
-									</div>
-									<div class="top-cart-item-desc">
-										<a href="#">Light Blue Denim Dress</a>
-										<span class="top-cart-item-price">$24.99</span>
-										<span class="top-cart-item-quantity">x 3</span>
-									</div>
-								</div>
-							</div>
-							<div class="top-cart-action clearfix">
-								<span class="fleft top-checkout-price">$114.95</span>
-								<button class="button button-3d button-small nomargin fright">View Cart</button>
-							</div>
-						</div>
-					</div><!-- #top-cart end -->
-
 					<!-- Top Search
                     ============================================= -->
 					<div id="top-search">
@@ -330,7 +293,12 @@
 							<tr  th:if="${data.equals('items')}" th:each="item: ${itemlist}">
 								<td th:text="${item.name}" />
 								<td th:text="${item.shopname}" />
-								<td th:text="${item.subcategoryid}" />
+								<td th:if="${item.getSubcategoryid()==0}">Electronic</td>
+								<td th:if="${item.getSubcategoryid()==1}">Beauty & Health</td>
+								<td th:if="${item.getSubcategoryid()==2}">Women</td>
+								<td th:if="${item.getSubcategoryid()==3}">Men</td>
+								<td th:if="${item.getSubcategoryid()==4}">Kids</td>
+								<td th:if="${item.getSubcategoryid()==5}">Stuff</td>
 								<td th:text="${item.price}" ></td>
 								<td th:text="${item.ordercount}" />
 								<td th:text="${item.rating}" />

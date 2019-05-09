@@ -38,6 +38,8 @@ public class ItemController {
     @Autowired
     private UserService userService;
 
+    public static ArrayList<Item> cart = new ArrayList<>();
+
     public Iterable<Item> getAllItems() {
         return itemService.getAllItems();
     }
@@ -62,9 +64,11 @@ public class ItemController {
     @RequestMapping(value = "/item/view", method = RequestMethod.GET)
     public String ViewItemPage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
+        model.addAttribute("status", model.asMap().get("status"));
         model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("item", item);
+        model.addAttribute("cartitemlist", cart);
         return "profile";
     }
 
@@ -141,6 +145,14 @@ public class ItemController {
         updateditem.setRating(item.getRating());
         itemService.Save(updateditem);
         redir.addFlashAttribute("status", "item");
+        return "redirect:/item/view?id="+id;
+    }
+
+    @RequestMapping(value = "/item/addtocart", method = RequestMethod.POST)
+    public String AddToCart(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
+        Item item = itemService.FindById(Integer.parseInt(id)).get();
+        for(int i=0;i<Integer.parseInt(quantity);i++) cart.add(item);
+        redir.addFlashAttribute("status", "cart");
         return "redirect:/item/view?id="+id;
     }
 }

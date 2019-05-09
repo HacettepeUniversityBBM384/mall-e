@@ -102,43 +102,6 @@
 							<li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
 						</ul>
 
-						<!-- Top Cart
-						============================================= -->
-						<div id="top-cart">
-							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
-							<div class="top-cart-content">
-								<div class="top-cart-title">
-									<h4>Shopping Cart</h4>
-								</div>
-								<div class="top-cart-items">
-									<div class="top-cart-item clearfix">
-										<div class="top-cart-item-image">
-											<a href="#"><img src="/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
-										</div>
-										<div class="top-cart-item-desc">
-											<a href="#">Blue Round-Neck Tshirt</a>
-											<span class="top-cart-item-price">$19.99</span>
-											<span class="top-cart-item-quantity">x 2</span>
-										</div>
-									</div>
-									<div class="top-cart-item clearfix">
-										<div class="top-cart-item-image">
-											<a href="#"><img src="/images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
-										</div>
-										<div class="top-cart-item-desc">
-											<a href="#">Light Blue Denim Dress</a>
-											<span class="top-cart-item-price">$24.99</span>
-											<span class="top-cart-item-quantity">x 3</span>
-										</div>
-									</div>
-								</div>
-								<div class="top-cart-action clearfix">
-									<span class="fleft top-checkout-price">$114.95</span>
-									<button class="button button-3d button-small nomargin fright">View Cart</button>
-								</div>
-							</div>
-						</div><!-- #top-cart end -->
-
 						<!-- Top Search
 						============================================= -->
 						<div id="top-search">
@@ -188,14 +151,15 @@
 
 				<div class="container clearfix">
 
-					<div class="row clearfix"  th:if="${user == null}">
+					<div class="row clearfix"  th:if="${user == null || (user!=null && newuser!=null && user.getId()!=newuser.getId() && user.getRole()!='ADMIN') || (user!=null && newitem!=null && user.getRole()=='SELLER' && newitem.getShopname()!=user.getShopname())}">
 						<div class="col_half nobottommargin">
 							<div class="error404 center">404</div>
 							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
 						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
 					</div>
 
-					<div class="row clearfix"  th:if="${user != null}">
+					<div class="row clearfix"  th:if="${user != null && ((newitem==null && user.getRole()!='ADMIN' && user.getId()==newuser.getId()) || user.getRole()=='ADMIN' || (newitem!=null && user.getRole()=='SELLER' && newitem.getShopname()==user.getShopname()))}">
+
 
 						<div class="col-md-9" th:if="${data.equals('item')}">
 
@@ -229,7 +193,7 @@
 
 								<div class="white-section">
 									<label>Choose Category</label>
-									<select th:field="*{subcategoryid}" class="selectpicker" multiple="false" data-live-search="true">
+									<select th:field="*{subcategoryid}" class="selectpicker" data-live-search="true" required>
 										<option value=0>Electronic</option>
 										<option value=1>Beauty & Health</option>
 										<option value=2>Women</option>

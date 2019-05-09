@@ -78,38 +78,30 @@
 						</ul>
 
 						<!-- Top Cart
-						============================================= -->
-						<div id="top-cart">
-							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
+                                        ============================================= -->
+						<div th:if="${user.getRole()=='CUSTOMER'}" id="top-cart">
+							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
 							<div class="top-cart-content">
 								<div class="top-cart-title">
 									<h4>Shopping Cart</h4>
 								</div>
 								<div class="top-cart-items">
-									<div class="top-cart-item clearfix">
+
+									<div class="top-cart-item clearfix"  th:each="cartitem: ${cartitemlist}">
 										<div class="top-cart-item-image">
-											<a href="#"><img src="/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
+											<a href="#"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
 										</div>
 										<div class="top-cart-item-desc">
-											<a href="#">Blue Round-Neck Tshirt</a>
-											<span class="top-cart-item-price">$19.99</span>
-											<span class="top-cart-item-quantity">x 2</span>
+											<a href="#" th:text="${cartitem.name}"></a>
+											<span class="top-cart-item-price" th:text="${cartitem.price}+' ₺'"></span>
+											<span class="top-cart-item-quantity">x 1</span>
 										</div>
 									</div>
-									<div class="top-cart-item clearfix">
-										<div class="top-cart-item-image">
-											<a href="#"><img src="/images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
-										</div>
-										<div class="top-cart-item-desc">
-											<a href="#">Light Blue Denim Dress</a>
-											<span class="top-cart-item-price">$24.99</span>
-											<span class="top-cart-item-quantity">x 3</span>
-										</div>
-									</div>
+
 								</div>
 								<div class="top-cart-action clearfix">
-									<span class="fleft top-checkout-price">$114.95</span>
-									<button class="button button-3d button-small nomargin fright">View Cart</button>
+									<!--									<span class="fleft top-checkout-price" th:text="${sum([i.price for Item i in ${cartitemlist}])}"> ₺</span>
+                                    -->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
 								</div>
 							</div>
 						</div><!-- #top-cart end -->
@@ -163,19 +155,19 @@
 
 				<div class="container clearfix">
 
-					<div class="row clearfix"  th:if="${user == null}">
+					<div class="row clearfix"  th:if="${user == null || (user!=null && updateduser!=null && user.getId()!=updateduser.getId() && user.getRole()!='ADMIN') || (user!=null && updateditem!=null && user.getRole()=='SELLER' && updateditem.getShopname()!=user.getShopname())}">
 						<div class="col_half nobottommargin">
 							<div class="error404 center">404</div>
 							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
 						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
-				</div>
+					</div>
 
+					<div class="row clearfix"  th:if="${user != null && ((updateditem==null && user.getRole()!='ADMIN' && user.getId()==updateduser.getId()) || user.getRole()=='ADMIN' || (updateditem!=null && user.getRole()=='SELLER' && updateditem.getShopname()==user.getShopname()))}">
 
-					<div class="row clearfix"  th:if="${user != null}">
 
 						<div class="col-md-9">
 
-							<img th:if="${updateditem!=null}" th:src="@{${updateditem.path}}" class="alignleft notopmargin nobottommargin" style="max-width: 200px;"/>
+							<img th:if="${updateditem!=null}" th:src="@{'/images/malle/'+${updateditem.shopname}+'/'+${updateditem.id}+'.jpeg'}" class="alignleft notopmargin nobottommargin" style="max-width: 200px;"/>
 
 							<div th:if="${updateditem!=null}" class="heading-block noborder">
 								<h3 th:utext="${updateditem.getName()}"></h3>
@@ -230,7 +222,7 @@
 
 										<div class="white-section">
 											<label>Choose Category</label>
-											<select th:field="*{subcategoryid}" class="selectpicker" multiple="false" data-live-search="true">
+											<select th:field="*{subcategoryid}" required class="selectpicker" data-live-search="true">
 												<option value=0>Electronic</option>
 												<option value=1>Beauty & Health</option>
 												<option value=2>Women</option>

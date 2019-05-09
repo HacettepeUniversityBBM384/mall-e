@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
+import static com.malle.Controller.ItemController.cart;
+
 @Controller
 @RequestMapping
 public class UserController {
@@ -35,12 +37,14 @@ public class UserController {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
+        model.addAttribute("cartitemlist", cart);
         return "home";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String LoginPage(Model model) {
         model.addAttribute("user", new Customer());
+        model.addAttribute("cartitemlist", cart);
         return "login";
     }
 
@@ -62,6 +66,7 @@ public class UserController {
         model.addAttribute("status", model.asMap().get("status"));
         model.addAttribute("user", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
+        model.addAttribute("cartitemlist", cart);
         return "profile";
     }
 
@@ -69,11 +74,12 @@ public class UserController {
     public String UpdateUserPage(@RequestParam String id, @AuthenticationPrincipal CustomUserDetails user, Model model) {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
+        model.addAttribute("cartitemlist", cart);
         return "profileUpdate";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String DeleteUserPage(RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails authuser, HttpServletRequest request, HttpServletResponse response) {
+    public String DeleteUserPage(Model model, RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails authuser, HttpServletRequest request, HttpServletResponse response) {
         User user = userService.FindById(Integer.parseInt(id)).get();
         User userAuth = userService.FindByEmail(authuser.getEmail()).get();
         if(user.getId()==userAuth.getId()) {
@@ -82,7 +88,8 @@ public class UserController {
                 new SecurityContextLogoutHandler().logout(request, response, auth);
             }
             userService.DeleteById(userAuth.getId());
-            return "home";
+            cart=new ArrayList<>();
+            return "redirect:/home";
         }
         else {
             userService.DeleteById(user.getId());
@@ -98,7 +105,8 @@ public class UserController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "home";
+        cart=new ArrayList<>();
+        return "redirect:/home";
     }
 
     @RequestMapping(value = "/admins", method = RequestMethod.GET)
@@ -235,6 +243,7 @@ public class UserController {
     public String PasswordPage(@RequestParam String id, @AuthenticationPrincipal CustomUserDetails user, Model model) {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
+        model.addAttribute("cartitemlist", cart);
         return "profilePsw";
     }
 
