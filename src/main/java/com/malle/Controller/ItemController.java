@@ -60,11 +60,12 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/item/view", method = RequestMethod.GET)
-    public String ViewItemPage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
+    public String ViewItemPage(@RequestParam String id, Model model, @ModelAttribute("filename") String fileName, @AuthenticationPrincipal CustomUserDetails user) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
         model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("item", item);
+        model.addAttribute("filename", fileName);
         return "profile";
     }
 
@@ -106,12 +107,13 @@ public class ItemController {
         return "profileImage";
     }
 
+    public static String uploadDirectory = "src/main/resources/static/images/malle/";
     @RequestMapping(value = "/item/image", method = RequestMethod.POST)
-    public String UpdateImage(RedirectAttributes redir, @RequestParam MultipartFile file, @RequestParam String id) {
+    public String UpdateImage(RedirectAttributes redir, @RequestParam MultipartFile file, @RequestParam String id, Model model) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
         Seller seller = userService.FindByShopname(item.getShopname()).get();
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
-        Path uploadLocation = Paths.get("src/main/resources/static/images/malle").resolve(seller.getShopname());
+        /*String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        Path uploadLocation = Paths.get("src/main/resources/static/images/malle/").resolve(seller.getShopname());
         try {
             if (file.isEmpty()) { throw new RuntimeException("Failed to store empty file " + filename); }
             if (filename.contains("..")) { throw new RuntimeException("Cannot store file with relative path outside current directory " + filename); }
@@ -127,8 +129,18 @@ public class ItemController {
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file " + filename, e);
         }
-        itemService.Save(item);
+        itemService.Save(item);*/
+
+        String fileName = file.getOriginalFilename();
+        Path fileNamePath = Paths.get(uploadDirectory,fileName);
+        try {
+            Files.write(fileNamePath,file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         redir.addFlashAttribute("status", "item");
+        redir.addFlashAttribute("filename", fileName);
         return "redirect:/item/view?id="+id;
     }
 
