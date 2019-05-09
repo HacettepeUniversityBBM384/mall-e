@@ -79,7 +79,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String DeleteUserPage(Model model, RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails authuser, HttpServletRequest request, HttpServletResponse response) {
+    public String DeleteUserPage(RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails authuser, HttpServletRequest request, HttpServletResponse response) {
         User user = userService.FindById(Integer.parseInt(id)).get();
         User userAuth = userService.FindByEmail(authuser.getEmail()).get();
         if(user.getId()==userAuth.getId()) {
