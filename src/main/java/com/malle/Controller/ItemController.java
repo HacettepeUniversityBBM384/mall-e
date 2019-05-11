@@ -39,12 +39,6 @@ public class ItemController {
 
     public int getTotal(){ int sum=0;for(Item i:cart)sum+=i.getPrice(); return sum;}
 
-    public Iterable<Item> getAllItems() {
-        return itemService.getAllItems();
-    }
-    public Iterable<Category> getAllCategories(){ return categoryService.getAllCategories(); }
-    public Iterable<Subcategory> getAllSubcategories(){ return subcategoryService.getAllSubcategories(); }
-
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public String CategoryPage(@RequestParam String name, @AuthenticationPrincipal CustomUserDetails user,Model model) {
         if (user != null) {
@@ -53,7 +47,7 @@ public class ItemController {
         }
         ArrayList<Item> itemlist = new ArrayList<>();
         HashSet<Subcategory> subcategoryset = new HashSet<>();
-        for (Item i : getAllItems()) {
+        for (Item i : itemService.getAllItems()) {
             if (subcategoryService.FindById(i.getSubcategoryid()).get().getCategoryname().equals(name)) {
                 itemlist.add(i);
                 subcategoryset.add(subcategoryService.FindById(i.getSubcategoryid()).get());
@@ -62,8 +56,8 @@ public class ItemController {
         model.addAttribute("itemlist", itemlist);
         model.addAttribute("cartitemlist", cart);
         model.addAttribute("categoryname",name);
-        model.addAttribute("categories", getAllCategories());
-        model.addAttribute("subcategories", getAllSubcategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         model.addAttribute("subcategoryset", subcategoryset);
 
         return "shop";
@@ -77,7 +71,7 @@ public class ItemController {
         }
         ArrayList<Item> itemlist = new ArrayList<>();
         HashSet<Subcategory> subcategoryset = new HashSet<>();
-        for (Item i : getAllItems()) {
+        for (Item i : itemService.getAllItems()) {
             if (i.getShopname().equals(name)) {
                 itemlist.add(i);
                 subcategoryset.add(subcategoryService.FindById(i.getSubcategoryid()).get());
@@ -86,8 +80,8 @@ public class ItemController {
         model.addAttribute("itemlist", itemlist);
         model.addAttribute("cartitemlist", cart);
         model.addAttribute("categoryname",name);
-        model.addAttribute("categories", getAllCategories());
-        model.addAttribute("subcategories", getAllSubcategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         model.addAttribute("subcategoryset", subcategoryset);
         return "shop";
     }
@@ -101,12 +95,12 @@ public class ItemController {
             model.addAttribute("itemlist", itemService.getAllItems());
         else {
             ArrayList<Item> itemlist = new ArrayList<>();
-            for (Item i : getAllItems()) {
+            for (Item i : itemService.getAllItems()) {
                 if (i.getShopname().equals(((Seller)userauth).getShopname())) itemlist.add(i);
             }
             model.addAttribute("itemlist", itemlist);
         }
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "datatable";
     }
 
@@ -121,7 +115,7 @@ public class ItemController {
         }
         model.addAttribute("cartitemlist", cart);
         model.addAttribute("subcategory", subcategoryService.FindById(item.getSubcategoryid()).get());
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("total", getTotal());
         return "profile";
     }
@@ -131,8 +125,8 @@ public class ItemController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("newitem", new Item());
         model.addAttribute("data", "item");
-        model.addAttribute("categories", getAllCategories());
-        model.addAttribute("subcategorylist", getAllSubcategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategorylist", subcategoryService.getAllSubcategories());
         return "add";
     }
 
@@ -156,8 +150,8 @@ public class ItemController {
     public String UpdateItemPage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateditem", itemService.FindById(Integer.parseInt(id)).get());
-        model.addAttribute("categories", getAllCategories());
-        model.addAttribute("subcategorylist", getAllSubcategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategorylist", subcategoryService.getAllSubcategories());
         return "profileUpdate";
     }
 
@@ -165,7 +159,7 @@ public class ItemController {
     public String UpdateImagePage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("item", itemService.FindById(Integer.parseInt(id)).get());
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "profileImage";
     }
 
@@ -196,7 +190,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/item/update", method = RequestMethod.POST)
-    public String UpdateItem(RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails user, @ModelAttribute("updateditem") Item updateditem) {
+    public String UpdateItem(RedirectAttributes redir, @RequestParam String id, @ModelAttribute("updateditem") Item updateditem) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
         updateditem.setShopname(item.getShopname());
         updateditem.setId(item.getId());

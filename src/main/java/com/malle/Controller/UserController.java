@@ -30,22 +30,13 @@ public class UserController {
     @Autowired
     private CategoryService categoryService;
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @RequestMapping(value = "/secured/users", method = RequestMethod.GET)
-    public Iterable<User> getAllUsers(){
-        return userService.getAllUsers();
-    }
-
-    public Iterable<Category> getAllCategories(){ return categoryService.getAllCategories(); }
-
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String HomePage(@AuthenticationPrincipal CustomUserDetails user,Model model) {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         model.addAttribute("cartitemlist", cart);
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "home";
     }
 
@@ -53,7 +44,7 @@ public class UserController {
     public String LoginPage(Model model) {
         model.addAttribute("user", new Customer());
         model.addAttribute("cartitemlist", cart);
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "login";
     }
 
@@ -76,7 +67,7 @@ public class UserController {
         model.addAttribute("user", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("cartitemlist", cart);
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "profile";
     }
 
@@ -85,7 +76,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("cartitemlist", cart);
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "profileUpdate";
     }
 
@@ -127,11 +118,11 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("data", "admins");
         ArrayList<Admin> adminlist = new ArrayList<Admin>();
-        for (User i: getAllUsers()){
+        for (User i: userService.getAllUsers()){
             if(i.getRole().equals("ADMIN")) adminlist.add((Admin)i);
         }
         model.addAttribute("adminlist",adminlist);
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "datatable";
     }
 
@@ -142,11 +133,11 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("data", "customers");
         ArrayList<Customer> customerlist = new ArrayList<Customer>();
-        for (User i: getAllUsers()){
+        for (User i: userService.getAllUsers()){
             if(i.getRole().equals("CUSTOMER")) customerlist.add((Customer)i);
         }
         model.addAttribute("customerlist",customerlist);
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "datatable";
     }
 
@@ -156,11 +147,11 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("data", "sellers");
         ArrayList<Seller> sellerlist = new ArrayList<Seller>();
-        for (User i: getAllUsers()){
+        for (User i: userService.getAllUsers()){
             if(i.getRole().equals("SELLER")) sellerlist.add((Seller)i);
         }
         model.addAttribute("sellerlist",sellerlist);
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "datatable";
     }
 
@@ -169,7 +160,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("newuser", new Seller());
         model.addAttribute("data","seller");
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "add";
     }
 
@@ -190,7 +181,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("newuser", new Admin());
         model.addAttribute("data", "admin");
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "add";
     }
 
@@ -260,7 +251,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("cartitemlist", cart);
-        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "profilePsw";
     }
 
