@@ -115,55 +115,36 @@
 
 						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
-							<ul>
-								<li class="current"><a href="#"><div>Home</div><span>Lets Start</span></a>
-								</li>
-								<!-- Mega Menu
-								============================================= -->
-								<li class="mega-menu"><a href="#"><div>Men</div><span>Out of the Box</span></a>
-								</li>
-								<li><a href="#"><div>Women</div><span>Out of the Box</span></a>
-								</li>
-								<li><a href="#"><div>Kids</div><span>Awesome Works</span></a></li>
-								<li><a href="#"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-								<li><a href="#"><div>Electronics</div><span>Latest News</span></a></li>
-								<li><a href="#"><div>Stuff</div><span>Latest News</span></a></li>
-								<li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
-							</ul>
+						<ul>
+							<li class="current"><a th:href="@{/}"><div>Home</div><span>Lets Start</span></a></li>
+							<li th:each="category: ${categories}"><a th:href="@{/category(name=${category.name})}" th:text="${category.name}"></a></li>
+						</ul>
 
 						<!-- Top Cart
-						============================================= -->
-						<div id="top-cart">
-							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
+                        ============================================= -->
+						<div th:if="${user==null || user.getRole()=='CUSTOMER'}" id="top-cart">
+							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
 							<div class="top-cart-content">
 								<div class="top-cart-title">
 									<h4>Shopping Cart</h4>
 								</div>
 								<div class="top-cart-items">
-									<div class="top-cart-item clearfix">
+
+									<div class="top-cart-item clearfix"  th:each="cartitem: ${cartitemlist}">
 										<div class="top-cart-item-image">
-											<a href="#"><img src="/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
+											<a href="#"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
 										</div>
 										<div class="top-cart-item-desc">
-											<a href="#">Blue Round-Neck Tshirt</a>
-											<span class="top-cart-item-price">$19.99</span>
-											<span class="top-cart-item-quantity">x 2</span>
+											<a href="#" th:text="${cartitem.name}"></a>
+											<span class="top-cart-item-price" th:text="${cartitem.price}+' ₺'"></span>
+											<span class="top-cart-item-quantity">x 1</span>
 										</div>
 									</div>
-									<div class="top-cart-item clearfix">
-										<div class="top-cart-item-image">
-											<a href="#"><img src="/images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
-										</div>
-										<div class="top-cart-item-desc">
-											<a href="#">Light Blue Denim Dress</a>
-											<span class="top-cart-item-price">$24.99</span>
-											<span class="top-cart-item-quantity">x 3</span>
-										</div>
-									</div>
+
 								</div>
 								<div class="top-cart-action clearfix">
-									<span class="fleft top-checkout-price">$114.95</span>
-									<button class="button button-3d button-small nomargin fright">View Cart</button>
+									<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
+                                    								<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
 								</div>
 							</div>
 						</div><!-- #top-cart end -->
