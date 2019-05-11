@@ -65,16 +65,8 @@
 				<nav id="primary-menu">
 
 					<ul>
-						<li class="current"><a th:href="@{/home}"><div>Home</div><span>Lets Start</span></a>
-						</li>
-						<!-- Mega Menu
-                        ============================================= -->
-						<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
-						<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
-						<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
-						<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-						<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
-						<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
+						<li class="current"><a th:href="@{/}"><div>Home</div><span>Lets Start</span></a></li>
+						<li th:each="category: ${categories}"><a th:href="@{/category(name=${category.name})}" th:text="${category.name}"></a></li>
 					</ul>
 
 					<!-- Top Cart
@@ -100,8 +92,8 @@
 
 							</div>
 							<div class="top-cart-action clearfix">
-								<!--									<span class="fleft top-checkout-price" th:text="${sum([i.price for Item i in ${cartitemlist}])}"> ₺</span>
-                                -->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
+								<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
+                                <button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
 							</div>
 						</div>
 					</div><!-- #top-cart end -->
@@ -117,19 +109,19 @@
 
 					<!-- Top Links
                     ============================================= -->
-					<div class="top-links"th:if="${authuser != null}">
+					<div class="top-links"th:if="${user != null}">
 						<ul>
 							<li>
 								<a><i class="icon-user"></i></a>
 								<ul>
-									<li><a th:href="@{/view(id=${authuser.id})}">Profile</a></li>
-									<li th:if="${authuser.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
-									<li th:if="${authuser.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
+									<li><a th:href="@{/view(id=${user.id})}">Profile</a></li>
+									<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
+									<li th:if="${user.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 									<li><a href="#">Settings</a></li>
 									<li><a href="/logout">Logout</a></li>
 								</ul>
@@ -319,13 +311,8 @@
 							<tr  th:if="${data.equals('items')}" th:each="item: ${itemlist}">
 								<td th:text="${item.name}" />
 								<td th:text="${item.shopname}" />
-								<td th:if="${item.getSubcategoryid()==0}">Men</td>
-								<td th:if="${item.getSubcategoryid()==1}">Women</td>
-								<td th:if="${item.getSubcategoryid()==2}">Kids</td>
-								<td th:if="${item.getSubcategoryid()==3}">Beauty & Health</td>
-								<td th:if="${item.getSubcategoryid()==4}">Electronic</td>
-								<td th:if="${item.getSubcategoryid()==5}">Hobby</td>
-								<td th:text="${item.price}" ></td>
+								<td th:if="${item.getCategoryname==0}"/>
+								<td th:text="${item.price}"/>
 								<td th:text="${item.ordercount}" />
 								<td th:text="${item.rating}" />
 								<td th:text="${item.stock}" />
@@ -356,7 +343,7 @@
 								<td th:text="${seller.email}" />
 								<td th:text="${seller.IBAN}" />
 								<td><a th:href="@{/view(id=${seller.id})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
-								<td><a th:href="@{/view(id=${seller.shopname})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
+								<td><a th:href="@{/shop(name=${seller.shopname})}" class="button button-mini button-circle button-border button-leaf">VIEW</a></td>
 							</tr>
 							</tbody>
 						</table>

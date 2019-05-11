@@ -23,7 +23,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Shop</title>
+	<title th:text="${categoryname}"></title>
 
 </head>
 
@@ -55,16 +55,8 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="current"><a th:href="@{/home}"><div>Home</div><span>Lets Start</span></a>
-							</li>
-							<!-- Mega Menu
-                            ============================================= -->
-							<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
-							<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
-							<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
-							<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-							<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
-							<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
+							<li class="current"><a th:href="@{/}"><div>Home</div><span>Lets Start</span></a></li>
+							<li th:each="category: ${categories}"><a th:href="@{/category(name=${category.name})}" th:text="${category.name}"></a></li>
 						</ul>
 
 						<!-- Top Cart
@@ -90,8 +82,8 @@
 
 								</div>
 								<div class="top-cart-action clearfix">
-									<!--									<span class="fleft top-checkout-price" th:text="${sum([i.price for Item i in ${cartitemlist}])}"> ₺</span>
-                                    -->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
+									<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
+                                    <button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
 								</div>
 							</div>
 						</div><!-- #top-cart end -->
@@ -148,17 +140,23 @@
 					<!-- Post Content
 					============================================= -->
 					<div class="postcontent nobottommargin col_last">
-						<h2 th:text="${category}" style="text-transform: uppercase;"></h2>
+						<h2 th:text="${categoryname}" style="text-transform: uppercase;"></h2>
 						<!-- Shop
 						============================================= -->
 						<div id="shop" class="shop product-3 grid-container clearfix">
-							<div class="product sf-dress clearfix" th:each="item: ${itemlist}">
+							<div th:each="item: ${itemlist}" th:class="product + ' ' + clearfix + ' ' +${item.getSubcategoryid()}" >
+								<div>
 								<div class="product-image">
 									<a th:href="@{/item/view(id=${item.id})}"><img th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}"></a>
+									<div class="product-overlay">
+						<!--				<form th:action="${cartitemlist.add(item)}" class="add-to-cart"><input type="button"><i class="icon-shopping-cart"></i><span> Add to Cart</span></input></form>
+						-->				<a th:href="@{/shop(name=${item.getShopname()})}" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item.shopname}"></span></a>
+									</div>
 								</div>
 								<div class="product-desc center">
 									<div class="product-title"><h3><a th:href="@{/item/view(id=${item.id})}" th:text="${item.name}"></a></h3></div>
 									<div class="product-price" th:text="${item.price}+' ₺'"></div>
+								</div>
 								</div>
 							</div>
 
@@ -167,7 +165,7 @@
 					</div><!-- .postcontent end -->
 
 					<!-- Sidebar
-					=============================================
+					=============================================-->
 					<div class="sidebar nobottommargin">
 						<div class="sidebar-widgets-wrap">
 
@@ -176,12 +174,7 @@
 								<h4>Select Category</h4>
 								<ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
 									<li class="widget-filter-reset active-filter"><a href="#" data-filter="*">Clear</a></li>
-									<li><a href="#" data-filter=".sf-dress">Dress</a></li>
-									<li><a href="#" data-filter=".sf-tshirt">Tshirts</a></li>
-									<li><a href="#" data-filter=".sf-pant">Pants</a></li>
-									<li><a href="#" data-filter=".sf-sunglass">Sunglasses</a></li>
-									<li><a href="#" data-filter=".sf-shoes">Shoes</a></li>
-									<li><a href="#" data-filter=".sf-watch">Watches</a></li>
+									<li th:each="subcategory: ${subcategoryset}"><a th:text="${subcategories.get(subcategory.id-1).name}" href="#" th:data-filter="'.'+${subcategory.id}"></a></li>
 								</ul>
 
 							</div>
@@ -199,7 +192,7 @@
 							</div>
 
 						</div>
-					</div>	-->
+					</div>
 
 
 				</div>

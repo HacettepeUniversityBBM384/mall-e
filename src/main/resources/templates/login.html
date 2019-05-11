@@ -33,35 +33,28 @@
         <!-- Header
         ============================================= -->
         <header id="header" class="sticky-style-2">
+			<div id="header-wrap">
 
             <div class="container clearfix">
 
-                <!-- Logo
+				<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+
+				<!-- Logo
                 ============================================= -->
                 <div id="logo">
                     <a href="/" class="standard-logo" data-dark-logo="images/logo.png"><img src="/images/logo.png" alt="Malle Logo"></a>
                     <a href="/" class="retina-logo" data-dark-logo="images/logo.png"><img src="/images/logo.png" alt="Malle Logo"></a>
                 </div><!-- #logo end -->
 
-            </div>
-
-            <div id="header-wrap">
 
 				<!-- Primary Navigation
                 ============================================= -->
 				<nav id="primary-menu">
 
 					<ul>
-						<li class="current"><a th:href="@{/home}"><div>Home</div><span>Lets Start</span></a>
-						</li>
-						<!-- Mega Menu
-                        ============================================= -->
-						<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
-						<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
-						<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
-						<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-						<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
-						<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
+						<li class="current"><a th:href="@{/}"><div>Home</div></a></li>
+						<li th:each="category: ${categories}"><a th:href="@{/category(name=${category.name})}" th:text="${category.name}"></a></li>
 					</ul>
 
 					<!-- Top Cart
@@ -87,8 +80,8 @@
 
 							</div>
 							<div class="top-cart-action clearfix">
-								<!--									<span class="fleft top-checkout-price" th:text="${sum([i.price for Item i in ${cartitemlist}])}"> ₺</span>
-                                -->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
+								<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
+                                <button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
 							</div>
 						</div>
 					</div><!-- #top-cart end -->
@@ -104,19 +97,19 @@
 
 					<!-- Top Links
                     ============================================= -->
-					<div class="top-links"th:if="${authuser != null}">
+					<div class="top-links"th:if="${user != null}">
 						<ul>
 							<li>
 								<a><i class="icon-user"></i></a>
 								<ul>
-									<li><a th:href="@{/view(id=${authuser.id})}">Profile</a></li>
-									<li th:if="${authuser.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
-									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
-									<li th:if="${authuser.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
+									<li><a th:href="@{/view(id=${user.id})}">Profile</a></li>
+									<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
+									<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
+									<li th:if="${user.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 									<li><a href="#">Settings</a></li>
 									<li><a href="/logout">Logout</a></li>
 								</ul>
@@ -124,9 +117,9 @@
 						</ul>
 					</div><!-- .top-links end -->
 
-
-
 				</nav><!-- #primary-menu end -->
+
+			</div>
 
             </div>
 

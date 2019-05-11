@@ -52,16 +52,8 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="current"><a th:href="@{/home}"><div>Home</div><span>Lets Start</span></a>
-							</li>
-							<!-- Mega Menu
-                            ============================================= -->
-							<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
-							<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
-							<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
-							<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-							<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
-							<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
+							<li class="current"><a th:href="@{/}"><div>Home</div><span>Lets Start</span></a></li>
+							<li th:each="category: ${categories}"><a th:href="@{/category(name=${category.name})}" th:text="${category.name}"></a></li>
 						</ul>
 
 						<!-- Top Cart
@@ -87,8 +79,8 @@
 
 								</div>
 								<div class="top-cart-action clearfix">
-<!--									<span class="fleft top-checkout-price" th:text="${${cartitemlist}.stream().mapToInt(Item::getPrice).sum()}"> ₺</span>
--->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
+									<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
+									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
 								</div>
 							</div>
 						</div><!-- #top-cart end -->
@@ -210,7 +202,7 @@
 
 							<div th:if="${item!=null}" class="heading-block noborder">
 								<h3 th:utext="${item.getName()}"></h3>
-								<span><a th:href="@{/shop(id=${item.getShopname()})}" th:utext="${item.getShopname()} "></a></span>
+								<span><a th:href="@{/shop(name=${item.getShopname()})}" th:utext="${item.getShopname()} "></a></span>
 								<div class="alignright"><label th:utext="${'Price: ' + item.getPrice() + '₺	Rating: ' + item.getRating()}"></label></div>
 							</div>
 
@@ -236,12 +228,12 @@
 
 										<div class="col_half ">
 											<label>Category:</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==0}">Men</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==1}">Women</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==2}">Kids</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==3}">Beauty & Health</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==4}">Electronic</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==5}">Hobby</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getCategoryname()}"></label>
+										</div>
+
+										<div class="col_half col_last">
+											<label>Subcategory:</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getName()}"></label>
 										</div>
 									</form>
 

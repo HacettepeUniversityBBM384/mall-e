@@ -1,6 +1,7 @@
 package com.malle.Controller;
 
 import com.malle.Entity.*;
+import com.malle.Service.CategoryService;
 import com.malle.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,11 +27,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/secured/users", method = RequestMethod.GET)
     public Iterable<User> getAllUsers(){
         return userService.getAllUsers();
     }
+
+    public Iterable<Category> getAllCategories(){ return categoryService.getAllCategories(); }
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String HomePage(@AuthenticationPrincipal CustomUserDetails user,Model model) {
@@ -38,6 +45,7 @@ public class UserController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("categories", getAllCategories());
         return "home";
     }
 
@@ -45,6 +53,7 @@ public class UserController {
     public String LoginPage(Model model) {
         model.addAttribute("user", new Customer());
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("categories", getAllCategories());
         return "login";
     }
 
@@ -67,6 +76,7 @@ public class UserController {
         model.addAttribute("user", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("categories", getAllCategories());
         return "profile";
     }
 
@@ -75,6 +85,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("categories", getAllCategories());
         return "profileUpdate";
     }
 
@@ -89,7 +100,7 @@ public class UserController {
             }
             userService.DeleteById(userAuth.getId());
             cart=new ArrayList<>();
-            return "redirect:/home";
+            return "redirect:/";
         }
         else {
             userService.DeleteById(user.getId());
@@ -106,7 +117,7 @@ public class UserController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         cart=new ArrayList<>();
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/admins", method = RequestMethod.GET)
@@ -120,6 +131,7 @@ public class UserController {
             if(i.getRole().equals("ADMIN")) adminlist.add((Admin)i);
         }
         model.addAttribute("adminlist",adminlist);
+        model.addAttribute("categories", getAllCategories());
         return "datatable";
     }
 
@@ -134,6 +146,7 @@ public class UserController {
             if(i.getRole().equals("CUSTOMER")) customerlist.add((Customer)i);
         }
         model.addAttribute("customerlist",customerlist);
+        model.addAttribute("categories", getAllCategories());
         return "datatable";
     }
 
@@ -147,6 +160,7 @@ public class UserController {
             if(i.getRole().equals("SELLER")) sellerlist.add((Seller)i);
         }
         model.addAttribute("sellerlist",sellerlist);
+        model.addAttribute("categories", getAllCategories());
         return "datatable";
     }
 
@@ -155,6 +169,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("newuser", new Seller());
         model.addAttribute("data","seller");
+        model.addAttribute("categories", getAllCategories());
         return "add";
     }
 
@@ -175,6 +190,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("newuser", new Admin());
         model.addAttribute("data", "admin");
+        model.addAttribute("categories", getAllCategories());
         return "add";
     }
 
@@ -244,6 +260,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("categories", getAllCategories());
         return "profilePsw";
     }
 

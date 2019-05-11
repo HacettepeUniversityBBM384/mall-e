@@ -62,16 +62,8 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="current"><a th:href="@{/home}"><div>Home</div><span>Lets Start</span></a>
-							</li>
-							<!-- Mega Menu
-                            ============================================= -->
-							<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
-							<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
-							<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
-							<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-							<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
-							<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
+							<li class="current"><a th:href="@{/}"><div>Home</div><span>Lets Start</span></a></li>
+							<li th:each="category: ${categories}"><a th:href="@{/category(name=${category.name})}" th:text="${category.name}"></a></li>
 						</ul>
 
 						<!-- Top Cart
@@ -97,8 +89,8 @@
 
 								</div>
 								<div class="top-cart-action clearfix">
-									<!--									<span class="fleft top-checkout-price" th:text="${sum([i.price for Item i in ${cartitemlist}])}"> ₺</span>
-                                    -->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
+									<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
+                                    <button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
 								</div>
 							</div>
 						</div><!-- #top-cart end -->
@@ -217,15 +209,10 @@
 
 										<div class="clear"></div>
 
-										<div class="white-section">
-											<label>Choose Category</label>
-											<select th:field="*{subcategoryid}" required class="selectpicker" data-live-search="true">
-												<option value=0>Men</option>
-												<option value=1>Women</option>
-												<option value=2>Kids</option>
-												<option value=3>Beauty & Health</option>
-												<option value=4>Electronic</option>
-												<option value=5>Hobby</option>
+										<div class="white-section col_half col_last">
+											<label>Choose Subcategory</label>
+											<select th:field="*{subcategoryid}" class="selectpicker" data-live-search="true" required>
+												<option th:each="{subcategoryoption: ${subcategorylist}}" th:text="${subcategoryoption.name}" th:value="${subcategoryoption.id}"></option>
 											</select>
 										</div>
 
