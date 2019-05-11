@@ -2,31 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2b3f6ea-7256-4fc2-8505-7190ed261787" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Controller/CategoryController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Controller/SubcategoryController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Dao/CategoryDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Dao/SubcategoryDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Entity/Category.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Entity/Subcategory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Service/CategoryService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Service/SubcategoryService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/banners/3.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/banners/3.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/1.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/1.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/2.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/2.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/3.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/3.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/4.jpg" afterPath="$PROJECT_DIR$/src/main/resources/static/images/shop/slider/4.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/malle/Dao/ItemDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/malle/Dao/ItemDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/datatable.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/datatable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profileImage.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/profileImage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profilePsw.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/profilePsw.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/profileUpdate.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/shop.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/shop.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -123,11 +104,9 @@
       <file leaf-file-name="shop.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/shop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="146" column="87" lean-forward="false" selection-start-line="146" selection-start-column="87" selection-end-line="146" selection-end-column="87" />
-              <folding>
-                <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
+            <state relative-caret-position="-685">
+              <caret line="262" column="41" lean-forward="false" selection-start-line="262" selection-start-column="36" selection-end-line="262" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -143,7 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>profile</find>
       <find>item</find>
       <find>add to</find>
       <find>view cart</find>
@@ -173,6 +151,7 @@
       <find>cartit</find>
       <find>sf-sung</find>
       <find>line</find>
+      <find>clear</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\defne\IntelliJProjects\malleShopping</dir>
@@ -193,7 +172,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/profileDelete.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/Admin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/style.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/Customer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Entity/Seller.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Service/ItemService.java" />
@@ -229,6 +207,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/datatable.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/profile.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/malle/Controller/ItemController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/shop.html" />
       </list>
     </option>
@@ -518,7 +497,7 @@
       <workItem from="1557396737424" duration="84000" />
       <workItem from="1557403221978" duration="13360000" />
       <workItem from="1557416878676" duration="13022000" />
-      <workItem from="1557555107364" duration="24925000" />
+      <workItem from="1557555107364" duration="27393000" />
     </task>
     <task id="LOCAL-00001" summary="Password check for Login is done">
       <created>1556450044207</created>
@@ -674,11 +653,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557557810861</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Filter works!!!">
+      <created>1557582046546</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1557582046546</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232508000" />
+    <option name="totallyTimeSpent" value="234976000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -744,7 +730,8 @@
     <MESSAGE value="addtocart is added" />
     <MESSAGE value="Addtocart is updated" />
     <MESSAGE value="ShopPage is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="ShopPage is added" />
+    <MESSAGE value="Filter works!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Filter works!!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -753,13 +740,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -852,7 +832,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/malle/H&amp;M/19.jpeg">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/malle/H&amp;M/28.jpeg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1182,13 +1162,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12429" column="56" lean-forward="false" selection-start-line="12429" selection-start-column="53" selection-end-line="12429" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/shop.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="146" column="87" lean-forward="false" selection-start-line="146" selection-start-column="87" selection-end-line="146" selection-end-column="87" />
-          <folding>
-            <element signature="n#footer#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
+        <state relative-caret-position="-685">
+          <caret line="262" column="41" lean-forward="false" selection-start-line="262" selection-start-column="36" selection-end-line="262" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>

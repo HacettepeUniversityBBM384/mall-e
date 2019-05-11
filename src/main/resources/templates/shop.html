@@ -154,7 +154,7 @@
 									</div>
 								</div>
 								<div class="product-desc center">
-									<div class="product-title"><h3><a th:href="@{/item/view(id=${item.id})}" th:text="${item.name}"></a></h3></div>
+									<div class="product-title" th:text="${item.name}"><h3><a th:href="@{/item/view(id=${item.id})}"></a></h3></div>
 									<div class="product-price" th:text="${item.price}+' ₺'"></div>
 								</div>
 								</div>
@@ -173,7 +173,7 @@
 
 								<h4>Select Category</h4>
 								<ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
-									<li class="widget-filter-reset active-filter"><a href="#" data-filter="*">Clear</a></li>
+									<li class="widget-filter-reset active-filter"><a href="#" data-filter="*">CLEAR</a></li>
 									<li th:each="subcategory: ${subcategoryset}"><a th:text="${subcategories.get(subcategory.id-1).name}" href="#" th:data-filter="'.'+${subcategory.id}"></a></li>
 								</ul>
 
@@ -308,9 +308,9 @@
                             var price = $(itemElem).find('.product-price').text();
                         }
 
-                        priceNum = price.split("$");
+                        priceNum = price.split(" ₺");
 
-                        return parseFloat( priceNum[1] );
+                        return parseFloat( priceNum[0] );
                     },
                     price_hl: function( itemElem ) {
                         if( $(itemElem).find('.product-price').find('ins').length > 0 ) {
@@ -319,9 +319,9 @@
                             var price = $(itemElem).find('.product-price').text();
                         }
 
-                        priceNum = price.split("$");
+                        priceNum = price.split(" ₺");
 
-                        return parseFloat( priceNum[1] );
+                        return parseFloat( priceNum[0] );
                     }
                 },
                 sortAscending: {
