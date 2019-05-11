@@ -44,6 +44,44 @@ public class ItemController {
         return itemService.getAllItems();
     }
 
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public String CategoryPage(@RequestParam int id, @AuthenticationPrincipal CustomUserDetails user,Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+        String category;
+        if(id==0) category="Men";
+        else if(id==1) category="Women";
+        else if(id==2) category="Kids";
+        else if(id==3) category="Beauty&Health";
+        else if(id==4) category="Electronics";
+        else category="Hobby";
+
+        ArrayList<Item> itemlist = new ArrayList<>();
+        for (Item i : getAllItems()) {
+            if (i.getSubcategoryid()==id) itemlist.add(i);
+        }
+        model.addAttribute("itemlist", itemlist);
+        model.addAttribute("cartitemlist", cart);
+        model.addAttribute("category",category);
+        return "shop";
+    }
+
+    @RequestMapping(value = "/shop", method = RequestMethod.GET)
+    public String ShopPage(@RequestParam String id, @AuthenticationPrincipal CustomUserDetails user,Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+        ArrayList<Item> itemlist = new ArrayList<>();
+        for (Item i : getAllItems()) {
+            if (i.getShopname().equals(id)) itemlist.add(i);
+        }
+        model.addAttribute("itemlist", itemlist);
+        model.addAttribute("cartitemlist", cart);
+        model.addAttribute("category",id);
+        return "shop";
+    }
+
     @RequestMapping(value = "/item/list", method = RequestMethod.GET)
     public String ItemsPage(@AuthenticationPrincipal CustomUserDetails user, Model model) {
         User userauth = userService.FindByEmail(user.getEmail()).get();
@@ -64,10 +102,12 @@ public class ItemController {
     @RequestMapping(value = "/item/view", method = RequestMethod.GET)
     public String ViewItemPage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
-        model.addAttribute("status", model.asMap().get("status"));
-        model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
-        model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("item", item);
+        if(user!=null) {
+            model.addAttribute("status", model.asMap().get("status"));
+            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
         model.addAttribute("cartitemlist", cart);
         return "profile";
     }
@@ -83,10 +123,10 @@ public class ItemController {
     @RequestMapping(value = "/item/add", method = RequestMethod.POST)
     public String AddItem(RedirectAttributes redir, @ModelAttribute("newitem") Item newitem, @AuthenticationPrincipal CustomUserDetails user) {
         newitem.setShopname(((Seller)userService.FindByEmail(user.getEmail()).get()).getShopname());
-        File file = new File("");
-        itemService.Save(newitem);
+        newitem.setRating(5);
+        Item item = itemService.Save(newitem);
         redir.addFlashAttribute("status", "item");
-        return "redirect:/item/list";
+        return "redirect:/item/image?id="+item.getId();
     }
 
     @RequestMapping(value = "/item/delete", method = RequestMethod.GET)

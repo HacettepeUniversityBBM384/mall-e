@@ -115,25 +115,22 @@
 
 						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
-							<ul>
-								<li class="current"><a href="#"><div>Home</div><span>Lets Start</span></a>
-								</li>
-								<!-- Mega Menu
-								============================================= -->
-								<li class="mega-menu"><a href="#"><div>Men</div><span>Out of the Box</span></a>
-								</li>
-								<li><a href="#"><div>Women</div><span>Out of the Box</span></a>
-								</li>
-								<li><a href="#"><div>Kids</div><span>Awesome Works</span></a></li>
-								<li><a href="#"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-								<li><a href="#"><div>Electronics</div><span>Latest News</span></a></li>
-								<li><a href="#"><div>Stuff</div><span>Latest News</span></a></li>
-								<li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
-							</ul>
+						<ul>
+							<li class="current"><a href="#"><div>Home</div><span>Lets Start</span></a>
+							</li>
+							<!-- Mega Menu
+                            ============================================= -->
+							<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
+							<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
+							<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
+							<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
+							<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
+							<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
+						</ul>
 
 						<!-- Top Cart
                         ============================================= -->
-						<div th:if="${user==null || (user!=null && user.getRole()=='CUSTOMER')}" id="top-cart">
+						<div th:if="${user==null || user.getRole()=='CUSTOMER'}" id="top-cart">
 							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
 							<div class="top-cart-content">
 								<div class="top-cart-title">

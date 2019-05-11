@@ -18,12 +18,14 @@
 	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<!-- Bootstrap File Upload CSS -->
-	<link rel="stylesheet" href="/css/components/bs-filestyle.css" type="text/css" />
+	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 	<!-- Document Title
 	============================================= -->
-	<title>Upload Image</title>
+	<title>Shop</title>
+
+</head>
 
 <body class="stretched">
 
@@ -67,7 +69,7 @@
 
 						<!-- Top Cart
 						============================================= -->
-						<div th:if="${user.getRole()=='CUSTOMER'}" id="top-cart">
+						<div th:if="${user==null || user.getRole()=='CUSTOMER'}" id="top-cart">
 							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
 							<div class="top-cart-content">
 								<div class="top-cart-title">
@@ -143,69 +145,69 @@
 
 				<div class="container clearfix">
 
-					<div class="row clearfix"  th:if="${user == null || (user!=null && user.getRole()=='CUSTOMER') || (user.getRole()=='SELLER' && item.getShopname()!=user.getShopname())}">
-						<div class="col_half nobottommargin">
-							<div class="error404 center">404</div>
-							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
-						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
-					</div>
-
-					<div class="row clearfix"  th:if="${user != null && user.getRole()!='CUSTOMER' && (user.getRole()=='ADMIN' || item.getShopname()==user.getShopname())}">
-
-
-
-						<div class="col-md-9">
-
-							<div th:if="${item!=null}" class="heading-block noborder">
-								<h3 th:utext="${item.getName()}"></h3>
-								<span th:utext="${item.getShopname()} "></span>
-							</div>
-
-							<div class="clear"></div>
-
-							<div class="row clearfix">
-
-								<div class="col-lg-12">
-
-									<form th:action="@{image(id=${item.id})}"  enctype="multipart/form-data" class="nobottommargin" method="POST">
-
-										<div class="bottommargin">
-											<input path="file" id="input" name="file" accept="image/*" type="file" class="file" data-show-upload="true" data-show-caption="true" data-show-preview="true">
-										</div>
-
-									</form>
-
+					<!-- Post Content
+					============================================= -->
+					<div class="postcontent nobottommargin col_last">
+						<h2 th:text="${category}" style="text-transform: uppercase;"></h2>
+						<!-- Shop
+						============================================= -->
+						<div id="shop" class="shop product-3 grid-container clearfix">
+							<div class="product sf-dress clearfix" th:each="item: ${itemlist}">
+								<div class="product-image">
+									<a th:href="@{/item/view(id=${item.id})}"><img th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}"></a>
 								</div>
+								<div class="product-desc center">
+									<div class="product-title"><h3><a th:href="@{/item/view(id=${item.id})}" th:text="${item.name}"></a></h3></div>
+									<div class="product-price" th:text="${item.price}+' ₺'"></div>
+								</div>
+							</div>
+
+						</div><!-- #shop end -->
+
+					</div><!-- .postcontent end -->
+
+					<!-- Sidebar
+					=============================================
+					<div class="sidebar nobottommargin">
+						<div class="sidebar-widgets-wrap">
+
+							<div class="widget widget-filter-links clearfix">
+
+								<h4>Select Category</h4>
+								<ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
+									<li class="widget-filter-reset active-filter"><a href="#" data-filter="*">Clear</a></li>
+									<li><a href="#" data-filter=".sf-dress">Dress</a></li>
+									<li><a href="#" data-filter=".sf-tshirt">Tshirts</a></li>
+									<li><a href="#" data-filter=".sf-pant">Pants</a></li>
+									<li><a href="#" data-filter=".sf-sunglass">Sunglasses</a></li>
+									<li><a href="#" data-filter=".sf-shoes">Shoes</a></li>
+									<li><a href="#" data-filter=".sf-watch">Watches</a></li>
+								</ul>
+
+							</div>
+
+							<div class="widget widget-filter-links clearfix">
+
+								<h4>Sort By</h4>
+								<ul class="shop-sorting">
+									<li class="widget-filter-reset active-filter"><a href="#" data-sort-by="original-order">Clear</a></li>
+									<li><a href="#" data-sort-by="name">Name</a></li>
+									<li><a href="#" data-sort-by="price_lh">Price: Low to High</a></li>
+									<li><a href="#" data-sort-by="price_hl">Price: High to Low</a></li>
+								</ul>
 
 							</div>
 
 						</div>
+					</div>	-->
 
-						<div class="w-100 line d-block d-md-none"></div>
-
-						<div class="col-md-3 clearfix" th:if="${user != null}">
-							<div class="list-group">
-								<a th:href="@{/view(id=${user.id})}" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
-
-								<a href="/orders" th:if="${user.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
-								<a href="/sellers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>
-								<a href="/item/list" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
-								<a href="/customers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Customers <i class="icon-users float-right"></i></a>
-								<a href="#" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Reports <i class="icon-file-text float-right"></i></a>
-								<a href="/item/list" th:if="${user.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
-
-								<a href="#" class="list-group-item list-group-item-action clearfix">Settings <i class="icon-settings float-right"></i></a>
-								<a href="/logout" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>
-							</div>
-						</div>
-
-					</div>
 
 				</div>
 
 			</div>
 
 		</section><!-- #content end -->
+
 
 		<!-- Footer
 		============================================= -->
@@ -286,83 +288,77 @@
 	<script src="/js/jquery.js"></script>
 	<script src="/js/plugins.js"></script>
 
+	<!-- Bootstrap Select Plugin -->
+	<script src="/js/components/bs-select.js"></script>
+
 	<!-- Bootstrap File Upload Plugin -->
 	<script src="/js/components/bs-filestyle.js"></script>
 
+	<!-- Select Splitter Plugin -->
+	<script src="/js/components/selectsplitter.js"></script>
 
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="/js/functions.js"></script>
 
+
 	<script>
-		jQuery( "#tabs-profile" ).on( "tabsactivate", function( event, ui ) {
-			jQuery( '.flexslider .slide' ).resize();
-		});
-	</script>
+        jQuery(document).ready( function($){
+            $('#shop').isotope({
+                transitionDuration: '0.65s',
+                getSortData: {
+                    name: '.product-title',
+                    price_lh: function( itemElem ) {
+                        if( $(itemElem).find('.product-price').find('ins').length > 0 ) {
+                            var price = $(itemElem).find('.product-price ins').text();
+                        } else {
+                            var price = $(itemElem).find('.product-price').text();
+                        }
 
-	<script >
-        $(document).ready(function() {
-            $("#input-5").fileinput({showCaption: false});
+                        priceNum = price.split("$");
 
-            $("#input-6").fileinput({
-                showUpload: false,
-                maxFileCount: 10,
-                mainClass: "input-group-lg",
-                showCaption: true
-            });
+                        return parseFloat( priceNum[1] );
+                    },
+                    price_hl: function( itemElem ) {
+                        if( $(itemElem).find('.product-price').find('ins').length > 0 ) {
+                            var price = $(itemElem).find('.product-price ins').text();
+                        } else {
+                            var price = $(itemElem).find('.product-price').text();
+                        }
 
-            $("#input-8").fileinput({
-                mainClass: "input-group-md",
-                showUpload: true,
-                previewFileType: "image",
-                browseClass: "btn btn-success",
-                browseLabel: "Pick Image",
-                browseIcon: "<i class=\"icon-picture\"></i> ",
-                removeClass: "btn btn-danger",
-                removeLabel: "Delete",
-                removeIcon: "<i class=\"icon-trash\"></i> ",
-                uploadClass: "btn btn-info",
-                uploadLabel: "Upload",
-                uploadIcon: "<i class=\"icon-upload\"></i> "
-            });
+                        priceNum = price.split("$");
 
-            $("#input-9").fileinput({
-                previewFileType: "text",
-                allowedFileExtensions: ["txt", "md", "ini", "text"],
-                previewClass: "bg-warning",
-                browseClass: "btn btn-primary",
-                removeClass: "btn btn-secondary",
-                uploadClass: "btn btn-secondary",
-            });
-
-            $("#input-10").fileinput({
-                showUpload: false,
-                layoutTemplates: {
-                    main1: "{preview}\n" +
-                    "<div class=\'input-group {class}\'>\n" +
-                    "   <div class=\'input-group-append\'>\n" +
-                    "       {browse}\n" +
-                    "       {upload}\n" +
-                    "       {remove}\n" +
-                    "   </div>\n" +
-                    "   {caption}\n" +
-                    "</div>"
+                        return parseFloat( priceNum[1] );
+                    }
+                },
+                sortAscending: {
+                    name: true,
+                    price_lh: true,
+                    price_hl: false
                 }
             });
 
-            $("#input-11").fileinput({
-                maxFileCount: 10,
-                allowedFileTypes: ["image", "video"]
+            $('.custom-filter:not(.no-count)').children('li:not(.widget-filter-reset)').each( function(){
+                var element = $(this),
+                    elementFilter = element.children('a').attr('data-filter'),
+                    elementFilterContainer = element.parents('.custom-filter').attr('data-container');
+
+                elementFilterCount = Number( jQuery(elementFilterContainer).find( elementFilter ).length );
+
+                element.append('<span>'+ elementFilterCount +'</span>');
+
             });
 
-            $("#input-12").fileinput({
-                showPreview: false,
-                allowedFileExtensions: ["zip", "rar", "gz", "tgz"],
-                elErrorContainer: "#errorBlock"
+            $('.shop-sorting li').click( function() {
+                $('.shop-sorting').find('li').removeClass( 'active-filter' );
+                $(this).addClass( 'active-filter' );
+                var sortByValue = $(this).find('a').attr('data-sort-by');
+                $('#shop').isotope({ sortBy: sortByValue });
+                return false;
             });
         });
-
 	</script>
 
+
+
 </body>
-</html>

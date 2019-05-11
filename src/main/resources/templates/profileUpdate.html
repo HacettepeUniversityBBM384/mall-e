@@ -62,19 +62,16 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="current"><a href="#"><div>Home</div><span>Lets Start</span></a>
+							<li class="current"><a th:href="@{/home}"><div>Home</div><span>Lets Start</span></a>
 							</li>
 							<!-- Mega Menu
                             ============================================= -->
-							<li class="mega-menu"><a href="#"><div>Men</div><span>Out of the Box</span></a>
-							</li>
-							<li><a href="#"><div>Women</div><span>Out of the Box</span></a>
-							</li>
-							<li><a href="#"><div>Kids</div><span>Awesome Works</span></a></li>
-							<li><a href="#"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-							<li><a href="#"><div>Electronics</div><span>Latest News</span></a></li>
-							<li><a href="#"><div>Stuff</div><span>Latest News</span></a></li>
-							<li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
+							<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
+							<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
+							<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
+							<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
+							<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
+							<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
 						</ul>
 
 						<!-- Top Cart
@@ -223,19 +220,19 @@
 										<div class="white-section">
 											<label>Choose Category</label>
 											<select th:field="*{subcategoryid}" required class="selectpicker" data-live-search="true">
-												<option value=0>Electronic</option>
-												<option value=1>Beauty & Health</option>
-												<option value=2>Women</option>
-												<option value=3>Men</option>
-												<option value=4>Kids</option>
-												<option value=5>Stuff</option>
+												<option value=0>Men</option>
+												<option value=1>Women</option>
+												<option value=2>Kids</option>
+												<option value=3>Beauty & Health</option>
+												<option value=4>Electronic</option>
+												<option value=5>Hobby</option>
 											</select>
 										</div>
 
 										<div class="clear"></div>
 
 										<div class="col_full nobottommargin">
-											<button class="button button-3d button-black nomargin" id="add-item-form-submit" name="add-item-form-submit" value="add-item" type="submit">Update Item</button>
+											<button class="button button-3d button-black topmargin" id="add-item-form-submit" name="add-item-form-submit" value="add-item" type="submit">Update Item</button>
 										</div>
 
 									</form>

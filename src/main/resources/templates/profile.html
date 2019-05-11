@@ -52,24 +52,21 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="current"><a href="#"><div>Home</div><span>Lets Start</span></a>
+							<li class="current"><a th:href="@{/home}"><div>Home</div><span>Lets Start</span></a>
 							</li>
 							<!-- Mega Menu
                             ============================================= -->
-							<li class="mega-menu"><a href="#"><div>Men</div><span>Out of the Box</span></a>
-							</li>
-							<li><a href="#"><div>Women</div><span>Out of the Box</span></a>
-							</li>
-							<li><a href="#"><div>Kids</div><span>Awesome Works</span></a></li>
-							<li><a href="#"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-							<li><a href="#"><div>Electronics</div><span>Latest News</span></a></li>
-							<li><a href="#"><div>Stuff</div><span>Latest News</span></a></li>
-							<li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
+							<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
+							<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
+							<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
+							<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
+							<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
+							<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
 						</ul>
 
 						<!-- Top Cart
 						============================================= -->
-						<div th:if="${user.getRole()=='CUSTOMER'}" id="top-cart">
+						<div th:if="${user==null || user.getRole()=='CUSTOMER'}" id="top-cart">
 							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
 							<div class="top-cart-content">
 								<div class="top-cart-title">
@@ -79,10 +76,10 @@
 
 									<div class="top-cart-item clearfix"  th:each="cartitem: ${cartitemlist}">
 										<div class="top-cart-item-image">
-											<a href="#"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
+											<a th:href="@{view(id=${cartitem.id})}"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
 										</div>
 										<div class="top-cart-item-desc">
-											<a href="#" th:text="${cartitem.name}"></a>
+											<a th:href="@{view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
 											<span class="top-cart-item-price" th:text="${cartitem.price}+' ₺'"></span>
 											<span class="top-cart-item-quantity">x 1</span>
 										</div>
@@ -90,7 +87,7 @@
 
 								</div>
 								<div class="top-cart-action clearfix">
-<!--									<span class="fleft top-checkout-price" th:text="${sum([i.price for Item i in ${cartitemlist}])}"> ₺</span>
+<!--									<span class="fleft top-checkout-price" th:text="${${cartitemlist}.stream().mapToInt(Item::getPrice).sum()}"> ₺</span>
 -->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
 								</div>
 							</div>
@@ -170,23 +167,23 @@
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					</div>
 
-					<div class="row clearfix"  th:if="${authuser == null || (authuser!=null && authuser.getId()!=user.getId() && authuser.getRole()!='ADMIN') || (authuser!=null && item!=null && authuser.getRole()=='SELLER' && item.getShopname()!=authuser.getShopname())}">
+					<div class="row clearfix"  th:if="${item==null && authuser==null}">
 						<div class="col_half nobottommargin">
 							<div class="error404 center">404</div>
 							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
 						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
 					</div>
 
-					<div class="row clearfix"  th:if="${authuser != null && ((item==null && authuser.getRole()!='ADMIN' && authuser.getId()==user.getId()) || (item!=null && authuser.getRole()=='CUSTOMER') || authuser.getRole()=='ADMIN' || (authuser.getRole()=='SELLER' && item.getShopname()==authuser.getShopname()))}">
+					<div class="row clearfix"  th:unless="${item==null && authuser==null}">
 
 						<div class="col-md-9">
 
 							<img th:if="${item!=null}" th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}" class="alignleft notopmargin" style="max-width: 200px;"/>
 
 							<div class="alignright">
-								<a th:if="${item==null}" th:href="@{/update(id=${user.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${item==null && (user.getRole()=='ADMIN' || user.getId()==authuser.getId())}" th:href="@{/update(id=${user.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
 
-								<form method="post" enctype='multipart/form-data' th:if="${item!=null && user.getRole() == 'CUSTOMER'}" th:action="@{addtocart(id=${item.id})}">
+								<form method="post" enctype='multipart/form-data' th:if="${item!=null && (user==null || user.getRole() == 'CUSTOMER')}" th:action="@{addtocart(id=${item.id})}">
 									<div class="quantity clearfix">
 										<input type="button" value="-" class="minus">
 										<input path="quantity" type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" />
@@ -195,9 +192,9 @@
 									<button type="submit" class="button button-mini button-circle button-border button-pink"><i class="ico-plus align-right" ></i>ADD TO CART</button>
 								</form>
 
-								<a th:if="${item!=null && user.getRole() != 'CUSTOMER'}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
-								<a th:if="${item!=null && user.getRole() != 'CUSTOMER'}" th:href="@{image(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>CHANGE IMAGE</a>
-								<a th:if="${item==null}" th:href="@{/changepassword(id=${user.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
+								<a th:if="${authuser!=null && item!=null && user.getRole() != 'CUSTOMER' && (authuser.getRole()=='ADMIN' || (authuser.getRole()=='SELLER' && authuser.getShopname()==item.getShopname()))}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${authuser!=null && item!=null && user.getRole() != 'CUSTOMER' && (authuser.getRole()=='ADMIN' || (authuser.getRole()=='SELLER' && authuser.getShopname()==item.getShopname()))}" th:href="@{image(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>CHANGE IMAGE</a>
+								<a th:if="${authuser!=null && item==null}" th:href="@{/changepassword(id=${user.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
 							</div>
 
 							<div th:if="${item==null && user.getRole() != 'SELLER'}" class="heading-block noborder">
@@ -206,14 +203,14 @@
 							</div>
 
 							<div th:if="${item==null && user.getRole() == 'SELLER'}" class="heading-block noborder">
-								<h3 th:href="@{/shop(id=${user.shopname})}" th:utext="${user.getShopname()}"></h3>
+								<h3><a th:href="@{/shop(id=${user.shopname})}" th:utext="${user.getShopname()}"></a><h3>
 								<span th:utext="${user.getRole()} "></span>
 								<div class="alignright"><label th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></label></div>
 							</div>
 
 							<div th:if="${item!=null}" class="heading-block noborder">
 								<h3 th:utext="${item.getName()}"></h3>
-								<span th:utext="${item.getShopname()} "></span>
+								<span><a th:href="@{/shop(id=${item.getShopname()})}" th:utext="${item.getShopname()} "></a></span>
 								<div class="alignright"><label th:utext="${'Price: ' + item.getPrice() + '₺	Rating: ' + item.getRating()}"></label></div>
 							</div>
 
@@ -239,12 +236,12 @@
 
 										<div class="col_half ">
 											<label>Category:</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==0}">Electronic</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==1}">Beauty & Health</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==2}">Women</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==3}">Men</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==4}">Kids</label>
-											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==5}">Stuff</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==0}">Men</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==1}">Women</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==2}">Kids</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==3}">Beauty & Health</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==4}">Electronic</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:if="${item.getSubcategoryid()==5}">Hobby</label>
 										</div>
 									</form>
 
@@ -316,7 +313,7 @@
 
 									<div class="alignright">
 										<a th:if="${item==null}" th:href="@{/delete(id=${user.id})}"class="button button-mini button-circle button-border button-black"><i class="icon-line2-user-unfollow align-right" ></i>DELETE ACCOUNT</a>
-										<a th:if="${user.getRole() != 'CUSTOMER' && item!=null}" th:href="@{delete(id=${item.id})}"class="button button-mini button-circle button-border button-black"><i class="icon-line2-user-unfollow align-right" ></i>DELETE ITEM</a>
+										<a th:if="${authuser!=null && item!=null && user.getRole() != 'CUSTOMER' && (authuser.getRole()=='ADMIN' || (authuser.getRole()=='SELLER' && authuser.getShopname()==item.getShopname()))}" th:href="@{delete(id=${item.id})}"class="button button-mini button-circle button-border button-black"><i class="icon-line2-user-unfollow align-right" ></i>DELETE ITEM</a>
 									</div>
 
 
@@ -328,10 +325,10 @@
 
 						<div class="w-100 line d-block d-md-none"></div>
 
-						<div class="col-md-3 clearfix">
+						<div class="col-md-3 clearfix" th:if="${user!=null}">
 
 							<div class="list-group">
-								<a th:href="@{/view(id=${user.id})}" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
+								<a th:href="@{/view(id=${authuser.id})}" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
 
 								<a href="/orders" th:if="${authuser.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
 								<a href="/sellers" th:if="${authuser.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>

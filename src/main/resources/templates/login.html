@@ -47,71 +47,86 @@
 
             <div id="header-wrap">
 
-                <!-- Primary Navigation
+				<!-- Primary Navigation
                 ============================================= -->
-                <nav id="primary-menu" class="style-2">
+				<nav id="primary-menu">
 
-                    <div class="container clearfix">
-
-                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
-                        <ul>
-                            <li class="current"><a href="#"><div>Home</div><span>Lets Start</span></a>
-                            </li>
-                            <!-- Mega Menu
-                            ============================================= -->
-                            <li class="mega-menu"><a href="#"><div>Men</div><span>Out of the Box</span></a>
-                            </li>
-                            <li><a href="#"><div>Women</div><span>Out of the Box</span></a>
-                            </li>
-                            <li><a href="#"><div>Kids</div><span>Awesome Works</span></a></li>
-                            <li><a href="#"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
-                            <li><a href="#"><div>Electronics</div><span>Latest News</span></a></li>
-                            <li><a href="#"><div>Stuff</div><span>Latest News</span></a></li>
-                            <li><a href="#"><div>More Stuff</div><span>Get In Touch</span></a></li>
-                        </ul>
-
-						<!-- Top Cart
+					<ul>
+						<li class="current"><a th:href="@{/home}"><div>Home</div><span>Lets Start</span></a>
+						</li>
+						<!-- Mega Menu
                         ============================================= -->
-						<div id="top-cart">
-							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
-							<div class="top-cart-content">
-								<div class="top-cart-title">
-									<h4>Shopping Cart</h4>
-								</div>
-								<div class="top-cart-items">
+						<li><a th:href="@{/category(id=0)}"><div>Men</div><span>Out of the Box</span></a></li>
+						<li><a th:href="@{/category(id=1)}"><div>Women</div><span>Out of the Box</span></a></li>
+						<li><a th:href="@{/category(id=2)}"><div>Kids</div><span>Awesome Works</span></a></li>
+						<li><a th:href="@{/category(id=3)}"><div>Beauty&Health</div><span>Awesome Works</span></a></li>
+						<li><a th:href="@{/category(id=4)}"><div>Electronics</div><span>Latest News</span></a></li>
+						<li><a th:href="@{/category(id=5)}"><div>Hobby</div><span>Latest News</span></a></li>
+					</ul>
 
-									<div class="top-cart-item clearfix"  th:each="cartitem: ${cartitemlist}">
-										<div class="top-cart-item-image">
-											<a href="#"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
-										</div>
-										<div class="top-cart-item-desc">
-											<a href="#" th:text="${cartitem.name}"></a>
-											<span class="top-cart-item-price" th:text="${cartitem.price}+' ₺'"></span>
-											<span class="top-cart-item-quantity">x 1</span>
-										</div>
-									</div>
-
-								</div>
-								<div class="top-cart-action clearfix">
-									<!--									<span class="fleft top-checkout-price" th:text="${sum([i.price for Item i in ${cartitemlist}])}"> ₺</span>
-                                    -->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
-								</div>
+					<!-- Top Cart
+                    ============================================= -->
+					<div th:if="${user==null || user.getRole()=='CUSTOMER'}" id="top-cart">
+						<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
+						<div class="top-cart-content">
+							<div class="top-cart-title">
+								<h4>Shopping Cart</h4>
 							</div>
-						</div><!-- #top-cart end -->
+							<div class="top-cart-items">
 
-                        <!-- Top Search
-                        ============================================= -->
-                        <div id="top-search">
-                            <a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
-                            <form action="search.html" method="get">
-                                <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
-                            </form>
-                        </div><!-- #top-search end -->
+								<div class="top-cart-item clearfix"  th:each="cartitem: ${cartitemlist}">
+									<div class="top-cart-item-image">
+										<a th:href="@{view(id=${cartitem.id})}"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
+									</div>
+									<div class="top-cart-item-desc">
+										<a th:href="@{view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
+										<span class="top-cart-item-price" th:text="${cartitem.price}+' ₺'"></span>
+										<span class="top-cart-item-quantity">x 1</span>
+									</div>
+								</div>
 
-                    </div>
+							</div>
+							<div class="top-cart-action clearfix">
+								<!--									<span class="fleft top-checkout-price" th:text="${sum([i.price for Item i in ${cartitemlist}])}"> ₺</span>
+                                -->									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
+							</div>
+						</div>
+					</div><!-- #top-cart end -->
 
-                </nav><!-- #primary-menu end -->
+					<!-- Top Search
+                    ============================================= -->
+					<div id="top-search">
+						<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+						<form action="search.html" method="get">
+							<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+						</form>
+					</div><!-- #top-search end -->
+
+					<!-- Top Links
+                    ============================================= -->
+					<div class="top-links"th:if="${authuser != null}">
+						<ul>
+							<li>
+								<a><i class="icon-user"></i></a>
+								<ul>
+									<li><a th:href="@{/view(id=${authuser.id})}">Profile</a></li>
+									<li th:if="${authuser.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
+									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
+									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
+									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
+									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
+									<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
+									<li th:if="${authuser.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
+									<li><a href="#">Settings</a></li>
+									<li><a href="/logout">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div><!-- .top-links end -->
+
+
+
+				</nav><!-- #primary-menu end -->
 
             </div>
 
