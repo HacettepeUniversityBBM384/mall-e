@@ -36,6 +36,7 @@ public class UserController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
         return "home";
     }
@@ -44,6 +45,7 @@ public class UserController {
     public String LoginPage(Model model) {
         model.addAttribute("user", new Customer());
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
         return "login";
     }
@@ -59,6 +61,7 @@ public class UserController {
             model.addAttribute("status", 1);
         }
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
         return "login";
     }
@@ -69,6 +72,7 @@ public class UserController {
         model.addAttribute("user", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
         return "profile";
     }
@@ -78,6 +82,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
         return "profileUpdate";
     }
@@ -253,6 +258,7 @@ public class UserController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateduser", userService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
         return "profilePsw";
     }

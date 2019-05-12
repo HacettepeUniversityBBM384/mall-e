@@ -37,7 +37,7 @@ public class ItemController {
 
     public static ArrayList<Item> cart = new ArrayList<>();
 
-    public int getTotal(){ int sum=0;for(Item i:cart)sum+=i.getPrice(); return sum;}
+    public static int getTotal(){ int sum=0;for(Item i:cart)sum+=i.getPrice(); return sum;}
 
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public String CategoryPage(@RequestParam String name, @AuthenticationPrincipal CustomUserDetails user,Model model) {
@@ -56,6 +56,7 @@ public class ItemController {
         model.addAttribute("itemlist", itemlist);
         model.addAttribute("cartitemlist", cart);
         model.addAttribute("categoryname",name);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         model.addAttribute("subcategoryset", subcategoryset);
@@ -79,6 +80,7 @@ public class ItemController {
         }
         model.addAttribute("itemlist", itemlist);
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categoryname",name);
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
@@ -115,6 +117,7 @@ public class ItemController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("subcategory", subcategoryService.FindById(item.getSubcategoryid()).get());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("total", getTotal());
