@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="icon" href="/images/malle/me.png">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -210,9 +211,9 @@
 										<div class="clear"></div>
 
 										<div class="white-section col_half col_last">
-											<label>Choose Subcategory</label>
+											<label>Choose Category</label>
 											<select th:field="*{subcategoryid}" class="selectpicker" data-live-search="true" required>
-												<option th:each="{subcategoryoption: ${subcategorylist}}" th:text="${subcategoryoption.name}" th:value="${subcategoryoption.id}"></option>
+												<option th:each="subcategoryoption: ${subcategories}" th:text="${subcategoryoption.categoryname} + ' - ' + ${subcategoryoption.name}" th:value="${subcategoryoption.id}"></option>
 											</select>
 										</div>
 

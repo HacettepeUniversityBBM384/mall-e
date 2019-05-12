@@ -1,15 +1,9 @@
 package com.malle.Controller;
 
 import com.malle.Entity.*;
-import com.malle.Service.ItemService;
-import com.malle.Service.OrderService;
-import com.malle.Service.UserService;
+import com.malle.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -17,17 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @RequestMapping
@@ -37,9 +30,60 @@ public class ItemController {
     private ItemService itemService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private SubcategoryService subcategoryService;
 
-    public Iterable<Item> getAllItems() {
-        return itemService.getAllItems();
+    public static ArrayList<Item> cart = new ArrayList<>();
+
+    public int getTotal(){ int sum=0;for(Item i:cart)sum+=i.getPrice(); return sum;}
+
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public String CategoryPage(@RequestParam String name, @AuthenticationPrincipal CustomUserDetails user,Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
+        }
+        ArrayList<Item> itemlist = new ArrayList<>();
+        HashSet<Subcategory> subcategoryset = new HashSet<>();
+        for (Item i : itemService.getAllItems()) {
+            if (subcategoryService.FindById(i.getSubcategoryid()).get().getCategoryname().equals(name)) {
+                itemlist.add(i);
+                subcategoryset.add(subcategoryService.FindById(i.getSubcategoryid()).get());
+            }
+        }
+        model.addAttribute("itemlist", itemlist);
+        model.addAttribute("cartitemlist", cart);
+        model.addAttribute("categoryname",name);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
+        model.addAttribute("subcategoryset", subcategoryset);
+
+        return "shop";
+    }
+
+    @RequestMapping(value = "/shop", method = RequestMethod.GET)
+    public String ShopPage(@RequestParam String name, @AuthenticationPrincipal CustomUserDetails user,Model model) {
+        if (user != null) {
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
+        }
+        ArrayList<Item> itemlist = new ArrayList<>();
+        HashSet<Subcategory> subcategoryset = new HashSet<>();
+        for (Item i : itemService.getAllItems()) {
+            if (i.getShopname().equals(name)) {
+                itemlist.add(i);
+                subcategoryset.add(subcategoryService.FindById(i.getSubcategoryid()).get());
+            }
+        }
+        model.addAttribute("itemlist", itemlist);
+        model.addAttribute("cartitemlist", cart);
+        model.addAttribute("categoryname",name);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
+        model.addAttribute("subcategoryset", subcategoryset);
+        return "shop";
     }
 
     @RequestMapping(value = "/item/list", method = RequestMethod.GET)
@@ -51,20 +95,29 @@ public class ItemController {
             model.addAttribute("itemlist", itemService.getAllItems());
         else {
             ArrayList<Item> itemlist = new ArrayList<>();
-            for (Item i : getAllItems()) {
+            for (Item i : itemService.getAllItems()) {
                 if (i.getShopname().equals(((Seller)userauth).getShopname())) itemlist.add(i);
             }
             model.addAttribute("itemlist", itemlist);
         }
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         return "datatable";
     }
 
     @RequestMapping(value = "/item/view", method = RequestMethod.GET)
     public String ViewItemPage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
-        model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
-        model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("item", item);
+        if(user!=null) {
+            model.addAttribute("status", model.asMap().get("status"));
+            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+        model.addAttribute("cartitemlist", cart);
+        model.addAttribute("subcategory", subcategoryService.FindById(item.getSubcategoryid()).get());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("total", getTotal());
         return "profile";
     }
 
@@ -73,16 +126,18 @@ public class ItemController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("newitem", new Item());
         model.addAttribute("data", "item");
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         return "add";
     }
 
     @RequestMapping(value = "/item/add", method = RequestMethod.POST)
     public String AddItem(RedirectAttributes redir, @ModelAttribute("newitem") Item newitem, @AuthenticationPrincipal CustomUserDetails user) {
         newitem.setShopname(((Seller)userService.FindByEmail(user.getEmail()).get()).getShopname());
-        File file = new File("");
-        itemService.Save(newitem);
+        newitem.setRating(5);
+        Item item = itemService.Save(newitem);
         redir.addFlashAttribute("status", "item");
-        return "redirect:/item/list";
+        return "redirect:/item/image?id="+item.getId();
     }
 
     @RequestMapping(value = "/item/delete", method = RequestMethod.GET)
@@ -96,6 +151,8 @@ public class ItemController {
     public String UpdateItemPage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateditem", itemService.FindById(Integer.parseInt(id)).get());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         return "profileUpdate";
     }
 
@@ -103,6 +160,7 @@ public class ItemController {
     public String UpdateImagePage(@RequestParam String id, Model model, @AuthenticationPrincipal CustomUserDetails user) {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("item", itemService.FindById(Integer.parseInt(id)).get());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "profileImage";
     }
 
@@ -133,7 +191,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/item/update", method = RequestMethod.POST)
-    public String UpdateItem(RedirectAttributes redir, @RequestParam String id, @AuthenticationPrincipal CustomUserDetails user, @ModelAttribute("updateditem") Item updateditem) {
+    public String UpdateItem(RedirectAttributes redir, @RequestParam String id, @ModelAttribute("updateditem") Item updateditem) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
         updateditem.setShopname(item.getShopname());
         updateditem.setId(item.getId());
@@ -141,6 +199,22 @@ public class ItemController {
         updateditem.setRating(item.getRating());
         itemService.Save(updateditem);
         redir.addFlashAttribute("status", "item");
+        return "redirect:/item/view?id="+id;
+    }
+
+    @RequestMapping(value = "/item/addtocart", method = RequestMethod.POST)
+    public String AddToCart(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
+        Item item = itemService.FindById(Integer.parseInt(id)).get();
+        for(int i=0;i<Integer.parseInt(quantity);i++) cart.add(item);
+        redir.addFlashAttribute("status", "cart");
+        return "redirect:/item/view?id="+id;
+    }
+
+    @RequestMapping(value = "/item/addtocart", method = RequestMethod.GET)
+    public String AddToCartShop(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
+        Item item = itemService.FindById(Integer.parseInt(id)).get();
+        for(int i=0;i<Integer.parseInt(quantity);i++) cart.add(item);
+        redir.addFlashAttribute("status", "cart");
         return "redirect:/item/view?id="+id;
     }
 }

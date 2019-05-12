@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="icon" href="/images/malle/me.png">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -173,7 +174,7 @@
 
 								<h4>Select Category</h4>
 								<ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
-									<li class="widget-filter-reset active-filter"><a href="#" data-filter="*">CLEAR</a></li>
+									<li class="widget-filter-reset active-filter" style="color:teal;"><a href="#" data-filter="*">CLEAR</a></li>
 									<li th:each="subcategory: ${subcategoryset}"><a th:text="${subcategories.get(subcategory.id-1).name}" href="#" th:data-filter="'.'+${subcategory.id}"></a></li>
 								</ul>
 
@@ -183,7 +184,7 @@
 
 								<h4>Sort By</h4>
 								<ul class="shop-sorting">
-									<li class="widget-filter-reset active-filter"><a href="#" data-sort-by="original-order">Clear</a></li>
+									<li class="widget-filter-reset active-filter" style="color:teal;"><a href="#" data-sort-by="original-order">CLEAR</a></li>
 									<li><a href="#" data-sort-by="name">Name</a></li>
 									<li><a href="#" data-sort-by="price_lh">Price: Low to High</a></li>
 									<li><a href="#" data-sort-by="price_hl">Price: High to Low</a></li>
