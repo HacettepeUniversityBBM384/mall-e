@@ -58,6 +58,8 @@ public class UserController {
             model.addAttribute("user", new Customer());
             model.addAttribute("status", 1);
         }
+        model.addAttribute("cartitemlist", cart);
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "login";
     }
 

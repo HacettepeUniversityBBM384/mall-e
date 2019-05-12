@@ -101,6 +101,7 @@ public class ItemController {
             model.addAttribute("itemlist", itemlist);
         }
         model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         return "datatable";
     }
 
@@ -126,7 +127,7 @@ public class ItemController {
         model.addAttribute("newitem", new Item());
         model.addAttribute("data", "item");
         model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("subcategorylist", subcategoryService.getAllSubcategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         return "add";
     }
 
@@ -151,7 +152,7 @@ public class ItemController {
         model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         model.addAttribute("updateditem", itemService.FindById(Integer.parseInt(id)).get());
         model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("subcategorylist", subcategoryService.getAllSubcategories());
+        model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         return "profileUpdate";
     }
 

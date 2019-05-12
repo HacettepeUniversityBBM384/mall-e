@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="icon" href="/images/malle/me.png">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -173,7 +174,7 @@
 							<img th:if="${item!=null}" th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}" class="alignleft notopmargin" style="max-width: 200px;"/>
 
 							<div class="alignright">
-								<a th:if="${item==null && (user.getRole()=='ADMIN' || user.getId()==authuser.getId())}" th:href="@{/update(id=${user.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${item==null && (authuser.getRole()=='ADMIN' || user.getId()==authuser.getId())}" th:href="@{/update(id=${user.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
 
 								<form method="post" enctype='multipart/form-data' th:if="${item!=null && (user==null || user.getRole() == 'CUSTOMER')}" th:action="@{addtocart(id=${item.id})}">
 									<div class="quantity clearfix">
@@ -184,9 +185,9 @@
 									<button type="submit" class="button button-mini button-circle button-border button-pink"><i class="ico-plus align-right" ></i>ADD TO CART</button>
 								</form>
 
-								<a th:if="${authuser!=null && item!=null && user.getRole() != 'CUSTOMER' && (authuser.getRole()=='ADMIN' || (authuser.getRole()=='SELLER' && authuser.getShopname()==item.getShopname()))}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
-								<a th:if="${authuser!=null && item!=null && user.getRole() != 'CUSTOMER' && (authuser.getRole()=='ADMIN' || (authuser.getRole()=='SELLER' && authuser.getShopname()==item.getShopname()))}" th:href="@{image(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>CHANGE IMAGE</a>
-								<a th:if="${authuser!=null && item==null}" th:href="@{/changepassword(id=${user.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
+								<a th:if="${authuser!=null && item!=null && authuser.getRole() != 'CUSTOMER' && (authuser.getRole()=='ADMIN' || (authuser.getRole()=='SELLER' && authuser.getShopname()==item.getShopname()))}" th:href="@{update(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>EDIT</a>
+								<a th:if="${authuser!=null && item!=null && authuser.getRole() != 'CUSTOMER' && (authuser.getRole()=='ADMIN' || (authuser.getRole()=='SELLER' && authuser.getShopname()==item.getShopname()))}" th:href="@{image(id=${item.id})}" class="button button-mini button-circle button-border button-pink"><i class="icon-edit2 align-right" ></i>CHANGE IMAGE</a>
+								<a th:if="${authuser!=null && item==null && (authuser.getRole()=='ADMIN' || authuser.id==user.id)}" th:href="@{/changepassword(id=${user.id})}" class="button button-mini button-circle button-border button-leaf"><i class="icon-line2-lock align-right" ></i>CHANGE PASSWORD</a>
 							</div>
 
 							<div th:if="${item==null && user.getRole() != 'SELLER'}" class="heading-block noborder">
@@ -195,7 +196,7 @@
 							</div>
 
 							<div th:if="${item==null && user.getRole() == 'SELLER'}" class="heading-block noborder">
-								<h3><a th:href="@{/shop(id=${user.shopname})}" th:utext="${user.getShopname()}"></a><h3>
+								<h3><a th:href="@{/shop(id=${user.shopname})}" th:utext="${user.getShopname()}"></a></h3>
 								<span th:utext="${user.getRole()} "></span>
 								<div class="alignright"><label th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></label></div>
 							</div>

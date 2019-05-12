@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="icon" href="/images/malle/me.png">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -311,7 +312,7 @@
 							<tr  th:if="${data.equals('items')}" th:each="item: ${itemlist}">
 								<td th:text="${item.name}" />
 								<td th:text="${item.shopname}" />
-								<td th:if="${item.getCategoryname==0}"/>
+								<td th:text="${subcategories.get(item.subcategoryid-1).name}"/>
 								<td th:text="${item.price}"/>
 								<td th:text="${item.ordercount}" />
 								<td th:text="${item.rating}" />

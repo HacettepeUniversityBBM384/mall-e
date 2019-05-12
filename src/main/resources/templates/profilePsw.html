@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="icon" href="/images/malle/me.png">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -141,18 +142,18 @@
 						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
 					</div>
 
-					<div class="row clearfix"  th:if="${user != null && ((user.getRole()!='ADMIN' && user.getId()==updateduser.getId()) || user.getRole()=='ADMIN')}">
+					<div class="row clearfix"  th:if="${updateduser != null && (user.getRole()=='ADMIN' || user.getId()==updateduser.getId())}">
 
 						<div class="col-md-9">
-							<div th:if="${user.getRole() != 'SELLER'}" class="heading-block noborder">
-								<h3 th:utext="${user.getName()} + ' ' +  ${user.getSurname()}"></h3>
-								<span th:utext="${user.getRole()} "></span>
+							<div th:if="${updateduser.getRole() != 'SELLER'}" class="heading-block noborder">
+								<h3 th:utext="${updateduser.getName()} + ' ' +  ${updateduser.getSurname()}"></h3>
+								<span th:utext="${updateduser.getRole()} "></span>
 							</div>
 
-							<div th:if="${user.getRole() == 'SELLER'}" class="heading-block noborder">
-								<h3 th:utext="${user.getShopname()}"></h3>
-								<span th:utext="${user.getRole()} "></span>
-								<div class="alignright"><label th:utext="${'Sale: ' + user.getSale() + '	Rating: ' + user.getRating()}"></label></div>
+							<div th:if="${updateduser.getRole() == 'SELLER'}" class="heading-block noborder">
+								<h3 th:utext="${updateduser.getShopname()}"></h3>
+								<span th:utext="${updateduser.getRole()} "></span>
+								<div class="alignright"><label th:utext="${'Sale: ' + updateduser.getSale() + '	Rating: ' + updateduser.getRating()}"></label></div>
 							</div>
 							<div class="clear"></div>
 
@@ -160,7 +161,7 @@
 
 								<div class="col-lg-12">
 
-									<form th:href="@{/update(id=${user.id})}"  th:if="${user != null}" th:object="${user}" id="update-form" name="update-form" class="nobottommargin" method="POST">
+									<form th:href="@{/update(id=${updateduser.id})}" th:object="${updateduser}" id="update-form" name="update-form" class="nobottommargin" method="POST">
 
 										<div class="col_half">
 											<label for="update-form-password">Choose Password:</label>

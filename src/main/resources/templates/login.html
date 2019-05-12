@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="icon" href="/images/malle/me.png">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
@@ -32,7 +33,7 @@
 
         <!-- Header
         ============================================= -->
-        <header id="header" class="sticky-style-2">
+        <header id="header" class="full-header">
 			<div id="header-wrap">
 
             <div class="container clearfix">
@@ -134,12 +135,12 @@
 
 				<div class="container clearfix">
 
-					<div class="style-msg successmsg" th:if="${registered}">
+					<div class="style-msg successmsg" th:if="${status}">
 						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> You can login from below.</div>
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					</div>
 
-					<div class="style-msg errormsg" th:if="${registered == 0}">
+					<div class="style-msg errormsg" th:if="${status == 0}">
 						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Oops!</strong> Looks like this email has already been registered.</div>
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					</div>
