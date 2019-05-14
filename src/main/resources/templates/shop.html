@@ -151,8 +151,8 @@
 								<div class="product-image">
 									<a th:href="@{/item/view(id=${item.id})}"><img th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}"></a>
 									<div class="product-overlay">
-						<!--				<form th:action="${cartitemlist.add(item)}" class="add-to-cart"><input type="button"><i class="icon-shopping-cart"></i><span> Add to Cart</span></input></form>
-						-->				<a th:href="@{/shop(name=${item.getShopname()})}" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item.shopname}"></span></a>
+										<a th:href="@{/item/addtocart(id=${item.id})}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+										<a th:href="@{/shop(name=${item.getShopname()})}" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item.shopname}"></span></a>
 									</div>
 								</div>
 								<div class="product-desc center">

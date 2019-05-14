@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -215,7 +216,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/item/addtocart", method = RequestMethod.POST)
-    public String AddToCart(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
+    public String AddToCartProfile(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
         for(int i=0;i<Integer.parseInt(quantity);i++) cart.add(item);
         redir.addFlashAttribute("status", "cart");
@@ -235,10 +236,10 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/item/addtocart", method = RequestMethod.GET)
-    public String AddToCartShop(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
+    public String AddToCartShop(RedirectAttributes redir, @RequestParam String id, HttpServletRequest request) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
-        for(int i=0;i<Integer.parseInt(quantity);i++) cart.add(item);
+        cart.add(item);
         redir.addFlashAttribute("status", "cart");
-        return "redirect:/item/view?id="+id;
+        return "redirect:"+request.getHeader("Referer");
     }
 }
