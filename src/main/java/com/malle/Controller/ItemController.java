@@ -43,7 +43,6 @@ public class ItemController {
     public String CategoryPage(@RequestParam String name, @AuthenticationPrincipal CustomUserDetails user,Model model) {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
-            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         }
         ArrayList<Item> itemlist = new ArrayList<>();
         HashSet<Subcategory> subcategoryset = new HashSet<>();
@@ -68,7 +67,6 @@ public class ItemController {
     public String ShopPage(@RequestParam String name, @AuthenticationPrincipal CustomUserDetails user,Model model) {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
-            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         }
         ArrayList<Item> itemlist = new ArrayList<>();
         HashSet<Subcategory> subcategoryset = new HashSet<>();
@@ -86,6 +84,17 @@ public class ItemController {
         model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         model.addAttribute("subcategoryset", subcategoryset);
         return "shop";
+    }
+
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    public String CartPage(@AuthenticationPrincipal CustomUserDetails user, Model model){
+        if(user!=null){
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+        model.addAttribute("cartitemlist",cart);
+        model.addAttribute("total",ItemController.getTotal());
+        model.addAttribute("categories",categoryService.getAllCategories());
+        return "cart";
     }
 
     @RequestMapping(value = "/item/list", method = RequestMethod.GET)
@@ -211,6 +220,18 @@ public class ItemController {
         for(int i=0;i<Integer.parseInt(quantity);i++) cart.add(item);
         redir.addFlashAttribute("status", "cart");
         return "redirect:/item/view?id="+id;
+    }
+
+    @RequestMapping(value = "/item/removefromcart", method = RequestMethod.GET)
+    public String RemoveFromCart(RedirectAttributes redir, @RequestParam int id) {
+        int index = 0;
+        for(Item i: cart){
+            if(i.getId()==id) break;
+            index++;
+        }
+        cart.remove(index);
+        redir.addFlashAttribute("status", "cart");
+        return "redirect:/cart";
     }
 
     @RequestMapping(value = "/item/addtocart", method = RequestMethod.GET)

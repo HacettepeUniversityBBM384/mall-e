@@ -19,12 +19,9 @@
 	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
 	<!-- Document Title
 	============================================= -->
-	<title th:text="${categoryname}"></title>
+	<title>Cart</title>
 
 </head>
 
@@ -87,7 +84,6 @@
 									<a th:href="@{/cart}" class="button button-3d button-danger button-small nomargin fright">View Cart</a>
 								</div>
 							</div>
-
 						</div><!-- #top-cart end -->
 
 						<!-- Top Search
@@ -101,19 +97,19 @@
 
 						<!-- Top Links
 						============================================= -->
-						<div class="top-links"th:if="${user != null}">
+						<div class="top-links"th:if="${authuser != null}">
 							<ul>
 								<li>
 									<a><i class="icon-user"></i></a>
 									<ul>
-										<li><a th:href="@{/view(id=${user.id})}">Profile</a></li>
-										<li th:if="${user.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
-										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
-										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
-										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
-										<li th:if="${user.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
-										<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
-										<li th:if="${user.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
+										<li><a th:href="@{/view(id=${authuser.id})}">Profile</a></li>
+										<li th:if="${authuser.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
+										<li th:if="${authuser.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 										<li><a href="#">Settings</a></li>
 										<li><a href="/logout">Logout</a></li>
 									</ul>
@@ -137,72 +133,103 @@
 
 			<div class="content-wrap">
 
-				<div class="container clearfix">
+				<div class="container clearfix" th:if="${user!=null && user.getRole()!='CUSTOMER'}">
+					<div class="row clearfix">
+						<div class="col_half nobottommargin">
+							<div class="error404 center">404</div>
+							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
+						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
+					</div>
+				</div>
+				<div class="container clearfix" th:if="${user==null || user.getRole()=='CUSTOMER'}">
+					<div class="style-msg successmsg" th:if="${status == 'cart'}">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> Item has been removed from cart.</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+					<div class="table-responsive">
+						<table class="table cart">
+							<thead>
+							<tr>
+								<th class="cart-product-name">Product</th>
+								<th class="cart-product-thumbnail">&nbsp;</th>
+								<th class="cart-product-price">Price</th>
+								<th class="cart-product-remove">&nbsp;</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:if="${cartitemlist.size() == 0}">
+								<td><span>CART IS EMPTY!</span></td>
+							</tr>
+							<tr th:if="${cartitemlist.size()!= 0}" class="cart_item" th:each="cartitem : ${cartitemlist}">
+								<td class="cart-product-thumbnail">
+									<a th:href="@{/item/view(id=${cartitem.id})}"><img width="64" height="64" th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}"></a>
+								</td>
 
-					<!-- Post Content
-					============================================= -->
-					<div class="postcontent nobottommargin col_last">
-						<h2 th:text="${categoryname}" style="text-transform: uppercase;"></h2>
-						<!-- Shop
-						============================================= -->
-						<div id="shop" class="shop product-3 grid-container clearfix">
-							<div th:each="item: ${itemlist}" th:class="product + ' ' + clearfix + ' ' +${item.getSubcategoryid()}" >
-								<div>
-								<div class="product-image">
-									<a th:href="@{/item/view(id=${item.id})}"><img th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}"></a>
-									<div class="product-overlay">
-						<!--				<form th:action="${cartitemlist.add(item)}" class="add-to-cart"><input type="button"><i class="icon-shopping-cart"></i><span> Add to Cart</span></input></form>
-						-->				<a th:href="@{/shop(name=${item.getShopname()})}" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item.shopname}"></span></a>
-									</div>
-								</div>
-								<div class="product-desc center">
-									<div class="product-title" th:text="${item.name}"><h3><a th:href="@{/item/view(id=${item.id})}"></a></h3></div>
-									<div class="product-price" th:text="${item.price}+' ₺'"></div>
-								</div>
-								</div>
-							</div>
+								<td class="cart-product-name">
+									<a th:href="@{/item/view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
+								</td>
 
-						</div><!-- #shop end -->
+								<td class="cart-product-price">
+									<span class="amount" th:text="${cartitem.price} +' ₺'"></span>
+								</td>
+								<td class="cart-product-remove">
+									<a th:href="@{/item/removefromcart(id=${cartitem.id})}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+								</td>
+							</tr>
+							</tbody>
 
-					</div><!-- .postcontent end -->
-
-					<!-- Sidebar
-					=============================================-->
-					<div class="sidebar nobottommargin">
-						<div class="sidebar-widgets-wrap">
-
-							<div class="widget widget-filter-links clearfix">
-
-								<h4>Select Category</h4>
-								<ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
-									<li class="widget-filter-reset active-filter" style="color:teal;"><a href="#" data-filter="*">CLEAR</a></li>
-									<li th:each="subcategory: ${subcategoryset}"><a th:text="${subcategories.get(subcategory.id-1).name}" href="#" th:data-filter="'.'+${subcategory.id}"></a></li>
-								</ul>
-
-							</div>
-
-							<div class="widget widget-filter-links clearfix">
-
-								<h4>Sort By</h4>
-								<ul class="shop-sorting">
-									<li class="widget-filter-reset active-filter" style="color:teal;"><a href="#" data-sort-by="original-order">CLEAR</a></li>
-									<li><a href="#" data-sort-by="name">Name</a></li>
-									<li><a href="#" data-sort-by="price_lh">Price: Low to High</a></li>
-									<li><a href="#" data-sort-by="price_hl">Price: High to Low</a></li>
-								</ul>
-
-							</div>
-
-						</div>
+						</table>
 					</div>
 
+					<div class="divider divider-center"><i class="icon-tags1"></i></div>
+
+					<div class="row clearfix" th:if="${cartitemlist.size() != 0}">
+						<div class="col-lg-8 clearfix">
+						</div>
+
+						<div class="col-lg-4 clearfix">
+							<h4>Cart Totals</h4>
+
+							<div class="table-responsive">
+								<table class="table cart">
+									<tbody>
+									<tr class="cart_item">
+										<td class="cart-product-name">
+											<strong>Shipping</strong>
+										</td>
+
+										<td class="cart-product-name">
+											<span class="amount">Free Delivery</span>
+										</td>
+									</tr>
+									<tr class="cart_item">
+										<td class="cart-product-name">
+											<strong>Total</strong>
+										</td>
+
+										<td class="cart-product-name">
+											<span class="amount color lead"><strong  th:text="${total} +' ₺'"></strong></span>
+										</td>
+									</tr>
+									<tr class="cart_item">
+										<td class="cart-product-name">
+										</td>
+										<td>
+											<a href="shop.html" class="button button-3d notopmargin fright">Checkout</a>
+										</td>
+									</tr>
+									</tbody>
+
+								</table>
+							</div>
+						</div>
+					</div>
 
 				</div>
 
 			</div>
 
 		</section><!-- #content end -->
-
 
 		<!-- Footer
 		============================================= -->
@@ -283,77 +310,15 @@
 	<script src="/js/jquery.js"></script>
 	<script src="/js/plugins.js"></script>
 
-	<!-- Bootstrap Select Plugin -->
-	<script src="/js/components/bs-select.js"></script>
-
-	<!-- Bootstrap File Upload Plugin -->
-	<script src="/js/components/bs-filestyle.js"></script>
-
-	<!-- Select Splitter Plugin -->
-	<script src="/js/components/selectsplitter.js"></script>
-
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="/js/functions.js"></script>
 
-
 	<script>
-        jQuery(document).ready( function($){
-            $('#shop').isotope({
-                transitionDuration: '0.65s',
-                getSortData: {
-                    name: '.product-title',
-                    price_lh: function( itemElem ) {
-                        if( $(itemElem).find('.product-price').find('ins').length > 0 ) {
-                            var price = $(itemElem).find('.product-price ins').text();
-                        } else {
-                            var price = $(itemElem).find('.product-price').text();
-                        }
-
-                        priceNum = price.split(" ₺");
-
-                        return parseFloat( priceNum[0] );
-                    },
-                    price_hl: function( itemElem ) {
-                        if( $(itemElem).find('.product-price').find('ins').length > 0 ) {
-                            var price = $(itemElem).find('.product-price ins').text();
-                        } else {
-                            var price = $(itemElem).find('.product-price').text();
-                        }
-
-                        priceNum = price.split(" ₺");
-
-                        return parseFloat( priceNum[0] );
-                    }
-                },
-                sortAscending: {
-                    name: true,
-                    price_lh: true,
-                    price_hl: false
-                }
-            });
-
-            $('.custom-filter:not(.no-count)').children('li:not(.widget-filter-reset)').each( function(){
-                var element = $(this),
-                    elementFilter = element.children('a').attr('data-filter'),
-                    elementFilterContainer = element.parents('.custom-filter').attr('data-container');
-
-                elementFilterCount = Number( jQuery(elementFilterContainer).find( elementFilter ).length );
-
-                element.append('<span>'+ elementFilterCount +'</span>');
-
-            });
-
-            $('.shop-sorting li').click( function() {
-                $('.shop-sorting').find('li').removeClass( 'active-filter' );
-                $(this).addClass( 'active-filter' );
-                var sortByValue = $(this).find('a').attr('data-sort-by');
-                $('#shop').isotope({ sortBy: sortByValue });
-                return false;
-            });
-        });
+		jQuery( "#tabs-profile" ).on( "tabsactivate", function( event, ui ) {
+			jQuery( '.flexslider .slide' ).resize();
+		});
 	</script>
 
-
-
 </body>
+</html>

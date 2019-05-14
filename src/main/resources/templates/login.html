@@ -70,10 +70,10 @@
 
 								<div class="top-cart-item clearfix"  th:each="cartitem: ${cartitemlist}">
 									<div class="top-cart-item-image">
-										<a th:href="@{view(id=${cartitem.id})}"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
+										<a th:href="@{/item/view(id=${cartitem.id})}"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
 									</div>
 									<div class="top-cart-item-desc">
-										<a th:href="@{view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
+										<a th:href="@{/item/view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
 										<span class="top-cart-item-price" th:text="${cartitem.price}+' ₺'"></span>
 										<span class="top-cart-item-quantity">x 1</span>
 									</div>
@@ -82,9 +82,10 @@
 							</div>
 							<div class="top-cart-action clearfix">
 								<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
-                                <button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
+								<a th:href="@{/cart}" class="button button-3d button-danger button-small nomargin fright">View Cart</a>
 							</div>
 						</div>
+
 					</div><!-- #top-cart end -->
 
 					<!-- Top Search
