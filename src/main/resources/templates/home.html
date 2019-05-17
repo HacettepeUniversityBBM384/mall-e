@@ -79,7 +79,7 @@
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
 									<li th:if="${user.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 									<li><a href="#">Settings</a></li>
-									<li><a href="/logout">Logout</a></li>
+									<li><a href="/logoutcontroller">Logout</a></li>
 								</ul>
 							</li>
 							<li th:if="${user == null}"><a href="/login">Sign Up</a></li>
@@ -182,12 +182,12 @@
 							<div class="flexslider">
 								<div class="slider-wrap">
 									<div class="slide">
-										<a href="#">
+										<a th:href="@{/shop?name=Apple}">
 											<img src="/images/shop/slider/1.jpg" alt="Shop Image">
 										</a>
 									</div>
 									<div class="slide">
-										<a href="#">
+										<a th:href="@{/shop?name=H%26M}">
 											<img src="/images/shop/slider/2.jpg" alt="Shop Image">
 										</a>
 									</div>
@@ -210,7 +210,7 @@
 					<div class="col_one_third bottommargin-lg col_last">
 
 						<div class="col_full bottommargin-sm">
-							<a href="#"><img src="/images/shop/banners/7.jpg" alt="Image"></a>
+							<a th:href="@{/shop?name=H%26M}"><img src="/images/shop/banners/7.jpg" alt="Image"></a>
 						</div>
 
 						<div class="col_full nobottommargin">

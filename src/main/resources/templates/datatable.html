@@ -125,7 +125,7 @@
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
 									<li th:if="${user.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 									<li><a href="#">Settings</a></li>
-									<li><a href="/logout">Logout</a></li>
+									<li><a href="/logoutcontroller">Logout</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -365,7 +365,7 @@
 							<a href="/item/list" th:if="${user.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 
 							<a href="#" class="list-group-item list-group-item-action clearfix">Settings <i class="icon-settings float-right"></i></a>
-							<a href="/logout" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>
+							<a href="/logoutcontroller" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>
 						</div>
 					</div>
 				</div>

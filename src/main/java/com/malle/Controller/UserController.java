@@ -42,12 +42,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String LoginPage(Model model) {
-        model.addAttribute("user", new Customer());
-        model.addAttribute("cartitemlist", cart);
-        model.addAttribute("total", ItemController.getTotal());
-        model.addAttribute("categories", categoryService.getAllCategories());
-        return "login";
+    public String LoginPage(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if(user==null) {
+            model.addAttribute("user", new Customer());
+            model.addAttribute("cartitemlist", cart);
+            model.addAttribute("total", ItemController.getTotal());
+            model.addAttribute("categories", categoryService.getAllCategories());
+            return "login";
+        }
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -93,9 +96,7 @@ public class UserController {
         User userAuth = userService.FindByEmail(authuser.getEmail()).get();
         if(user.getId()==userAuth.getId()) {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            if (auth != null) {
-                new SecurityContextLogoutHandler().logout(request, response, auth);
-            }
+            if (auth != null) { new SecurityContextLogoutHandler().logout(request, response, auth); } //logout
             userService.DeleteById(userAuth.getId());
             cart=new ArrayList<>();
             return "redirect:/";
@@ -108,14 +109,10 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.POST)
-    public String Logout (HttpServletRequest request, HttpServletResponse response, Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
+    @RequestMapping(value="/logoutcontroller", method = RequestMethod.GET)
+    public String Logout () {
         cart=new ArrayList<>();
-        return "redirect:/";
+        return "redirect:/logout";
     }
 
     @RequestMapping(value = "/admins", method = RequestMethod.GET)

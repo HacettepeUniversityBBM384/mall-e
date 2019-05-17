@@ -60,7 +60,7 @@
 
 					<!-- Top Cart
                     ============================================= -->
-					<div th:if="${user==null || user.getRole()=='CUSTOMER'}" id="top-cart">
+					<div id="top-cart">
 						<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
 						<div class="top-cart-content">
 							<div class="top-cart-title">
@@ -98,7 +98,7 @@
 					</div><!-- #top-search end -->
 
 					<!-- Top Links
-                    ============================================= -->
+                    =============================================
 					<div class="top-links"th:if="${user != null}">
 						<ul>
 							<li>
@@ -113,7 +113,7 @@
 									<li th:if="${user.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
 									<li th:if="${user.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 									<li><a href="#">Settings</a></li>
-									<li><a href="/logout">Logout</a></li>
+									<li><a href="/logoutcontroller">Logout</a></li>
 								</ul>
 							</li>
 						</ul>
