@@ -183,6 +183,7 @@ public class ItemController {
         Seller seller = userService.FindByShopname(item.getShopname()).get();
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         Path uploadLocation = Paths.get("src/main/resources/static/images/malle").resolve(seller.getShopname());
+        Path uploadLocationtarget = Paths.get("target/classes/static/images/malle").resolve(seller.getShopname());
         try {
             if (file.isEmpty()) { throw new RuntimeException("Failed to store empty file " + filename); }
             if (filename.contains("..")) { throw new RuntimeException("Cannot store file with relative path outside current directory " + filename); }
@@ -194,6 +195,18 @@ public class ItemController {
                 }
                 filename = id+'.'+file.getContentType().substring(6);
                 Files.copy(inputStream, uploadLocation.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to store file " + filename, e);
+        }
+        try {
+            try (InputStream inputStream = file.getInputStream()) {
+                try { Files.createDirectories(uploadLocationtarget);
+                } catch (IOException e) {
+                    throw new RuntimeException("Could not initialize storage", e);
+                }
+                filename = id+'.'+file.getContentType().substring(6);
+                Files.copy(inputStream, uploadLocationtarget.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file " + filename, e);
