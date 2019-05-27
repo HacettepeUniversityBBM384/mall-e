@@ -216,7 +216,7 @@
 								<div class="col-lg-12">
 
 <!-- ITEM ------------>
-									<form th:if="${item!=null}" name="view-form" class="nobottommargin" method="POST">
+									<form th:action="@{/item/addreview(id=${item.id})}" th:if="${item!=null}" name="view-form" class="nobottommargin" method="POST">
 										<div class="col_half">
 											<label>Description:</label>
 											<label style="padding_bottom:0px;border: 0px" type="text" th:utext="${item.getDescription()}" class="form-control"/>
@@ -228,16 +228,25 @@
 
 										<div class="clear"></div>
 
-
 										<div class="col_half ">
 											<label>Category:</label>
 											<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getCategoryname()}"></label>
 										</div>
 
-										<div class="col_half col_last">
+										<div class="col_half ">
 											<label>Subcategory:</label>
 											<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getName()}"></label>
 										</div>
+
+										<div class="col_full ">
+											<label for="view-form-comment">Your Comment:</label>
+											<input type="text"  id="view-form-comment" name="comment" value="" class="form-control" required>
+										</div>
+
+										<div class="allignleft">
+											<button type="submit" class="button button-mini button-circle button-border button-black"> ADD REVIEW</button>
+										</div>
+
 									</form>
 
 <!-- CUSTOMER and ADMIN------------>
