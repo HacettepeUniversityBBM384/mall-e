@@ -16,12 +16,36 @@
 	<link rel="stylesheet" href="/css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
 
+	<!-- Star Rating CSS -->
+	<link rel="stylesheet" href="/css/components/bs-rating.css" type="text/css" />
+
 	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- Document Title
 	============================================= -->
-	<title>Profile</title>
+	<title th:if="${item!=null}" th:text="${item.name}"></title>
+	<title th:if="${item==null}">Profile</title>
+
+	<style>
+
+		.white-section {
+			background-color: #FFF;
+			padding: 5px 5px;
+			-webkit-box-shadow: 0px 1px 1px 0px #dfdfdf;
+			box-shadow: 0px 1px 1px 0px #dfdfdf;
+			border-radius: 1px;
+		}
+
+		.white-section label { margin-bottom: 15px; }
+
+		.dark .white-section {
+			background-color: #111;
+			-webkit-box-shadow: 0px 1px 1px 0px #444;
+			box-shadow: 0px 1px 1px 0px #444;
+		}
+
+	</style>
 
 </head>
 
@@ -69,10 +93,10 @@
 
 									<div class="top-cart-item clearfix"  th:each="cartitem: ${cartitemlist}">
 										<div class="top-cart-item-image">
-											<a th:href="@{view(id=${cartitem.id})}"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
+											<a th:href="@{/item/view(id=${cartitem.id})}"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
 										</div>
 										<div class="top-cart-item-desc">
-											<a th:href="@{view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
+											<a th:href="@{/item/view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
 											<span class="top-cart-item-price" th:text="${cartitem.price}+' ₺'"></span>
 											<span class="top-cart-item-quantity">x 1</span>
 										</div>
@@ -81,9 +105,10 @@
 								</div>
 								<div class="top-cart-action clearfix">
 									<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
-									<button class="button button-3d button-danger button-small nomargin fright">View Cart</button>
+									<a th:href="@{/cart}" class="button button-3d button-danger button-small nomargin fright">View Cart</a>
 								</div>
 							</div>
+
 						</div><!-- #top-cart end -->
 
 						<!-- Top Search
@@ -111,7 +136,7 @@
 										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
 										<li th:if="${authuser.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
 										<li><a href="#">Settings</a></li>
-										<li><a href="/logout">Logout</a></li>
+										<li><a href="/logoutcontroller">Logout</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -214,7 +239,7 @@
 								<div class="col-lg-12">
 
 <!-- ITEM ------------>
-									<form th:if="${item!=null}" name="view-form" class="nobottommargin" method="POST">
+									<form th:action="@{/item/addreview(id=${item.id})}" th:if="${item!=null}" name="view-form" class="nobottommargin" method="POST">
 										<div class="col_half">
 											<label>Description:</label>
 											<label style="padding_bottom:0px;border: 0px" type="text" th:utext="${item.getDescription()}" class="form-control"/>
@@ -226,7 +251,6 @@
 
 										<div class="clear"></div>
 
-
 										<div class="col_half ">
 											<label>Category:</label>
 											<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getCategoryname()}"></label>
@@ -236,6 +260,24 @@
 											<label>Subcategory:</label>
 											<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getName()}"></label>
 										</div>
+
+										<div class="col_half">
+											<div class="white-section">
+												<label>Rating:</label>
+												<input name="rating" id="input-1" type="number" class="rating" max="5" data-step="1" data-size="sm" required>
+												<br>
+											</div>
+										</div>
+
+										<div class="col_full ">
+											<label for="view-form-comment">Your Comment:</label>
+											<textarea rows="4" style="resize: none" id="view-form-comment" name="comment" value="" class="form-control" required></textarea>
+										</div>
+
+										<div class="allignleft">
+											<button type="submit" class="button button-mini button-circle button-border button-black"> ADD REVIEW</button>
+										</div>
+
 									</form>
 
 <!-- CUSTOMER and ADMIN------------>
@@ -332,7 +374,7 @@
 								<a href="/item/list" th:if="${authuser.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
 
 								<a href="#" class="list-group-item list-group-item-action clearfix">Settings <i class="icon-settings float-right"></i></a>
-								<a href="/logout" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>
+								<a href="/logoutcontroller" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>
 							</div>
 
 						</div>
@@ -423,6 +465,9 @@
 	============================================= -->
 	<script src="/js/jquery.js"></script>
 	<script src="/js/plugins.js"></script>
+	<!-- Star Rating Plugin -->
+	<script src="/js/components/star-rating.js"></script>
+
 
 	<!-- Footer Scripts
 	============================================= -->
@@ -432,6 +477,45 @@
 		jQuery( "#tabs-profile" ).on( "tabsactivate", function( event, ui ) {
 			jQuery( '.flexslider .slide' ).resize();
 		});
+	</script>
+
+
+	<script>
+
+        $("#input-7").rating({
+            containerClass: 'is-heart',
+            filledStar: '<i class="icon-heart3"></i>',
+            emptyStar: '<i class="icon-heart-empty"></i>',
+            starCaptions: {0: "Not Rated",1: "Very Poor", 2: "Poor", 3: "Ok", 4: "Good", 5: "Very Good"},
+            starCaptionClasses: {0: "text-danger", 1: "text-danger", 2: "text-warning", 3: "text-info", 4: "text-primary", 5: "text-success"},
+        });
+
+        $("#input-8").rating({
+            containerClass: '',
+            filledStar: '<i class="icon-flag2"></i>',
+            emptyStar: '<i class="icon-flag-alt"></i>',
+            starCaptions: {0: "Not Rated",1: "1 Flags", 2: "2 Flags", 3: "3 Flags", 4: "4 Flags", 5: "5 Flags"},
+            starCaptionClasses: {0: "text-danger", 1: "text-danger", 2: "text-warning", 3: "text-info", 4: "text-primary", 5: "text-success"},
+        });
+
+        $("#input-11").rating({
+            starCaptions: {0: "Not Rated",1: "Very Poor", 2: "Poor", 3: "Ok", 4: "Good", 5: "Very Good"},
+            starCaptionClasses: {0: "text-danger", 1: "text-danger", 2: "text-warning", 3: "text-info", 4: "text-primary", 5: "text-success"},
+        });
+
+        $("#input-13").on("rating.clear", function(event) {
+            $('#rating-notification-message').attr('data-notify-type','error').attr('data-notify-msg', 'Your rating is reset');
+            SEMICOLON.widget.notifications( jQuery('#rating-notification-message') );
+        });
+        $("#input-13").on("rating.change", function(event, value, caption) {
+            $('#rating-notification-message').attr('data-notify-msg', 'You rated: ' + value + ' Stars');
+            SEMICOLON.widget.notifications( jQuery('#rating-notification-message') );
+        });
+
+        $("#input-14").on("rating.change", function(event, value, caption) {
+            $("#input-14").rating("refresh", {disabled: true, showClear: false});
+        });
+
 	</script>
 
 </body>

@@ -21,7 +21,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Update Profile</title>
+	<title>Cart</title>
 
 </head>
 
@@ -59,7 +59,7 @@
 
 						<!-- Top Cart
 						============================================= -->
-						<div th:if="${user.getRole()=='CUSTOMER'}" id="top-cart">
+						<div th:if="${user==null || user.getRole()=='CUSTOMER'}" id="top-cart">
 							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
 							<div class="top-cart-content">
 								<div class="top-cart-title">
@@ -84,7 +84,6 @@
 									<a th:href="@{/cart}" class="button button-3d button-danger button-small nomargin fright">View Cart</a>
 								</div>
 							</div>
-
 						</div><!-- #top-cart end -->
 
 						<!-- Top Search
@@ -134,89 +133,96 @@
 
 			<div class="content-wrap">
 
-				<div class="container clearfix">
-
-					<div class="row clearfix"  th:if="${user == null || (user!=null && updateduser!=null && user.getId()!=updateduser.getId() && user.getRole()!='ADMIN')}">
+				<div class="container clearfix" th:if="${user!=null && user.getRole()!='CUSTOMER'}">
+					<div class="row clearfix">
 						<div class="col_half nobottommargin">
 							<div class="error404 center">404</div>
 							<h3 class="center">OOPS! PAGE NOT FOUND.</h3></div>
 						<div class="col_half col_last nobottommargin"><img class="noborder" src="/images/404.png"></div>
 					</div>
+				</div>
+				<div class="container clearfix" th:if="${user==null || user.getRole()=='CUSTOMER'}">
+					<div class="style-msg successmsg" th:if="${status == 'cart'}">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i><strong>Success!</strong> Item has been removed from cart.</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+					<div class="table-responsive">
+						<table class="table cart">
+							<thead>
+							<tr>
+								<th class="cart-product-name">Product</th>
+								<th class="cart-product-thumbnail">&nbsp;</th>
+								<th class="cart-product-price">Price</th>
+								<th class="cart-product-remove">&nbsp;</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:if="${cartitemlist.size() == 0}">
+								<td><span>CART IS EMPTY!</span></td>
+							</tr>
+							<tr th:if="${cartitemlist.size()!= 0}" class="cart_item" th:each="cartitem : ${cartitemlist}">
+								<td class="cart-product-thumbnail">
+									<a th:href="@{/item/view(id=${cartitem.id})}"><img width="64" height="64" th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}"></a>
+								</td>
 
-					<div class="row clearfix"  th:if="${updateduser != null && (user.getRole()=='ADMIN' || user.getId()==updateduser.getId())}">
+								<td class="cart-product-name">
+									<a th:href="@{/item/view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
+								</td>
 
-						<div class="col-md-9">
-							<div th:if="${updateduser.getRole() != 'SELLER'}" class="heading-block noborder">
-								<h3 th:utext="${updateduser.getName()} + ' ' +  ${updateduser.getSurname()}"></h3>
-								<span th:utext="${updateduser.getRole()} "></span>
-							</div>
+								<td class="cart-product-price">
+									<span class="amount" th:text="${cartitem.price} +' ₺'"></span>
+								</td>
+								<td class="cart-product-remove">
+									<a th:href="@{/item/removefromcart(id=${cartitem.id})}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+								</td>
+							</tr>
+							</tbody>
 
-							<div th:if="${updateduser.getRole() == 'SELLER'}" class="heading-block noborder">
-								<h3 th:utext="${updateduser.getShopname()}"></h3>
-								<span th:utext="${updateduser.getRole()} "></span>
-								<div class="alignright"><label th:utext="${'Sale: ' + updateduser.getSale() + '	Rating: ' + updateduser.getRating()}"></label></div>
-							</div>
-							<div class="clear"></div>
+						</table>
+					</div>
 
-							<div class="row clearfix">
+					<div class="divider divider-center"><i class="icon-tags1"></i></div>
 
-								<div class="col-lg-12">
-
-									<form th:href="@{/update(id=${updateduser.id})}" th:object="${updateduser}" id="update-form" name="update-form" class="nobottommargin" method="POST">
-
-										<div class="col_half">
-											<label for="update-form-password">Choose Password:</label>
-											<input type="password" th:field="*{password}" id="update-form-password" name="password" value="" class="form-control" pattern="(?=.*\d).{6,200}" title="Must contain at least one number and at least 6 or more characters" required oninput="setPasswordConfirmValidity();">
-										</div>
-
-										<div class="col_half col_last">
-											<label for="update-form-repassword">Re-enter Password:</label>
-											<input type="password" id="update-form-repassword" name="repassword" value="" class="form-control" required oninput="setPasswordConfirmValidity();">
-										</div>
-
-
-										<script>
-                                            function setPasswordConfirmValidity(str) {
-                                                const password1 = document.getElementById('update-form-password');
-                                                const password2 = document.getElementById('update-form-repassword');
-
-                                                if (password1.value === password2.value) password2.setCustomValidity('');
-                                                else password2.setCustomValidity('Passwords must match');
-                                            }
-										</script>
-
-										<div class="clear"></div>
-
-										<div class="col_full">
-											<button class="button button-3d button-pink nomargin" id="update-form-submit" name="update-form-submit" value="register" type="submit">Change Password</button>
-										</div>
-
-									</form>
-
-								</div>
-
-							</div>
-
+					<div class="row clearfix" th:if="${cartitemlist.size() != 0}">
+						<div class="col-lg-8 clearfix">
 						</div>
 
-						<div class="w-100 line d-block d-md-none"></div>
+						<div class="col-lg-4 clearfix">
+							<h4>Cart Totals</h4>
 
-						<div class="col-md-3 clearfix" th:if="${user != null}">
-							<div class="list-group">
-								<a th:href="@{/view(id=${user.id})}" class="list-group-item list-group-item-action clearfix">Profile <i class="icon-user float-right"></i></a>
+							<div class="table-responsive">
+								<table class="table cart">
+									<tbody>
+									<tr class="cart_item">
+										<td class="cart-product-name">
+											<strong>Shipping</strong>
+										</td>
 
-								<a href="/orders" th:if="${user.getRole() == 'CUSTOMER'}" class="list-group-item list-group-item-action clearfix">Orders <i class="icon-tags1 float-right"></i></a>
-								<a href="/sellers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Sellers <i class="icon-user-tie float-right"></i></a>
-								<a href="/item/list" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
-								<a href="/customers" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Customers <i class="icon-users float-right"></i></a>
-								<a href="#" th:if="${user.getRole() == 'ADMIN'}" class="list-group-item list-group-item-action clearfix">Reports <i class="icon-file-text float-right"></i></a>
-								<a href="/item/list" th:if="${user.getRole() == 'SELLER'}" class="list-group-item list-group-item-action clearfix">Items <i class="icon-tags1 float-right"></i></a>
+										<td class="cart-product-name">
+											<span class="amount">Free Delivery</span>
+										</td>
+									</tr>
+									<tr class="cart_item">
+										<td class="cart-product-name">
+											<strong>Total</strong>
+										</td>
 
-								<a href="#" class="list-group-item list-group-item-action clearfix">Settings <i class="icon-settings float-right"></i></a>
-								<a href="/logoutcontroller" class="list-group-item list-group-item-action clearfix">Logout <i class="icon-sign-out-alt float-right"></i></a>
+										<td class="cart-product-name">
+											<span class="amount color lead"><strong  th:text="${total} +' ₺'"></strong></span>
+										</td>
+									</tr>
+									<tr class="cart_item">
+										<td class="cart-product-name">
+										</td>
+										<td>
+											<a href="shop.html" class="button button-3d notopmargin fright">Checkout</a>
+										</td>
+									</tr>
+									</tbody>
+
+								</table>
 							</div>
 						</div>
-
 					</div>
 
 				</div>

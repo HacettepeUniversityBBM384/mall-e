@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -37,13 +38,12 @@ public class ItemController {
 
     public static ArrayList<Item> cart = new ArrayList<>();
 
-    public int getTotal(){ int sum=0;for(Item i:cart)sum+=i.getPrice(); return sum;}
+    public static int getTotal(){ int sum=0;for(Item i:cart)sum+=i.getPrice(); return sum;}
 
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public String CategoryPage(@RequestParam String name, @AuthenticationPrincipal CustomUserDetails user,Model model) {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
-            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         }
         ArrayList<Item> itemlist = new ArrayList<>();
         HashSet<Subcategory> subcategoryset = new HashSet<>();
@@ -56,6 +56,7 @@ public class ItemController {
         model.addAttribute("itemlist", itemlist);
         model.addAttribute("cartitemlist", cart);
         model.addAttribute("categoryname",name);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         model.addAttribute("subcategoryset", subcategoryset);
@@ -67,7 +68,6 @@ public class ItemController {
     public String ShopPage(@RequestParam String name, @AuthenticationPrincipal CustomUserDetails user,Model model) {
         if (user != null) {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
-            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
         }
         ArrayList<Item> itemlist = new ArrayList<>();
         HashSet<Subcategory> subcategoryset = new HashSet<>();
@@ -79,11 +79,23 @@ public class ItemController {
         }
         model.addAttribute("itemlist", itemlist);
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categoryname",name);
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("subcategories", subcategoryService.getAllSubcategories());
         model.addAttribute("subcategoryset", subcategoryset);
         return "shop";
+    }
+
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    public String CartPage(@AuthenticationPrincipal CustomUserDetails user, Model model){
+        if(user!=null){
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+        model.addAttribute("cartitemlist",cart);
+        model.addAttribute("total",ItemController.getTotal());
+        model.addAttribute("categories",categoryService.getAllCategories());
+        return "cart";
     }
 
     @RequestMapping(value = "/item/list", method = RequestMethod.GET)
@@ -115,6 +127,7 @@ public class ItemController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("subcategory", subcategoryService.FindById(item.getSubcategoryid()).get());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("total", getTotal());
@@ -170,6 +183,7 @@ public class ItemController {
         Seller seller = userService.FindByShopname(item.getShopname()).get();
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         Path uploadLocation = Paths.get("src/main/resources/static/images/malle").resolve(seller.getShopname());
+        Path uploadLocationtarget = Paths.get("target/classes/static/images/malle").resolve(seller.getShopname());
         try {
             if (file.isEmpty()) { throw new RuntimeException("Failed to store empty file " + filename); }
             if (filename.contains("..")) { throw new RuntimeException("Cannot store file with relative path outside current directory " + filename); }
@@ -181,6 +195,18 @@ public class ItemController {
                 }
                 filename = id+'.'+file.getContentType().substring(6);
                 Files.copy(inputStream, uploadLocation.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to store file " + filename, e);
+        }
+        try {
+            try (InputStream inputStream = file.getInputStream()) {
+                try { Files.createDirectories(uploadLocationtarget);
+                } catch (IOException e) {
+                    throw new RuntimeException("Could not initialize storage", e);
+                }
+                filename = id+'.'+file.getContentType().substring(6);
+                Files.copy(inputStream, uploadLocationtarget.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file " + filename, e);
@@ -203,18 +229,30 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/item/addtocart", method = RequestMethod.POST)
-    public String AddToCart(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
+    public String AddToCartProfile(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
         for(int i=0;i<Integer.parseInt(quantity);i++) cart.add(item);
         redir.addFlashAttribute("status", "cart");
         return "redirect:/item/view?id="+id;
     }
 
-    @RequestMapping(value = "/item/addtocart", method = RequestMethod.GET)
-    public String AddToCartShop(RedirectAttributes redir, @RequestParam String id, @RequestParam String quantity) {
-        Item item = itemService.FindById(Integer.parseInt(id)).get();
-        for(int i=0;i<Integer.parseInt(quantity);i++) cart.add(item);
+    @RequestMapping(value = "/item/removefromcart", method = RequestMethod.GET)
+    public String RemoveFromCart(RedirectAttributes redir, @RequestParam int id) {
+        int index = 0;
+        for(Item i: cart){
+            if(i.getId()==id) break;
+            index++;
+        }
+        cart.remove(index);
         redir.addFlashAttribute("status", "cart");
-        return "redirect:/item/view?id="+id;
+        return "redirect:/cart";
+    }
+
+    @RequestMapping(value = "/item/addtocart", method = RequestMethod.GET)
+    public String AddToCartShop(RedirectAttributes redir, @RequestParam String id, HttpServletRequest request) {
+        Item item = itemService.FindById(Integer.parseInt(id)).get();
+        cart.add(item);
+        redir.addFlashAttribute("status", "cart");
+        return "redirect:"+request.getHeader("Referer");
     }
 }
