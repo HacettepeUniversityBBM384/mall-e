@@ -15,7 +15,9 @@
 	<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
 	<link rel="stylesheet" href="/css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-	<link rel="stylesheet" href="/css/bs-rating.css" type="text/css" />
+
+	<!-- Star Rating CSS -->
+	<link rel="stylesheet" href="/css/components/bs-rating.css" type="text/css" />
 
 	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +26,26 @@
 	============================================= -->
 	<title th:if="${item!=null}" th:text="${item.name}"></title>
 	<title th:if="${item==null}">Profile</title>
+
+	<style>
+
+		.white-section {
+			background-color: #FFF;
+			padding: 5px 5px;
+			-webkit-box-shadow: 0px 1px 1px 0px #dfdfdf;
+			box-shadow: 0px 1px 1px 0px #dfdfdf;
+			border-radius: 1px;
+		}
+
+		.white-section label { margin-bottom: 15px; }
+
+		.dark .white-section {
+			background-color: #111;
+			-webkit-box-shadow: 0px 1px 1px 0px #444;
+			box-shadow: 0px 1px 1px 0px #444;
+		}
+
+	</style>
 
 </head>
 
@@ -239,27 +261,11 @@
 											<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getName()}"></label>
 										</div>
 
-										<div class="rating-container rating-sm rating-animate ">
-											<div class="clear-rating clear-rating-active" title="Clear"><i class="icon-minus-sign"></i></div>
-											<div class="rating-stars">
-												<span class="empty-stars">
-													<span class="star"><i class="icon-star-empty"></i></span>
-													<span class="star"><i class="icon-star-empty"></i></span>
-													<span class="star"><i class="icon-star-empty"></i></span>
-													<span class="star"><i class="icon-star-empty"></i></span>
-													<span class="star"><i class="icon-star-empty"></i></span>
-												</span>
-												<span class="filled-stars" style="width: 0%;">
-													<span class="star"><i class="icon-star3"></i></span>
-													<span class="star"><i class="icon-star3"></i></span>
-													<span class="star"><i class="icon-star3"></i></span>
-													<span class="star"><i class="icon-star3"></i></span>
-													<span class="star"><i class="icon-star3"></i></span>
-												</span>
-												<input id="view-form-rating" type="number" name="rating" class="rating rating-input " max="5" min="0" data-step="1" data-size="sm" required>
-											</div>
-											<div class="caption">
-												<span class="badge badge-default">Not Rated</span>
+										<div class="col_half">
+											<div class="white-section">
+												<label>Rating:</label>
+												<input name="rating" id="input-1" type="number" class="rating" max="5" data-step="1" data-size="sm" required>
+												<br>
 											</div>
 										</div>
 
@@ -459,6 +465,9 @@
 	============================================= -->
 	<script src="/js/jquery.js"></script>
 	<script src="/js/plugins.js"></script>
+	<!-- Star Rating Plugin -->
+	<script src="/js/components/star-rating.js"></script>
+
 
 	<!-- Footer Scripts
 	============================================= -->
@@ -468,6 +477,45 @@
 		jQuery( "#tabs-profile" ).on( "tabsactivate", function( event, ui ) {
 			jQuery( '.flexslider .slide' ).resize();
 		});
+	</script>
+
+
+	<script>
+
+        $("#input-7").rating({
+            containerClass: 'is-heart',
+            filledStar: '<i class="icon-heart3"></i>',
+            emptyStar: '<i class="icon-heart-empty"></i>',
+            starCaptions: {0: "Not Rated",1: "Very Poor", 2: "Poor", 3: "Ok", 4: "Good", 5: "Very Good"},
+            starCaptionClasses: {0: "text-danger", 1: "text-danger", 2: "text-warning", 3: "text-info", 4: "text-primary", 5: "text-success"},
+        });
+
+        $("#input-8").rating({
+            containerClass: '',
+            filledStar: '<i class="icon-flag2"></i>',
+            emptyStar: '<i class="icon-flag-alt"></i>',
+            starCaptions: {0: "Not Rated",1: "1 Flags", 2: "2 Flags", 3: "3 Flags", 4: "4 Flags", 5: "5 Flags"},
+            starCaptionClasses: {0: "text-danger", 1: "text-danger", 2: "text-warning", 3: "text-info", 4: "text-primary", 5: "text-success"},
+        });
+
+        $("#input-11").rating({
+            starCaptions: {0: "Not Rated",1: "Very Poor", 2: "Poor", 3: "Ok", 4: "Good", 5: "Very Good"},
+            starCaptionClasses: {0: "text-danger", 1: "text-danger", 2: "text-warning", 3: "text-info", 4: "text-primary", 5: "text-success"},
+        });
+
+        $("#input-13").on("rating.clear", function(event) {
+            $('#rating-notification-message').attr('data-notify-type','error').attr('data-notify-msg', 'Your rating is reset');
+            SEMICOLON.widget.notifications( jQuery('#rating-notification-message') );
+        });
+        $("#input-13").on("rating.change", function(event, value, caption) {
+            $('#rating-notification-message').attr('data-notify-msg', 'You rated: ' + value + ' Stars');
+            SEMICOLON.widget.notifications( jQuery('#rating-notification-message') );
+        });
+
+        $("#input-14").on("rating.change", function(event, value, caption) {
+            $("#input-14").rating("refresh", {disabled: true, showClear: false});
+        });
+
 	</script>
 
 </body>
