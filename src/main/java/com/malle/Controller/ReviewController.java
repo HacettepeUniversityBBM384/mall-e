@@ -24,10 +24,16 @@ public class ReviewController {
     private UserService userService;
 
     @RequestMapping(value = "/item/addreview", method = RequestMethod.POST)
-    public String addReview( @RequestParam("comment") String comment, @RequestParam("id") String id, @AuthenticationPrincipal CustomUserDetails user) {
-        User reviewer = userService.FindByEmail(user.getEmail()).get();
-        Review review = new Review(reviewer.getId(), Integer.parseInt(id), 5.0, comment);
-        reviewService.Save(review);
-        return "redirect:/item/view?id="+id;
+    public String addReview(@RequestParam("rating") String rating, @RequestParam("comment") String comment, @RequestParam("id") String id, @AuthenticationPrincipal CustomUserDetails user) {
+        if(user != null){
+            User reviewer = userService.FindByEmail(user.getEmail()).get();
+            Review review = new Review(reviewer.getId(), Integer.parseInt(id), Integer.parseInt(rating), comment);
+            reviewService.Save(review);
+            return "redirect:/item/view?id="+id;
+        }
+        else{
+            return "redirect:/login";
+        }
+
     }
 }
