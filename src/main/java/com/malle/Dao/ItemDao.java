@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface ItemDao extends JpaRepository<Item, Integer>{
     @Override
-     void deleteById(Integer ınteger);
+     void deleteById(Integer integer);
 
     @Override
     Optional<Item> findById(Integer integer);

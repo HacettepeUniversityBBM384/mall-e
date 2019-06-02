@@ -1,5 +1,8 @@
 package com.malle.Entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.File;
 
@@ -9,7 +12,6 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
     private String shopname;
     private String name;
@@ -19,6 +21,7 @@ public class Item {
     private double rating;
     private String description;
     private int stock;
+
 
     public Item(String shopname, String name, int subcategoryid, double price, int ordercount, double rating, String description, int stock) {
         this.shopname = shopname;

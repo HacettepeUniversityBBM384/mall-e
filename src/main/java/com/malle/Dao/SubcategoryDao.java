@@ -9,8 +9,8 @@ import java.util.Optional;
 @Repository
 public interface SubcategoryDao extends JpaRepository<Subcategory, Integer> {
     @Override
-    void deleteById(Integer ınteger);
+    void deleteById(Integer Id);
 
     @Override
-    Optional<Subcategory> findById(Integer integer);
+    Optional<Subcategory> findById(Integer Id);
 }

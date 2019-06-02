@@ -13,9 +13,10 @@ import java.util.Optional;
 @Repository
 public interface UserDao extends JpaRepository<User, Integer>{
     @Override
-     void deleteById(Integer ınteger);
+    void deleteById(Integer ınteger);
 
     Optional<User> findByEmail(String email);
+
     Optional<Seller> findByShopname(String shopname);
 
     @Override
