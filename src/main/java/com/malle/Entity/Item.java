@@ -1,10 +1,6 @@
 package com.malle.Entity;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
-import java.io.File;
 
 @Entity
 @Table(name="item")
@@ -104,4 +100,5 @@ public class Item {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
 }

@@ -19,9 +19,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.malle.Service.ReviewService.*;
 
 @Controller
 @RequestMapping
@@ -35,6 +38,9 @@ public class ItemController {
     private CategoryService categoryService;
     @Autowired
     private SubcategoryService subcategoryService;
+    @Autowired
+    private ReviewService reviewService;
+
 
     public static ArrayList<Item> cart = new ArrayList<>();
 
@@ -126,10 +132,22 @@ public class ItemController {
             model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
+
+        ArrayList<Review> commentlist = new ArrayList<Review>();
+        double totalrating = 0;
+        for (Review i: reviewService.getAllItems())
+            if (i.getItemid() == item.getId()){
+                commentlist.add((Review)i);
+                totalrating = totalrating + i.getRating();
+            }
+        String avrat = new DecimalFormat("#.##").format(totalrating/commentlist.size());
+        model.addAttribute("averagerating",avrat);
+        model.addAttribute("commentlist",commentlist);
         model.addAttribute("cartitemlist", cart);
         model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("subcategory", subcategoryService.FindById(item.getSubcategoryid()).get());
         model.addAttribute("categories", categoryService.getAllCategories());
+
         model.addAttribute("total", getTotal());
         return "profile";
     }

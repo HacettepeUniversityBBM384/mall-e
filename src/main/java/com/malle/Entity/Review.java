@@ -15,11 +15,27 @@ public class Review {
     private double rating;
     private String comment;
 
+
+    public Review(){
+        this.userid = 0;
+        this.itemid = 0;
+        this.rating = 0;
+        this.comment = "";
+
+    }
+
     public Review(int userid, int itemid, double rating, String comment) {
         this.userid = userid;
         this.itemid = itemid;
         this.rating = rating;
         this.comment = comment;
+    }
+
+    public Review(Review review) {
+        this.userid = review.getUserid();
+        this.itemid = review.getItemid();
+        this.rating = review.getRating();
+        this.comment = review.getComment();
     }
 
     public int getId() {

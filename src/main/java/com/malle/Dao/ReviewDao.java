@@ -9,9 +9,13 @@ import java.util.Optional;
 @Repository
 public interface ReviewDao extends JpaRepository<Review, Integer>{
     @Override
-    void deleteById(Integer ınteger);
+    void deleteById(Integer integer);
+
+    Optional<Review> findByItemid(int itemid);
 
     @Override
     Optional<Review> findById(Integer integer);
+
+
 }
 
