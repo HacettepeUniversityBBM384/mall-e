@@ -37,7 +37,7 @@ public class OrderService {
                 orderList.stream().collect(Collectors.groupingBy(Order::getDate)
                 );
 
-        groupByDateMap.forEach((k, v) -> v.forEach( o -> o.setItem(itemDao.findById(o.getItemid()).get())));
+        groupByDateMap.forEach((k, v) -> v.forEach( o -> o.setItem(itemDao.findById(o.getId()).get())));
 
         TreeMap<Date, List<Order> > finalMap = new TreeMap<Date, List<Order>>(new Comparator<Date>() {
             @Override

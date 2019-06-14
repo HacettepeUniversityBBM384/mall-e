@@ -229,7 +229,7 @@
 							<div th:if="${item!=null}" class="heading-block noborder">
 								<h3 th:utext="${item.getName()}"></h3>
 								<span><a th:href="@{/shop(name=${item.getShopname()})}" th:utext="${item.getShopname()} "></a></span>
-								<div class="alignright"><label th:utext="${'Price: ' + item.getPrice() + '₺	Rating: ' + item.getRating()}"></label></div>
+								<div class="alignright"><label th:utext="${'Price: ' + item.getPrice()}"></label></div>
 							</div>
 
 							<div class="clear"></div>
@@ -240,6 +240,8 @@
 
 <!-- ITEM ------------>
 									<form th:action="@{/item/addreview(id=${item.id})}" th:if="${item!=null}" name="view-form" class="nobottommargin" method="POST">
+
+
 										<div class="col_half">
 											<label>Description:</label>
 											<label style="padding_bottom:0px;border: 0px" type="text" th:utext="${item.getDescription()}" class="form-control"/>
@@ -265,8 +267,12 @@
 											<div class="white-section">
 												<label>Rating:</label>
 												<input name="rating" id="input-1" type="number" class="rating" max="5" data-step="1" data-size="sm" required>
-												<br>
 											</div>
+										</div>
+
+										<div class="col_half ">
+											<label>Average Rating:</label>
+											<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${averagerating}"></label>
 										</div>
 
 										<div class="col_full ">
@@ -276,7 +282,28 @@
 
 										<div class="allignleft">
 											<button type="submit" class="button button-mini button-circle button-border button-black"> ADD REVIEW</button>
+											<br>
 										</div>
+
+										<br>
+
+
+										<div class = "container">
+											<div th:if="${not #lists.isEmpty(commentlist)}">
+												<label>Reviews:</label>
+												<table class="table table-striped">
+													<tr>
+														<th>COMMENT</th>
+														<th>RATING</th>
+													</tr>
+													<tr th:each="comment : ${commentlist}">
+														<td th:text="${comment.comment}"></td>
+														<td th:text="${comment.rating}"></td>
+													</tr>
+												</table>
+											</div>
+										</div>
+
 
 									</form>
 
