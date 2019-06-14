@@ -99,6 +99,8 @@
 							</form>
 						</div><!-- #top-search end -->
 
+
+
 						<!-- Top Links
 						============================================= -->
 						<div class="top-links"th:if="${user != null}">
@@ -151,8 +153,9 @@
 								<div class="product-image">
 									<a th:href="@{/item/view(id=${item.id})}"><img th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}"></a>
 									<div class="product-overlay">
-										<a th:href="@{/item/addtocart(id=${item.id})}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-										<a th:href="@{/shop(name=${item.getShopname()})}" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item.shopname}"></span></a>
+										<a th:href="@{/item/addtocart(id=${item.id})}" style="width: 33.3%;" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+										<a th:href="@{/shop(name=${item.getShopname()})}" style="width: 33.3%;" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item.shopname}"></span></a>
+                                        <a onclick="showCompare()" th:href="@{/item/addtocompare(id=${item.id})}"  style="width: 33.3%;" class="add-to-cart"><i class="icon-line-eye"></i><span> Compare</span></a>
 									</div>
 								</div>
 								<div class="product-desc center">
@@ -271,7 +274,59 @@
 
 			</div><!-- #copyrights end -->
 
-		</footer><!-- #footer end -->
+		</footer>
+
+		<footer th:if="${status} == 'compare'" id="footer compare" style="position: fixed;    bottom: 0;    left: 0;    width: 100%; height: 150px; display: block; background-color:#f5f5f5; box-shadow: 5px 10px; z-index: 10">
+
+
+			<div class="container clearfix">
+
+				<div class="alert alert-danger nobottommargin" th:if="${compare == 'error'}">
+					<strong>Warning!</strong> You can not add more than to items to compare list.
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				</div>
+
+				<div class="row clearfix">
+
+					<h5 style="top: 5px;">Compare Products :</h5>
+
+
+					<button class="btn btn-light button-mini" style="position: absolute; top: 5px; right: 5px; width: 15px" onclick="document.getElementById('footer compare').style.display='none'" >
+						<i class="icon-remove"></i>
+					</button>
+				</div>
+
+				<div>
+
+					<div class="clearfix col_half"  th:if="${#lists.size(compareitemlist)} > 0">
+						<div class="top-cart-item-image" style="    width: 55px !important; height: 75px !important;">
+							<a th:href="@{/item/view(id=${compareitemlist[0].id})}" style="width: 50px !important;"><img th:src="@{'/images/malle/'+${compareitemlist[0].shopname}+'/'+${compareitemlist[0].id}+'.jpeg'}" style="height: 70px !important; width: 50px !important; "/></a>
+						</div>
+						<div class="top-cart-item-desc">
+							<a th:href="@{/item/view(id=${compareitemlist[0].id})}" th:text="${compareitemlist[0].name}"></a>
+							<span class="top-cart-item-price" th:text="${compareitemlist[0].price}+' ₺'"></span>
+						</div>
+					</div>
+
+					<div class="clearfix col_half col_last"  th:if="${#lists.size(compareitemlist)} > 1">
+						<div class="top-cart-item-image">
+							<a th:href="@{/item/view(id=${compareitemlist[1].id})}"><img th:src="@{'/images/malle/'+${compareitemlist[1].shopname}+'/'+${compareitemlist[1].id}+'.jpeg'}" style="width: 70px !important;"/></a>
+						</div>
+						<div class="top-cart-item-desc">
+							<a th:href="@{/item/view(id=${compareitemlist[1].id})}" th:text="${compareitemlist[1].name}"></a>
+							<span class="top-cart-item-price" th:text="${compareitemlist[1].price}+' ₺'"></span>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+
+		</footer>
+
+
+		<!-- #footer end -->
 	</div><!-- #wrapper end -->
 
 	<!-- Go To Top
@@ -295,7 +350,6 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="/js/functions.js"></script>
-
 
 	<script>
         jQuery(document).ready( function($){
@@ -351,6 +405,15 @@
                 $('#shop').isotope({ sortBy: sortByValue });
                 return false;
             });
+
+            function showCompare() {
+                var x = document.getElementById("footer compare");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                }else {
+                    x.style.display = "none";
+                }
+            }
         });
 	</script>
 

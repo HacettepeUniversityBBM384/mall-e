@@ -37,6 +37,7 @@ public class ItemController {
     private SubcategoryService subcategoryService;
 
     public static ArrayList<Item> cart = new ArrayList<>();
+    public static ArrayList<Item> compareProducts = new ArrayList<>();
 
     public static int getTotal(){ int sum=0;for(Item i:cart)sum+=i.getPrice(); return sum;}
 
@@ -55,6 +56,7 @@ public class ItemController {
         }
         model.addAttribute("itemlist", itemlist);
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("compareitemlist", compareProducts);
         model.addAttribute("categoryname",name);
         model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categories", categoryService.getAllCategories());
@@ -79,6 +81,7 @@ public class ItemController {
         }
         model.addAttribute("itemlist", itemlist);
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("compareitemlist", compareProducts);
         model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("categoryname",name);
         model.addAttribute("categories", categoryService.getAllCategories());
@@ -93,6 +96,7 @@ public class ItemController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         model.addAttribute("cartitemlist",cart);
+        model.addAttribute("compareitemlist", compareProducts);
         model.addAttribute("total",ItemController.getTotal());
         model.addAttribute("categories",categoryService.getAllCategories());
         return "cart";
@@ -127,6 +131,7 @@ public class ItemController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         model.addAttribute("cartitemlist", cart);
+        model.addAttribute("compareitemlist", compareProducts);
         model.addAttribute("total", ItemController.getTotal());
         model.addAttribute("subcategory", subcategoryService.FindById(item.getSubcategoryid()).get());
         model.addAttribute("categories", categoryService.getAllCategories());
@@ -255,4 +260,29 @@ public class ItemController {
         redir.addFlashAttribute("status", "cart");
         return "redirect:"+request.getHeader("Referer");
     }
+
+    @RequestMapping(value = "/item/addtocompare", method = RequestMethod.POST)
+    public String AddToCompare(RedirectAttributes redir, @RequestParam String id, HttpServletRequest request) {
+        if (compareProducts.size() < 2) {
+            Item item = itemService.FindById(Integer.parseInt(id)).get();
+            compareProducts.add(item);
+        }else if (compareProducts.size() >= 2){
+            redir.addFlashAttribute("compare", "error");
+        }
+        redir.addFlashAttribute("status", "compare");
+        return "redirect:"+request.getHeader("Referer");
+    }
+
+    @RequestMapping(value = "/item/addtocompare", method = RequestMethod.GET)
+    public String AddToCompareGet(RedirectAttributes redir, @RequestParam String id, HttpServletRequest request) {
+        if (compareProducts.size() < 2) {
+            Item item = itemService.FindById(Integer.parseInt(id)).get();
+            compareProducts.add(item);
+        }else if (compareProducts.size() >= 2){
+            redir.addFlashAttribute("compare", "error");
+        }
+        redir.addFlashAttribute("status", "compare");
+        return "redirect:"+request.getHeader("Referer");
+    }
+
 }
