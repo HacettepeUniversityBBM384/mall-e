@@ -33,6 +33,10 @@ public class Item {
     public Item() {
     }
 
+    public Item(int id) {
+        this.setId(id);
+    }
+
     public int getId() {
         return id;
     }
@@ -100,5 +104,18 @@ public class Item {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return this.id == item.id;
+    }
+
 
 }

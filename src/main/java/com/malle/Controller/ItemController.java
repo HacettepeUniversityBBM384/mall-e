@@ -303,4 +303,63 @@ public class ItemController {
         return "redirect:"+request.getHeader("Referer");
     }
 
+    @RequestMapping(value = "/compare", method = RequestMethod.GET)
+    public String CompareItemPage(@RequestParam String id1, @RequestParam String id2,  Model model, @AuthenticationPrincipal CustomUserDetails user) {
+        Item item = itemService.FindById(Integer.parseInt(id1)).get();
+        model.addAttribute("item1", item);
+        Item item2 = itemService.FindById(Integer.parseInt(id2)).get();
+        model.addAttribute("item2", item2);
+        if(user!=null) {
+            model.addAttribute("status", model.asMap().get("status"));
+            model.addAttribute("authuser", userService.FindByEmail(user.getEmail()).get());
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+
+        ArrayList<Review> commentlistItem1 = new ArrayList<Review>();
+        double totalratingItem1 = 0;
+        for (Review i: reviewService.getAllItems())
+            if (i.getItemid() == item.getId()){
+                commentlistItem1.add((Review)i);
+                totalratingItem1 = totalratingItem1 + i.getRating();
+            }
+
+        ArrayList<Review> commentlistItem2 = new ArrayList<Review>();
+        double totalratingItem2 = 0;
+        for (Review i: reviewService.getAllItems())
+            if (i.getItemid() == item.getId()){
+                commentlistItem2.add((Review)i);
+                totalratingItem2 = totalratingItem2 + i.getRating();
+            }
+        String avrat = new DecimalFormat("#.##").format(totalratingItem1/commentlistItem1.size());
+        String avrat2 = new DecimalFormat("#.##").format(totalratingItem2/commentlistItem2.size());
+        model.addAttribute("averagerating",avrat);
+        model.addAttribute("averagerating2",avrat2);
+        model.addAttribute("cartitemlist", cart);
+        model.addAttribute("compareitemlist", compareProducts);
+        model.addAttribute("total", ItemController.getTotal());
+        model.addAttribute("subcategory", subcategoryService.FindById(item.getSubcategoryid()).get());
+        model.addAttribute("subcategory2", subcategoryService.FindById(item2.getSubcategoryid()).get());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("total", getTotal());
+        return "compare";
+    }
+
+    @RequestMapping(value = "/item/removecompare", method = RequestMethod.POST)
+    public String RemoveComparePost(RedirectAttributes redir, @RequestParam String id, Model model, HttpServletRequest request) {
+        redir.addFlashAttribute("status", "compare");
+        model.addAttribute("compareitemlist", compareProducts);
+        return "redirect:"+request.getHeader("Referer");
+    }
+
+    @RequestMapping(value = "/item/removecompare", method = RequestMethod.GET)
+    public String RemoveCompareGet(RedirectAttributes redir, @RequestParam String id, Model model, HttpServletRequest request) {
+        Item item = itemService.FindById(Integer.parseInt(id)).get();
+        int itemIndex = compareProducts.indexOf(item);
+        System.out.println(itemIndex);
+        if (!compareProducts.isEmpty())
+            compareProducts.remove(itemIndex);
+        redir.addFlashAttribute("status", "compare");
+        model.addAttribute("compareitemlist", compareProducts);
+        return "redirect:"+request.getHeader("Referer");
+    }
 }
