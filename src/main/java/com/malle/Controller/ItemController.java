@@ -355,7 +355,6 @@ public class ItemController {
     public String RemoveCompareGet(RedirectAttributes redir, @RequestParam String id, Model model, HttpServletRequest request) {
         Item item = itemService.FindById(Integer.parseInt(id)).get();
         int itemIndex = compareProducts.indexOf(item);
-        System.out.println(itemIndex);
         if (!compareProducts.isEmpty())
             compareProducts.remove(itemIndex);
         redir.addFlashAttribute("status", "compare");
