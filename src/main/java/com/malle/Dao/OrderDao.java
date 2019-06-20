@@ -23,5 +23,4 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
 
     List<Order> findAllByCustomerid(Integer Id);
 
-
 }

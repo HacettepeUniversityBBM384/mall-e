@@ -114,8 +114,7 @@ public class Item {
             return false;
         }
         Item item = (Item) o;
-        return this.id == item.id;
+        return this.id == item.getId();
     }
-
 
 }
