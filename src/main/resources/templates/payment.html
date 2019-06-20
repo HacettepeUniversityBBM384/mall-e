@@ -139,19 +139,19 @@
 
 						<div id="processTabs" class="ui-tabs ui-corner-all ui-widget ui-widget-content">
 							<ul class="process-steps bottommargin clearfix ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header" role="tablist">
-								<li role="tab" tabindex="0" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active" aria-controls="ptab1" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true">
+								<li role="tab"  th:tabindex="@{checkout == 'False'} ? 0: -1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active" aria-controls="ptab1" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true">
 									<a href="#ptab1" class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">1</a>
 									<h5>Review Cart</h5>
 								</li>
 								<li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="ptab2" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false">
-									<a href="#ptab2" class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">2</a>
+									<a href="#ptab2"  class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">2</a>
 									<h5>Enter Shipping Info</h5>
 								</li>
 								<li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="ptab3" aria-labelledby="ui-id-3" aria-selected="false" aria-expanded="false">
-									<a href="#ptab3" class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">3</a>
+									<a href="#ptab3"  class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">3</a>
 									<h5>Complete Payment</h5>
 								</li>
-								<li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="ptab4" aria-labelledby="ui-id-4" aria-selected="false" aria-expanded="false">
+								<li role="tab" th:tabindex="@{checkout == 'False'} ? 0: -1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="ptab4" aria-labelledby="ui-id-4" aria-selected="false" aria-expanded="false">
 									<a href="#ptab4" class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">4</a>
 									<h5>Order Complete</h5>
 								</li>
@@ -250,8 +250,7 @@
 										</div>
 									</div>
 
-
-									<a href="#" class="button button-3d nomargin fright tab-linker" rel="2">Checkout ⇒</a>
+									<a th:if="${cartitemlist.size() != 0}" href="#ptab1" class="button button-3d nomargin fright tab-linker" rel="2">Checkout ⇒</a>
 
 								</div>
 								<div id="ptab2" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
@@ -314,38 +313,36 @@
 									<a href="#" class="button button-3d nomargin fright tab-linker" rel="3">Pay Now</a>
 								</div>
 								<div id="ptab3" aria-labelledby="ui-id-3" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-									<form id="billing-form" name="billing-form" class="nobottommargin" action="#" method="post">
+									<form id="billing-form" name="billing-form" th:object="${order}"  class="nobottommargin" th:action="@{/payment}" method="POST">
 
 										<div class="row clearfix">
 
 											<div class="col-lg-6">
 												<div class="col_full">
 													<label for="billing-form-name">Name:</label>
-													<input type="text" id="billing-form-name" name="billing-form-name" value="" class="sm-form-control">
+													<input type="text" id="billing-form-name" th:field="*{status}" name="billing-form-name" value="" class="form-control" required>
 												</div>
 
 												<div class="clear"></div>
 
 												<div class="col_full">
 													<label for="billing-form-companyname">Card Number:</label>
-													<input type="text" id="billing-form-companyname" name="billing-form-companyname" value="" class="sm-form-control">
+													<input type="number" id="billing-form-companyname" name="billing-form-companyname" value="" class="form-control" required>
 												</div>
 
 												<div class="clear"></div>
 
 												<div class="col_half">
 													<label for="billing-form-secure">Secure No:</label>
-													<input type="text" id="billing-form-secure" name="billing-form-email" value="" class="sm-form-control">
+													<input type="number" id="billing-form-secure" name="billing-form-email" value="" class="form-control" required>
 												</div>
 
 												<div class="col_half col_last">
 													<label for="billing-form-expire">Expiry Date:</label>
-													<input type="text" id="billing-form-expire" name="billing-form-email" value="" class="sm-form-control">
+													<input type="date" id="billing-form-expire" name="billing-form-email" value="" class="form-control" required>
 												</div>
 
 											</div>
-
-
 
 											<div class="col-lg-6 col_last">
 												<td class="cart-product-thumbnail">
@@ -355,10 +352,10 @@
 
 										</div>
 
-									</form><div class="line"></div>
-									<a href="#" class="button button-3d nomargin tab-linker" rel="2">Previous</a>
-									<a href="#" class="button button-3d nomargin fright tab-linker" rel="4">Complete Order</a>
-								</div>
+										<div class="line"></div>
+										<a href="#" class="button button-3d nomargin tab-linker" rel="2">Previous</a>
+										<button th:href="@{/payment}" class="button button-3d nomargin button-black fright tab-linker" id="billing-form-submit" name="billing-form-submit" type="submit" rel="4">Complete Order</button>
+									</form></div>
 								<div id="ptab4" aria-labelledby="ui-id-4" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
 									<div class="alert alert-success">
 										<strong>Thank You.</strong> Your order will be processed once we verify the Payment.

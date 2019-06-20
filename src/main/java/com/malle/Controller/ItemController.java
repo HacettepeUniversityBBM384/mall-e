@@ -20,9 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static com.malle.Service.ReviewService.*;
 
@@ -40,7 +38,8 @@ public class ItemController {
     private SubcategoryService subcategoryService;
     @Autowired
     private ReviewService reviewService;
-
+    @Autowired
+    private OrderService orderService;
 
     public static ArrayList<Item> cart = new ArrayList<>();
     public static ArrayList<Item> compareProducts = new ArrayList<>();
@@ -368,23 +367,41 @@ public class ItemController {
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
         model.addAttribute("cartitemlist",cart);
+        model.addAttribute("checkout","False");
         model.addAttribute("compareitemlist", compareProducts);
         model.addAttribute("total",ItemController.getTotal());
         model.addAttribute("categories",categoryService.getAllCategories());
+        model.addAttribute("order", new Order());
         return "payment";
     }
 
     @RequestMapping(value = "/payment", method = RequestMethod.POST)
-    public String CheckoutPostPage(@AuthenticationPrincipal CustomUserDetails user, Model model){
+    public String CheckoutPostPage(@AuthenticationPrincipal CustomUserDetails user, Model model,@ModelAttribute(value="order") Order orderNew){
         if(user!=null){
             model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
         }
+
+        Random rand = new Random();
+
+        for (int i = 0; i<cart.size(); i++){
+            Order order = new Order();
+            order.setItem(cart.get(i));
+            order.setCustomerid(user.getId());
+            Date today = new Date();
+            order.setDate(today);
+            order.setItemid(cart.get(i).getId());
+            order.setStatus("Waiting Payment");
+            order.setPayoff(order.getItem().getPrice());
+            order.setOrderNo(rand.nextInt(100000000));
+            orderService.Save(order);
+        }
+        cart.clear();
         model.addAttribute("cartitemlist",cart);
+        model.addAttribute("checkout","True");
         model.addAttribute("compareitemlist", compareProducts);
         model.addAttribute("total",ItemController.getTotal());
         model.addAttribute("categories",categoryService.getAllCategories());
         return "payment";
     }
-
 
 }
