@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="icon" href="/images/malle/me.png">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="/style.css" type="text/css" />
+	<link rel="stylesheet" href="/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>Cart</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="/" class="standard-logo" data-dark-logo="/images/logo.png"><img src="/images/logo.png" alt="Malle Logo"></a>
+						<a href="/" class="retina-logo" data-dark-logo="/images/logo.png"><img src="/images/logo.png" alt="Malle Logo"></a>
+					</div><!-- #logo end -->
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul>
+							<li class="current"><a th:href="@{/}"><div>Home</div><span>Lets Start</span></a></li>
+							<li th:each="category: ${categories}"><a th:href="@{/category(name=${category.name})}" th:text="${category.name}"></a></li>
+						</ul>
+
+						<!-- Top Cart
+						============================================= -->
+						<div th:if="${user==null || user.getRole()=='CUSTOMER'}" id="top-cart">
+							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span th:text="${cartitemlist.size()}"></span></a>
+							<div class="top-cart-content">
+								<div class="top-cart-title">
+									<h4>Shopping Cart</h4>
+								</div>
+								<div class="top-cart-items">
+
+									<div class="top-cart-item clearfix"  th:each="cartitem: ${cartitemlist}">
+										<div class="top-cart-item-image">
+											<a th:href="@{/item/view(id=${cartitem.id})}"><img th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}" style="max-width: 50px;"/></a>
+										</div>
+										<div class="top-cart-item-desc">
+											<a th:href="@{/item/view(id=${cartitem.id})}" th:text="${cartitem.name}"></a>
+											<span class="top-cart-item-price" th:text="${cartitem.price}+' ₺'"></span>
+											<span class="top-cart-item-quantity">x 1</span>
+										</div>
+									</div>
+
+								</div>
+								<div class="top-cart-action clearfix">
+									<span class="fleft top-checkout-price" th:text="${total}+' ₺'"></span>
+									<a th:href="@{/cart}" class="button button-3d button-danger button-small nomargin fright">View Cart</a>
+								</div>
+							</div>
+						</div><!-- #top-cart end -->
+
+						<!-- Top Search
+						============================================= -->
+						<div id="top-search">
+							<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+							<form action="search.html" method="get">
+								<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+							</form>
+						</div><!-- #top-search end -->
+
+						<!-- Top Links
+						============================================= -->
+						<div class="top-links"th:if="${authuser != null}">
+							<ul>
+								<li>
+									<a><i class="icon-user"></i></a>
+									<ul>
+										<li><a th:href="@{/view(id=${authuser.id})}">Profile</a></li>
+										<li th:if="${authuser.getRole() == 'CUSTOMER'}"><a href="/orders" >Orders</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/sellers" >Sellers</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/admins" >Admins</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/item/list">Items</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="/customers">Customers</a></li>
+										<li th:if="${authuser.getRole() == 'ADMIN'}"><a href="#">Reports</a></li>
+										<li th:if="${authuser.getRole() == 'SELLER'}"><a href="/item/list">Items</a></li>
+										<li><a href="#">Settings</a></li>
+										<li><a href="/logoutcontroller">Logout</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div><!-- .top-links end -->
+
+
+
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<div class="row clearfix col_full">
+
+						<div id="processTabs" class="ui-tabs ui-corner-all ui-widget ui-widget-content">
+							<ul class="process-steps bottommargin clearfix ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header" role="tablist">
+								<li role="tab" tabindex="0" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active" aria-controls="ptab1" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true">
+									<a href="#ptab1" class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">1</a>
+									<h5>Review Cart</h5>
+								</li>
+								<li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="ptab2" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false">
+									<a href="#ptab2" class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">2</a>
+									<h5>Enter Shipping Info</h5>
+								</li>
+								<li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="ptab3" aria-labelledby="ui-id-3" aria-selected="false" aria-expanded="false">
+									<a href="#ptab3" class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">3</a>
+									<h5>Complete Payment</h5>
+								</li>
+								<li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="ptab4" aria-labelledby="ui-id-4" aria-selected="false" aria-expanded="false">
+									<a href="#ptab4" class="i-circled i-bordered i-alt divcenter ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">4</a>
+									<h5>Order Complete</h5>
+								</li>
+							</ul>
+							<div>
+								<div id="ptab1" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+
+
+									<div class="table-responsive">
+										<table class="table cart">
+											<thead>
+											<tr>
+												<th class="cart-product-remove">&nbsp;</th>
+												<th class="cart-product-thumbnail">&nbsp;</th>
+												<th class="cart-product-name">Product</th>
+												<th class="cart-product-price">Unit Price</th>
+												<th class="cart-product-quantity">Quantity</th>
+												<th class="cart-product-subtotal">Total</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr th:if="${cartitemlist.size() == 0}">
+												<td><span>CART IS EMPTY!</span></td>
+											</tr>
+
+											<tr class="cart_item" th:if="${cartitemlist.size() != 0}" th:each="cartitem : ${cartitemlist}">
+												<td class="cart-product-remove">
+													<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+												</td>
+
+												<td class="cart-product-thumbnail">
+													<a th:href="@{/item/view(id=${cartitem.id})}"><img width="64" height="64" th:src="@{'/images/malle/'+${cartitem.shopname}+'/'+${cartitem.id}+'.jpeg'}"></a>
+												</td>
+
+												<td class="cart-product-name">
+													<a th:href="@{/item/view(id=${cartitem.id})}" th:text="${cartitem.name}">Pink Printed Dress</a>
+												</td>
+
+												<td class="cart-product-price">
+													<span class="amount" th:text="${cartitem.price} +' ₺'">$19.99</span>
+												</td>
+
+												<td class="cart-product-quantity">
+													<div class="quantity clearfix">
+														<input type="button" value="-" class="minus">
+														<input type="text" step="1" min="1" name="quantity" value="1" title="Qty" class="qty" size="4">
+														<input type="button" value="+" class="plus">
+													</div>
+												</td>
+
+												<td class="cart-product-subtotal">
+													<span class="amount"  th:text="${cartitem.price} +' ₺'">$19.99</span>
+												</td>
+											</tr>
+											</tbody>
+
+										</table>
+									</div>
+
+									<div class="clear"></div>
+
+									<div class="divider divider-center"><i class="icon-circle"></i></div>
+
+									<div class="row clearfix" th:if="${cartitemlist.size() != 0}">
+										<div class="col-lg-8 clearfix">
+										</div>
+
+										<div class="col-lg-4 clearfix">
+											<h4>Cart Totals</h4>
+
+											<div class="table-responsive">
+												<table class="table cart">
+													<tbody>
+													<tr class="cart_item">
+														<td class="cart-product-name">
+															<strong>Shipping</strong>
+														</td>
+
+														<td class="cart-product-name">
+															<span class="amount">5,99 ₺</span>
+														</td>
+													</tr>
+													<tr class="cart_item">
+														<td class="cart-product-name">
+															<strong>Total</strong>
+														</td>
+
+														<td class="cart-product-name">
+															<span class="amount color lead"><strong  th:text="${total} + 5.99 + ' ₺'"></strong></span>
+														</td>
+													</tr>
+													</tbody>
+
+												</table>
+											</div>
+										</div>
+									</div>
+
+
+									<a href="#" class="button button-3d nomargin fright tab-linker" rel="2">Checkout ⇒</a>
+
+								</div>
+								<div id="ptab2" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+									<div class="">
+										<h3 class="">Shipping Address</h3>
+
+										<form id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="post">
+
+											<div class="col_half">
+												<label for="shipping-form-name">Name:</label>
+												<input type="text" id="shipping-form-name" name="shipping-form-name" value="" class="sm-form-control">
+											</div>
+
+											<div class="col_half col_last">
+												<label for="shipping-form-lname">Last Name:</label>
+												<input type="text" id="shipping-form-lname" name="shipping-form-lname" value="" class="sm-form-control">
+											</div>
+
+											<div class="clear"></div>
+
+											<div class="col_full">
+												<label for="shipping-form-companyname">Company Name:</label>
+												<input type="text" id="shipping-form-companyname" name="shipping-form-companyname" value="" class="sm-form-control">
+											</div>
+
+											<div class="col_full">
+												<label for="shipping-form-address">Address:</label>
+												<input type="text" id="shipping-form-address" name="shipping-form-address" value="" class="sm-form-control">
+											</div>
+
+											<div class="col_full">
+												<input type="text" id="shipping-form-address2" name="shipping-form-adress" value="" class="sm-form-control">
+											</div>
+
+											<div class="col_full">
+												<label for="shipping-form-city">City / Town</label>
+												<input type="text" id="shipping-form-city" name="shipping-form-city" value="" class="sm-form-control">
+											</div>
+
+											<div class="col_half">
+												<label for="billing-form-email">Email Address:</label>
+												<input type="email" id="billing-form-email" name="billing-form-email" value="" class="sm-form-control">
+											</div>
+
+											<div class="col_half col_last">
+												<label for="billing-form-phone">Phone:</label>
+												<input type="text" id="billing-form-phone" name="billing-form-phone" value="" class="sm-form-control">
+											</div>
+
+											<div class="col_full">
+												<label for="shipping-form-message">Notes <small>*</small></label>
+												<textarea class="sm-form-control" id="shipping-form-message" name="shipping-form-message" rows="6" cols="30"></textarea>
+											</div>
+
+										</form>
+									</div>
+
+									<div class="line"></div>
+									<a href="#" class="button button-3d nomargin tab-linker" rel="1">Previous</a>
+									<a href="#" class="button button-3d nomargin fright tab-linker" rel="3">Pay Now</a>
+								</div>
+								<div id="ptab3" aria-labelledby="ui-id-3" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+									<form id="billing-form" name="billing-form" class="nobottommargin" action="#" method="post">
+
+										<div class="row clearfix">
+
+											<div class="col-lg-6">
+												<div class="col_full">
+													<label for="billing-form-name">Name:</label>
+													<input type="text" id="billing-form-name" name="billing-form-name" value="" class="sm-form-control">
+												</div>
+
+												<div class="clear"></div>
+
+												<div class="col_full">
+													<label for="billing-form-companyname">Card Number:</label>
+													<input type="text" id="billing-form-companyname" name="billing-form-companyname" value="" class="sm-form-control">
+												</div>
+
+												<div class="clear"></div>
+
+												<div class="col_half">
+													<label for="billing-form-secure">Secure No:</label>
+													<input type="text" id="billing-form-secure" name="billing-form-email" value="" class="sm-form-control">
+												</div>
+
+												<div class="col_half col_last">
+													<label for="billing-form-expire">Expiry Date:</label>
+													<input type="text" id="billing-form-expire" name="billing-form-email" value="" class="sm-form-control">
+												</div>
+
+											</div>
+
+
+
+											<div class="col-lg-6 col_last">
+												<td class="cart-product-thumbnail">
+													<a ><img style="display: block; margin-left: auto; margin-right: auto; width: 58%;" width="330" height="164" th:src="@{'/images/malle/4_Card.png'}"></a>
+												</td>
+											</div>
+
+										</div>
+
+									</form><div class="line"></div>
+									<a href="#" class="button button-3d nomargin tab-linker" rel="2">Previous</a>
+									<a href="#" class="button button-3d nomargin fright tab-linker" rel="4">Complete Order</a>
+								</div>
+								<div id="ptab4" aria-labelledby="ui-id-4" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+									<div class="alert alert-success">
+										<strong>Thank You.</strong> Your order will be processed once we verify the Payment.
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="divider divider-center"><i class="icon-circle"></i></div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section><!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+
+
+					<div class="col_half">
+						Copyrights &copy; 2019 All Rights Reserved by GroupName Inc.<br>
+						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="fright clearfix">
+							<a href="#" class="social-icon si-small si-borderless si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-gplus">
+								<i class="icon-gplus"></i>
+								<i class="icon-gplus"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-vimeo">
+								<i class="icon-vimeo"></i>
+								<i class="icon-vimeo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-github">
+								<i class="icon-github"></i>
+								<i class="icon-github"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-yahoo">
+								<i class="icon-yahoo"></i>
+								<i class="icon-yahoo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div>
+
+						<div class="clear"></div>
+
+						<i class="icon-envelope2"></i> info@groupname.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +90-312-123-4567 <span class="middot">&middot;</span> <i class="icon-skype2"></i> GroupNameOnSkype
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script src="/js/jquery.js"></script>
+	<script src="/js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="/js/functions.js"></script>
+
+	<script>
+		jQuery( "#tabs-profile" ).on( "tabsactivate", function( event, ui ) {
+			jQuery( '.flexslider .slide' ).resize();
+		});
+
+        $(function() {
+            $( "#processTabs" ).tabs({ show: { effect: "fade", duration: 400 } });
+            $( ".tab-linker" ).click(function() {
+                $( "#processTabs" ).tabs("option", "active", $(this).attr('rel') - 1);
+                return false;
+            });
+        });
+
+	</script>
+
+</body>
+</html>

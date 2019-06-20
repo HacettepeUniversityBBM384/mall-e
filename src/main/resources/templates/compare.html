@@ -147,22 +147,96 @@
 						<h2 th:text="${categoryname}" style="text-transform: uppercase;"></h2>
 						<!-- Shop
 						============================================= -->
-						<div id="shop" class="shop product-3 grid-container clearfix">
-							<div th:each="item: ${itemlist}" th:class="product + ' ' + clearfix + ' ' +${item.getSubcategoryid()}" >
-								<div>
+						<div id="shop" class="shop product-2 grid-container clearfix">
+							<div>
+								<div class="col_half">
 								<div class="product-image">
-									<a th:href="@{/item/view(id=${item.id})}"><img th:src="@{'/images/malle/'+${item.shopname}+'/'+${item.id}+'.jpeg'}"></a>
+									<a th:href="@{/item/view(id=${item1.id})}"><img th:src="@{'/images/malle/'+${item1.shopname}+'/'+${item1.id}+'.jpeg'}"></a>
 									<div class="product-overlay">
-										<a th:href="@{/item/addtocart(id=${item.id})}" style="width: 33.3%;" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-										<a th:href="@{/shop(name=${item.getShopname()})}" style="width: 33.3%;" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item.shopname}"></span></a>
-                                        <a onclick="showCompare()" th:href="@{/item/addtocompare(id=${item.id})}"  style="width: 33.3%;" class="add-to-cart"><i class="icon-line-eye"></i><span> Compare</span></a>
+										<a th:href="@{/item/addtocart(id=${item1.id})}" style="width: 33.3%;" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+										<a th:href="@{/shop(name=${item1.getShopname()})}" style="width: 33.3%;" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item1.shopname}"></span></a>
+                                        <a onclick="showCompare()" th:href="@{/item/addtocompare(id=${item1.id})}"  style="width: 33.3%;" class="add-to-cart"><i class="icon-line-eye"></i><span> Compare</span></a>
 									</div>
 								</div>
 								<div class="product-desc center">
-									<div class="product-title" th:text="${item.name}"><h3><a th:href="@{/item/view(id=${item.id})}"></a></h3></div>
-									<div class="product-price" th:text="${item.price}+' ₺'"></div>
+									<div class="product-title" th:text="${item1.name}"><h3><a th:href="@{/item/view(id=${item1.id})}"></a></h3></div>
+									<div class="product-price" th:text="${item1.price}+' ₺'"></div>
 								</div>
+
+									<div class="clear"></div>
+
+									<div class="col_half">
+										<label>Description:</label>
+										<label style="padding_bottom:0px;border: 0px" type="text" th:utext="${item1.getDescription()}" class="form-control"/>
+									</div>
+									<div class="col_half col_last">
+										<label>Stock:</label>
+										<label style="padding:0px;border: 0px" type="text" th:utext="${item1.getStock()}" class="form-control"/>
+									</div>
+
+									<div class="clear"></div>
+
+									<div class="col_half ">
+										<label>Category:</label>
+										<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getCategoryname()}"></label>
+									</div>
+
+									<div class="col_half col_last">
+										<label>Subcategory:</label>
+										<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory.getName()}"></label>
+									</div>
+
+									<div class="col_half ">
+										<label>Average Rating:</label>
+										<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${averagerating}"></label>
+									</div>
+
 								</div>
+
+								<div class="col_half col_last">
+									<div class="product-image">
+										<a th:href="@{/item/view(id=${item2.id})}"><img th:src="@{'/images/malle/'+${item2.shopname}+'/'+${item2.id}+'.jpeg'}"></a>
+										<div class="product-overlay">
+											<a th:href="@{/item/addtocart(id=${item2.id})}" style="width: 33.3%;" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+											<a th:href="@{/shop(name=${item2.getShopname()})}" style="width: 33.3%;" class="add-to-cart"><i class="icon-zoom-in2"></i><span th:text="${item2.shopname}"></span></a>
+											<a onclick="showCompare()" th:href="@{/item/addtocompare(id=${item2.id})}"  style="width: 33.3%;" class="add-to-cart"><i class="icon-line-eye"></i><span> Compare</span></a>
+										</div>
+									</div>
+									<div class="product-desc center">
+										<div class="product-title" th:text="${item2.name}"><h3><a th:href="@{/item/view(id=${item2.id})}"></a></h3></div>
+										<div class="product-price" th:text="${item2.price}+' ₺'"></div>
+									</div>
+
+									<div class="clear"></div>
+
+									<div class="col_half">
+										<label>Description:</label>
+										<label style="padding_bottom:0px;border: 0px" type="text" th:utext="${item2.getDescription()}" class="form-control"/>
+									</div>
+									<div class="col_half col_last">
+										<label>Stock:</label>
+										<label style="padding:0px;border: 0px" type="text" th:utext="${item2.getStock()}" class="form-control"/>
+									</div>
+
+									<div class="clear"></div>
+
+									<div class="col_half ">
+										<label>Category:</label>
+										<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory2.getCategoryname()}"></label>
+									</div>
+
+									<div class="col_half col_last">
+										<label>Subcategory:</label>
+										<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${subcategory2.getName()}"></label>
+									</div>
+
+									<div class="col_half ">
+										<label>Average Rating:</label>
+										<label style="padding:0px;border: 0px" type="text" class="form-control" th:text="${averagerating2}"></label>
+									</div>
+
+								</div>
+
 							</div>
 
 						</div><!-- #shop end -->
@@ -176,7 +250,7 @@
 
 							<div class="widget widget-filter-links clearfix">
 
-								<h4>Select Category</h4>
+								<h3 th:text=" 'You are comparing ' + ${item1.name} + ' and ' +  ${item2.name}">You're comparing </h3>
 								<ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
 									<li class="widget-filter-reset active-filter" style="color:teal;"><a href="#" data-filter="*">CLEAR</a></li>
 									<li th:each="subcategory: ${subcategoryset}"><a th:text="${subcategories.get(subcategory.id-1).name}" href="#" th:data-filter="'.'+${subcategory.id}"></a></li>
@@ -184,23 +258,9 @@
 
 							</div>
 
-							<div class="widget widget-filter-links clearfix">
-
-								<h4>Sort By</h4>
-								<ul class="shop-sorting">
-									<li class="widget-filter-reset active-filter" style="color:teal;"><a href="#" data-sort-by="original-order">CLEAR</a></li>
-									<li><a href="#" data-sort-by="name">Name</a></li>
-									<li><a href="#" data-sort-by="price_lh">Price: Low to High</a></li>
-									<li><a href="#" data-sort-by="price_hl">Price: High to Low</a></li>
-								</ul>
-
-							</div>
-
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 
 		</section><!-- #content end -->
@@ -274,7 +334,8 @@
 
 		</footer>
 
-		<footer th:if="${status == 'compare'  &&  #lists.size(compareitemlist) > 0}" id="footer compare" style="position: fixed;    bottom: 0;    left: 0;    width: 100%; height: 150px; display: block; background-color:#f5f5f5; box-shadow: 5px 10px; z-index: 10">
+		<footer th:if="${status} == 'compare'" id="footer compare" style="position: fixed;    bottom: 0;    left: 0;    width: 100%; height: 150px; display: block; background-color:#f5f5f5; box-shadow: 5px 10px; z-index: 10">
+
 
 			<div class="container clearfix">
 
@@ -293,35 +354,30 @@
 					</button>
 				</div>
 
-				<div class="row">
-					<div class="clearfix col-sm"  th:if="${#lists.size(compareitemlist)} > 0">
-						<div class="top-cart-item-image" style="width: 55px !important; height: 75px !important;">
+				<div>
+
+					<div class="clearfix col_half"  th:if="${#lists.size(compareitemlist)} > 0">
+						<div class="top-cart-item-image" style="    width: 55px !important; height: 75px !important;">
 							<a th:href="@{/item/view(id=${compareitemlist[0].id})}" style="width: 50px !important;"><img th:src="@{'/images/malle/'+${compareitemlist[0].shopname}+'/'+${compareitemlist[0].id}+'.jpeg'}" style="height: 70px !important; width: 50px !important; "/></a>
 						</div>
 						<div class="top-cart-item-desc">
 							<a th:href="@{/item/view(id=${compareitemlist[0].id})}" th:text="${compareitemlist[0].name}"></a>
 							<span class="top-cart-item-price" th:text="${compareitemlist[0].price}+' ₺'"></span>
-							<a th:href="@{/item/removecompare(id=${compareitemlist[0].id})}" class="button button-mini button-border button-circle button-yellow button-light" style="max-width: 180px;"><i class="icon-trash2" style="font-size: 10px !important;"></i>Remove Compare</a>
 						</div>
-
 					</div>
 
-					<div class="clearfix col-sm"  th:if="${#lists.size(compareitemlist)} > 1">
-						<div class="top-cart-item-image" style="width: 55px !important; height: 75px !important;">
-							<a th:href="@{/item/view(id=${compareitemlist[1].id})}" style="width: 50px !important;"><img th:src="@{'/images/malle/'+${compareitemlist[1].shopname}+'/'+${compareitemlist[1].id}+'.jpeg'}" style="height: 70px !important; width: 50px !important; "/></a>
+					<div class="clearfix col_half col_last"  th:if="${#lists.size(compareitemlist)} > 1">
+						<div class="top-cart-item-image">
+							<a th:href="@{/item/view(id=${compareitemlist[1].id})}"><img th:src="@{'/images/malle/'+${compareitemlist[1].shopname}+'/'+${compareitemlist[1].id}+'.jpeg'}" style="width: 70px !important;"/></a>
 						</div>
 						<div class="top-cart-item-desc">
 							<a th:href="@{/item/view(id=${compareitemlist[1].id})}" th:text="${compareitemlist[1].name}"></a>
 							<span class="top-cart-item-price" th:text="${compareitemlist[1].price}+' ₺'"></span>
-							<a th:href="@{/item/removecompare(id=${compareitemlist[1].id})}" class="button button-mini button-border button-circle button-yellow button-light" style="max-width: 180px;"><i class="icon-trash2" style="font-size: 10px !important;"></i>Remove Compare</a>
 						</div>
 					</div>
 
-					<div th:if="${#lists.size(compareitemlist)} > 1" class="clearfix col-sm center">
-						<a th:href="@{/compare(id1=${compareitemlist[0].id},id2=${compareitemlist[1].id})}" class=" button button-3d button-medium button-rounded button-green">Compare</a>
-					</div>
-
 				</div>
+
 
 			</div>
 

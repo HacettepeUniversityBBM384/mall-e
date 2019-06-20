@@ -361,4 +361,30 @@ public class ItemController {
         model.addAttribute("compareitemlist", compareProducts);
         return "redirect:"+request.getHeader("Referer");
     }
+
+    @RequestMapping(value = "/payment", method = RequestMethod.GET)
+    public String CheckoutPage(@AuthenticationPrincipal CustomUserDetails user, Model model){
+        if(user!=null){
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+        model.addAttribute("cartitemlist",cart);
+        model.addAttribute("compareitemlist", compareProducts);
+        model.addAttribute("total",ItemController.getTotal());
+        model.addAttribute("categories",categoryService.getAllCategories());
+        return "payment";
+    }
+
+    @RequestMapping(value = "/payment", method = RequestMethod.POST)
+    public String CheckoutPostPage(@AuthenticationPrincipal CustomUserDetails user, Model model){
+        if(user!=null){
+            model.addAttribute("user", userService.FindByEmail(user.getEmail()).get());
+        }
+        model.addAttribute("cartitemlist",cart);
+        model.addAttribute("compareitemlist", compareProducts);
+        model.addAttribute("total",ItemController.getTotal());
+        model.addAttribute("categories",categoryService.getAllCategories());
+        return "payment";
+    }
+
+
 }

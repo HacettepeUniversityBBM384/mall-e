@@ -199,7 +199,7 @@
 										</td>
 
 										<td class="cart-product-name">
-											<span class="amount">Free Delivery</span>
+											<span class="amount">5,99 ₺</span>
 										</td>
 									</tr>
 									<tr class="cart_item">
@@ -208,14 +208,18 @@
 										</td>
 
 										<td class="cart-product-name">
-											<span class="amount color lead"><strong  th:text="${total} +' ₺'"></strong></span>
+											<span class="amount color lead"><strong  th:text="${total} + 5.99 +' ₺'"></strong></span>
 										</td>
 									</tr>
 									<tr class="cart_item">
 										<td class="cart-product-name">
 										</td>
-										<td>
-											<a href="shop.html" class="button button-3d notopmargin fright">Checkout</a>
+
+										<td th:if="${user != null}">
+											<a th:href="@{/payment}" class="button button-3d notopmargin fright">Checkout</a>
+										</td>
+										<td th:if="${user == null}">
+											<p>Please <a th:href="@{/login}">Login</a> or <a th:href="@{/login}">Sign Up</a> to continue shopping...</p>
 										</td>
 									</tr>
 									</tbody>
@@ -224,11 +228,8 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
-
 		</section><!-- #content end -->
 
 		<!-- Footer
